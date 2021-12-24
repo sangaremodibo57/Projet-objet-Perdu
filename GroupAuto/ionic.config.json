@@ -1,0 +1,7 @@
+{
+  "name": "GroupAuto",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
