@@ -1,0 +1,52 @@
+ion-content{
+
+
+    ion-card{
+       
+        box-shadow: none;
+        @-webkit-keyframes slide-in-top{0%{-webkit-transform:translateY(-1000px);transform:translateY(-1000px);opacity:0}100%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}}@keyframes slide-in-top{0%{-webkit-transform:translateY(-1000px);transform:translateY(-1000px);opacity:0}100%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}};
+        .logo{
+            -webkit-animation:slide-in-top 1s cubic-bezier(.25,.46,.45,.94) both;animation:slide-in-top 1s cubic-bezier(.25,.46,.45,.94) both;
+            ion-img{
+                height: 100px;
+            }
+        }
+    }
+
+    ion-card-content{
+        .inputs{
+            ion-item{
+                text-align: center;
+                color: #64789D;
+                font-size: 14px;
+                --highlight-color-focused:#081fa3;
+                
+            }
+        }
+        .password-f{
+            text-align: right;
+            ion-button{
+                font-size: 10px;
+            }
+        }
+        .btnConnect{
+            margin-top: 10px;
+            text-align: center;
+        }
+        .textConnect{
+            text-align: center;
+            margin-top: 10px;
+            span{
+                font-size: 12px;
+                color: #898585;
+            }
+        }
+        .socials{
+            text-align: center;
+            ion-button{
+                width: 40px;
+                padding-left: 5px !important;
+            }
+        }
+    }
+}

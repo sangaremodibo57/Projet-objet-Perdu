@@ -1,9 +1,41 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-card class="ion-no-margin">
+    <ion-img src="assets/images/Auth/header1.png"></ion-img>
+    <div class="logo">
+      <ion-img src="assets/images/splash/logo.png"></ion-img>
+    </div>
+  </ion-card>
+  <ion-card-content>
+    <div class="inputs">
+      <ion-item>
+        <ion-icon name="mail-outline"></ion-icon>
+        <ion-input type="email" name="email" placeholder="Email" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        <ion-input type="password" name="password" placeholder="********" required></ion-input>
+      </ion-item>
+    </div>
+    <div class="password-f">
+      <ion-button fill="clear">Mot de passe oublié?</ion-button>
+    </div>
+    <div class="btnConnect">
+      <ion-button fill="solid" size="small" shape="round">Connexion</ion-button>
+    </div>
+    <div class="textConnect">
+    <span>Se connecter avec</span>
+    </div>
+    <div class="socials">
+      <ion-button fill="clear" class="ion-no-padding">
+        <ion-img src="assets/images/Auth/google.png"></ion-img>
+      </ion-button>
+      <ion-button fill="clear" class="ion-no-padding">
+        <ion-img src="assets/images/Auth/facebook.png"></ion-img>
+      </ion-button>
+    </div>
+    <div class="textConnect">
+      <span>Vous n'avez pas de compte? <a href="register"> S'inscrire</a> </span>
+      </div>
+  </ion-card-content>
 
 </ion-content>

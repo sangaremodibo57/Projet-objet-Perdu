@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./SplashScreen/splash/splash.module').then( m => m.SplashPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./Auth/register/register.module').then( m => m.RegisterPageModule)
   }
 ];
 @NgModule({
