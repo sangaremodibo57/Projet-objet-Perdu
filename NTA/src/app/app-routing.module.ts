@@ -3,8 +3,16 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./Auth/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: '',
+    loadChildren: () => import('./SplashScreen/splash/splash.module').then( m => m.SplashPageModule)
   }
 ];
 @NgModule({
