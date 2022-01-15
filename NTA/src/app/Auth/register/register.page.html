@@ -1,9 +1,70 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>register</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="login"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card class="ion-no-margin">
+    <div class="logo">
+      <ion-img src="assets/images/splash/logo.png"></ion-img>
+    </div>
+    <ion-card-header class="ion-no-margin">
+      <ion-card-title>
+        <h3><b>Inscription</b></h3>  
+      </ion-card-title>
+      <ion-card-subtitle>
+        Créez votre compte en remplissant 
+                le formulaire
+      </ion-card-subtitle>
+    </ion-card-header>
+  <ion-card-content class="ion-no-margin">
+    <form  #form="ngForm" (ngSubmit)="logForm(form)" novalidate>
+      <ion-item lines="full">
+        <ion-label position="floating"><ion-icon name="person-outline"></ion-icon>Nom Utilisateur</ion-label>
+        <ion-input type="text" ngControl="nom" required></ion-input>
+      </ion-item>
 
+
+      <ion-item lines="full">
+        <ion-label position="floating"><ion-icon name="lock-closed-outline"></ion-icon>Mot de passe</ion-label>
+        <ion-input type="password" ngControl="password" required></ion-input>
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating"><ion-icon name="call-outline"></ion-icon>Téléphone</ion-label>
+        <ion-input type="email" required></ion-input>
+      </ion-item>
+  
+  
+      <ion-item lines="full">
+        <ion-label position="floating"><ion-icon name="location-outline"></ion-icon>Adresse</ion-label>
+        <ion-input type="adresse" required></ion-input>
+      </ion-item>
+  
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" size="small" color="success" expand="block">Envoyer</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+    <div class="textConnect">
+    <span>Inscrivez-vous avec</span>
+    </div>
+    <div class="socials">
+      <ion-button fill="clear" class="ion-no-padding">
+        <ion-img src="assets/images/Auth/google.png"></ion-img>
+      </ion-button>
+      <ion-button fill="clear" class="ion-no-padding">
+        <ion-img src="assets/images/Auth/facebook.png"></ion-img>
+      </ion-button>
+    </div>
+    
+  </ion-card-content>
+</ion-card>
+<ion-card class="ion-no-margin">
+  <ion-img src="assets/images/Auth/header2.png"></ion-img>
+</ion-card>
 </ion-content>
