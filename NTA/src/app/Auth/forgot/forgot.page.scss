@@ -1,0 +1,42 @@
+
+ion-content{
+
+
+    ion-card{
+        box-shadow: none;
+
+        .logo{
+            ion-img{
+                height: 100px;
+            }
+        }
+        ion-card-header{
+            text-align: center;
+            
+            ion-card-subtitle{
+                font-size: 12px;
+            }
+        }
+    }
+
+    ion-card-content{
+        form{
+           
+
+            ion-item{
+                
+                color: #64789D;
+                font-size: 13px;
+                --highlight-color-focused:#081fa3;
+            }
+        }
+       
+        .btnConnect{
+            text-align: center;
+        }
+        
+    }
+    .bottomImg{
+        margin-top: 120px;
+    }
+}

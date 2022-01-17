@@ -1,0 +1,46 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="login"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="ion-no-margin">
+    <div class="logo">
+      <ion-img src="assets/images/splash/logo.png"></ion-img>
+    </div>
+    <ion-card-header class="ion-no-margin">
+      <ion-card-title>
+        <h3><b>Mot de passe oublié</b></h3>  
+      </ion-card-title>
+      <ion-card-subtitle>
+        Créez votre compte en remplissant 
+                le formulaire
+      </ion-card-subtitle>
+    </ion-card-header>
+  <ion-card-content class="ion-no-margin">
+    <form  #form="ngForm" (ngSubmit)="logForm(form)" novalidate>
+      <ion-item lines="full">
+        <ion-label position="floating"> <ion-icon name="mail-outline"></ion-icon>Nom Utilisateur</ion-label>
+        <ion-input type="text" ngControl="nom" required></ion-input>
+      </ion-item>
+
+
+      
+  
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" size="small" color="success" expand="block">Envoyer</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+    
+    
+  </ion-card-content>
+</ion-card>
+<ion-card class="bottomImg ion-no-margin">
+  <ion-img src="assets/images/Auth/header2.png"></ion-img>
+</ion-card>
+</ion-content>
