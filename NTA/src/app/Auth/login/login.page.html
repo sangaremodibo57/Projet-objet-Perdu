@@ -1,8 +1,8 @@
 <ion-content>
   <ion-card class="ion-no-margin">
     <ion-img src="assets/images/Auth/header11.png"></ion-img>
-    <div class="logo">
-      <ion-img src="assets/images/splash/logo.png"></ion-img>
+    <div class="logo ion-text-center">
+      <ion-img src="assets/images/NTAB.png"></ion-img>
     </div>
   </ion-card>
   <ion-card-content>
@@ -11,6 +11,10 @@
         <ion-icon name="mail-outline"></ion-icon>
         <ion-input type="email" name="email" placeholder="Email" required></ion-input>
       </ion-item>
+      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.required">
+        Email is required.
+      </span>
+  
       <ion-item>
         <ion-icon name="lock-closed-outline"></ion-icon>
         <ion-input type="password" name="password" placeholder="********" required></ion-input>

@@ -9,25 +9,25 @@
 <ion-content>
   <ion-card class="ion-no-margin">
     <div class="logo">
-      <ion-img src="assets/images/splash/logo.png"></ion-img>
+      <ion-img src="assets/images/splash/NTAB.png"></ion-img>
     </div>
     <ion-card-header class="ion-no-margin">
       <ion-card-title>
         <h3><b>Mot de passe oublié</b></h3>  
       </ion-card-title>
       <ion-card-subtitle>
-        Créez votre compte en remplissant 
+        Retrouver votre mot de passe perdu en remplissant 
                 le formulaire
       </ion-card-subtitle>
     </ion-card-header>
   <ion-card-content class="ion-no-margin">
     <form  #form="ngForm" (ngSubmit)="logForm(form)" novalidate>
       <ion-item lines="full">
-        <ion-label position="floating"> <ion-icon name="mail-outline"></ion-icon>Nom Utilisateur</ion-label>
-        <ion-input type="text" ngControl="nom" required></ion-input>
+        <ion-label position="floating">Email/Tel</ion-label>
+        <ion-input type="text" ngControl="nom" required><ion-icon name="mail-outline"></ion-icon></ion-input>
       </ion-item>
 
-
+     
       
   
       <ion-row>
