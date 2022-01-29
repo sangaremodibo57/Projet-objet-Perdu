@@ -1,25 +1,25 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonSlides } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-ajout-perdu',
+  templateUrl: './ajout-perdu.page.html',
+  styleUrls: ['./ajout-perdu.page.scss'],
 })
-export class Tab1Page {
+export class AjoutPerduPage implements OnInit {
+  idString =["Comment retrouver un objet ?","Comment récupérer ses objets perdus ?" ]
   id =[1,2,3,4,5,6,7,8,9,10]
   public slideOpts = {
-    slidesPerView: 3,
-    spaceBetween:30,
+    slidesPerView: 1,
+    spaceBetween:50,
     initialSlide:1,
     loop: true,
     autoplay: {
-          delay: 4000
+          delay: 7000
     },
     coverflowEffect: {
       rotate: 0,
       stretch: 0,
-      depth: 50,
+      depth: 150,
       modifier: 1,
       slideShadows: true,
       
@@ -139,9 +139,9 @@ export class Tab1Page {
     });
   }
 
-  constructor(){
+  constructor() { }
 
+  ngOnInit() {
   }
-  
 
 }

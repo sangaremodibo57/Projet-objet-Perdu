@@ -21,7 +21,32 @@ const routes: Routes = [
   {
     path: 'forgot',
     loadChildren: () => import('./Auth/forgot/forgot.module').then( m => m.ForgotPageModule)
+  },
+  {
+    path: 'detail',
+    loadChildren: () => import('./Profil/detail/detail.module').then( m => m.DetailPageModule)
+  },
+  {
+    path: 'edit',
+    loadChildren: () => import('./Profil/edit/edit.module').then( m => m.EditPageModule)
+  },  {
+    path: 'add-notification',
+    loadChildren: () => import('./Notification/add-notification/add-notification.module').then( m => m.AddNotificationPageModule)
+  },
+  {
+    path: 'liste-notification',
+    loadChildren: () => import('./Notification/liste-notification/liste-notification.module').then( m => m.ListeNotificationPageModule)
+  },
+  {
+    path: 'delete-notification',
+    loadChildren: () => import('./Notification/delete-notification/delete-notification.module').then( m => m.DeleteNotificationPageModule)
+  },
+  {
+    path: 'ajout-perdu',
+    loadChildren: () => import('./Perdu/ajout-perdu/ajout-perdu.module').then( m => m.AjoutPerduPageModule)
   }
+
+
 ];
 @NgModule({
   imports: [

@@ -1,7 +1,9 @@
 ion-content{
 
 
-    ion-card{
+    .cardlogo{
+        box-shadow: none;
+
         .logo{
             border: 1px solid white;
             border-radius: 50%;
@@ -11,7 +13,7 @@ ion-content{
             width: 100px;
         }
        
-        box-shadow: none;
+       
         @-webkit-keyframes scale-in-center {
             0% {
               -webkit-transform: scale(0);
@@ -44,41 +46,71 @@ ion-content{
             }
         }
     }
-
-    ion-card-content{
+    
+        
         .inputs{
+            padding: 10px;
             ion-item{
-                margin-top: 10px;
+                color: #3753f5;
+                border-radius: 50px;
+                border: 1px inset rgba(110, 110, 110, 0.281);
+                box-shadow: 2px 2px 2px rgb(104, 103, 103);
                 text-align: center;
-                color: #64789D;
-                font-size: 14px;
-                --highlight-color-focused:#081fa3;
-                
+                margin-top: 10px;
+                --highlight-color-focused:#3753f5;  
+                ion-icon{
+                    color: #3753f5;
+                }
+            }
+            ion-item:hover{
+                border: 1px inset rgba(110, 110, 110, 0.281);
+                box-shadow: 4px 4px 4px rgb(104, 103, 103);
+              
             }
         }
-        .password-f{
-            text-align: right;
-            ion-button{
-                font-size: 10px;
-            }
+        
+    
+    .password-f{
+        text-align: right;
+        ion-button{
+            font-size: 9px;
         }
-        .btnConnect{
-            margin-top: 10px;
-            text-align: center;
+    }
+    .btnConnect{
+        margin-top: 10px;
+        text-align: center;
+       ion-button{
+           --background: #3753f5;
+           --border-radius: 50px;
+           width: 60%;
+           --box-shadow: 3px 3px 3px rgb(107, 106, 106);
+       }
+       ion-button:hover{
+        --background: white;
+        color: #3753f5;
+        --border-radius: 50px;
+        width: 60%;
+        --box-shadow: 3px 3px 3px rgb(107, 106, 106);
         }
-        .textConnect{
-            text-align: center;
-            margin-top: 20px;
-            span{
-                font-size: 12px;
-                color: #898585;
-            }
+    }
+    .textConnect{
+        text-align: center;
+        margin-top: 20px;
+        span{
+            font-size: 12px;
+            color: #898585;
         }
-        .socials{
-            text-align: center;
-            ion-button{
-                width: 40px;
-                padding-left: 5px !important;
+    }
+    .socials{
+        margin-top: 10px;
+        text-align: center;
+        ion-button{
+            text-align: center ;
+            width: 40px;
+            padding-left: 5px !important;
+            margin: auto 10px auto 10px;
+            img{
+                margin: 0 auto;
             }
         }
     }

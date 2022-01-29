@@ -1,0 +1,80 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button>
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+      <ion-button [routerLink]="['/detail']">
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Notification</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+<ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="logoNotification" size="4">
+        <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <subtitle>
+          Description du Message Description du Message Description du Message MESSAGE
+        </subtitle>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>
+<ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="logoNotification" size="4">
+        <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <subtitle>
+          Description du Message Description du Message Description du Message MESSAGE
+        </subtitle>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>
+<ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="logoNotification" size="4">
+        <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <subtitle>
+          Description du Message Description du Message Description du Message MESSAGE
+        </subtitle>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>
+
+
+  <ion-tabs>
+
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button [routerLink]="['/tabs/tabs/tab1']">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Accueil</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button [routerLink]="['/tabs/tabs/tab2']">
+        <ion-icon name="bag-remove-outline"></ion-icon>
+        <ion-label>Objet Perdu</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button [routerLink]="['/tabs/tabs/tab3']">
+        <ion-icon name="bag-check-outline"></ion-icon>
+        <ion-label>Objet Trouvé</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  
+  </ion-tabs>  
+</ion-content>

@@ -1,0 +1,132 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button [routerLink]="['/liste-notification']">
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+      <ion-button [routerLink]="['/detail']">
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-title>Publié Une Annonce</ion-title>
+    </ion-buttons>
+    <ion-buttons>
+      <ion-back-button [routerLink]="['/tabs/tabs/tab1']"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-slides pager="true" [options]="slideOpts" >
+    <ion-slide>
+      <ion-card class="slideIonCard">
+        <img style="height: 80px; width: 100%;" src="assets/images/Accueil/s1.jpg">
+        <ion-card-content>
+          <h2 style="font-size: 10px;">Comment retrouver un objet ?</h2>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card class="slideIonCard">
+        <img style="height: 80px; width: 100%;" src="assets/images/Accueil/s2.jpg">
+        <ion-card-content>
+          <h2 style="font-size: 10px;">Qui appeler quand on a perdu un objet ?
+          </h2>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card class="slideIonCard">
+        <img style="height: 80px; width: 100%;" src="assets/images/Accueil/s3.jpg">
+        <ion-card-content>
+          <h2 style="font-size: 10px;">Comment faire une déclaration ?</h2>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+  <h2 style="font-size: 20px; color: black;"> <b>Publié une Annonce</b></h2>
+ 
+    <form  [formGroup]="formtest" (ngSubmit)="registreForm()" novalidate>
+      <ion-title class="title"> <ion-icon name="bag"></ion-icon> Qu'avez-vous perdu ?</ion-title>
+      <ion-subtitle>Sélectionnez une catégorie pour pouvoir choisir un objet.</ion-subtitle>
+      <ion-item>
+        <ion-label> Catégorie</ion-label>
+        <ion-select interface="popover">
+          <ion-select-option value="nes">ANIMAUX</ion-select-option>
+          <ion-select-option value="n64">BIJOUX</ion-select-option>
+          <ion-select-option value="ps">PORTEFUILLE</ion-select-option>
+          <ion-select-option value="genesis">CLES</ion-select-option>
+          <ion-select-option value="saturn">LUNETTES</ion-select-option>
+          <ion-select-option value="snes">MULTIMEDIA</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        
+        <ion-label> OBJET</ion-label>
+        <ion-select interface="popover">
+          <ion-select-option value="nes">BAGUE</ion-select-option>
+          <ion-select-option value="n64">BROCHE</ion-select-option>
+          <ion-select-option value="ps">MONTRE</ion-select-option>
+          <ion-select-option value="genesis">CARTE BANCAIRE</ion-select-option>
+          <ion-select-option value="saturn">PORTEFUEILLE</ion-select-option>
+          <ion-select-option value="snes">AUTRE</ion-select-option>
+        </ion-select>
+      </ion-item>
+      
+
+      <ion-title class="title"> <ion-icon name="location"></ion-icon> Où l'avez-vous perdu ?</ion-title>
+      <ion-subtitle>Sélectionnez une ville </ion-subtitle>
+      
+      <ion-item lines="full">
+        <ion-label > Ville</ion-label>
+        <ion-select interface="popover">
+          <ion-select-option value="nes">BAMAKO</ion-select-option>
+          <ion-select-option value="n64">KAYES</ion-select-option>
+          <ion-select-option value="ps">SEGOU</ion-select-option>
+          <ion-select-option value="genesis">SICKASSO</ion-select-option>
+          <ion-select-option value="saturn">KOULIKORO</ion-select-option>
+          <ion-select-option value="snes">MOPTI</ion-select-option>
+        </ion-select>
+      </ion-item>
+      
+
+      <ion-title class="title"> <ion-icon name="time"></ion-icon> Quant l'avez-vous perdu ?</ion-title>
+      <ion-subtitle>Choisiser une date </ion-subtitle>
+      <ion-item>
+        <ion-label >Date</ion-label>
+        <ion-input [value]="dateValue2"></ion-input>
+        <ion-button fill="clear" id="open-date-input-2">
+          <ion-icon icon="calendar"></ion-icon>
+        </ion-button>
+        <ion-popover trigger="open-date-input-2" show-backdrop="false">
+          <ng-template>
+            <ion-datetime
+              #popoverDatetime2
+              presentation="date"
+              (ionChange)="dateValue2 = formatDate(popoverDatetime2.value)"
+            ></ion-datetime>
+          </ng-template>
+        </ion-popover>
+      </ion-item>
+
+      <ion-card>
+        <ion-card-header>
+          <ion-title>Photo de l'objet</ion-title>
+          <ion-subtitle>Les photo permettent d'augmenter l'efficacité de votre annonce</ion-subtitle>
+        </ion-card-header>
+        <ion-card-content class="ajoutImageContent">
+          <ion-icon class="ajoutImageIcon" name="camera"></ion-icon>
+        </ion-card-content>
+      </ion-card>
+
+  
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" size="small" color="success" expand="block">Publié votre annonce</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+
+</ion-content>

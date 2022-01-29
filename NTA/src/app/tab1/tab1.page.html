@@ -1,10 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="primary">
-      <ion-button>
+      <ion-button [routerLink]="['/liste-notification']">
         <ion-icon name="notifications"></ion-icon>
       </ion-button>
-      <ion-button>
+      <ion-button [routerLink]="['/detail']">
         <ion-icon name="person-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -13,82 +13,82 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card class="cardbtn">
-    <ion-card-header class="cardbtnHeader">
-      <p> <b>FAIRE UNE ANNONCE</b></p>
-    </ion-card-header>
-    <ion-card-content class="cardbtnContent">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <div class="objtPerdu">
-              <ion-button >OBJET PERDU</ion-button>
-            </div>
-          </ion-col>
-          <ion-col>
-            <div class="objtTrouve">
-            <ion-button>OBJET TROUVE</ion-button>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-  <h6 style="font-size: 12px;" class="ion-text-center">Recememnt Perdu</h6>
-  <ion-slides pager="true" [options]="slideOpts" >
-    <ion-slide *ngFor="let i of id">
-      <img src="assets/images/Accueil/s{{i}}.jpg">
-    </ion-slide>
-  </ion-slides>
-  <ion-grid class="section">
-    <ion-title class="ion-text-center">
-      RECEMMENT PERDU
-    </ion-title>
-    <ion-card>
-      <ion-grid>
-        <ion-row>
-          <ion-col size="4">
-            <div>
-              <img style="height: 50px; width: 100%;" src="assets/images/Accueil/s4.jpg">
-            </div>
-          </ion-col>
-          <ion-col size="8">
-            <div class="detail">
-              <ion-col class="objtitle">Sac à mains</ion-col> <br>
-              <ion-col class="descrtitle">Bamako</ion-col> <br>
-              <ion-row>
-                <ion-col size="4">10h:00</ion-col>
-                <ion-col>Il y'a 9jours</ion-col>
-              </ion-row>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+    <ion-card class="cardbtn">
+      <ion-card-header class="cardbtnHeader">
+        <p> <strong>FAIRE UNE ANNONCE</strong></p>
+      </ion-card-header>
+      <ion-card-content class="cardbtnContent">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="objtPerdu">
+                <ion-button [routerLink]="['/ajout-perdu']" >OBJET PERDU</ion-button>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="objtTrouve">
+              <ion-button>OBJET TROUVE</ion-button>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
     </ion-card>
-    <ion-card>
-      <ion-grid>
-        <ion-row>
-          <ion-col size="4">
-            <div>
-              <img style="height: 50px; width: 100%;" src="assets/images/Accueil/s3.jpg">
-            </div>
-          </ion-col>
-          <ion-col size="8">
-            <div class="detail">
-              <ion-col class="objtitle">Chargeur Iphone</ion-col> <br>
-              <ion-col class="descrtitle">Segou</ion-col> <br>
-              <ion-row>
-                <ion-col size="4">10h:00</ion-col>
-                <ion-col>Il y'a 24h</ion-col>
-              </ion-row>
-            </div>
-          </ion-col>
+    <h6 style="font-size: 12px;" class="ion-text-center">Recememnt Perdu</h6>
+    <ion-slides pager="true" [options]="slideOpts" >
+      <ion-slide *ngFor="let i of id">
+        <img src="assets/images/Accueil/s{{i}}.jpg">
+      </ion-slide>
+    </ion-slides>
+    <ion-grid class="section">
+      <ion-title class="ion-text-center">
+        RECEMMENT PERDU
+      </ion-title>
+      <ion-card>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4">
+              <div>
+                <img style="height: 50px; width: 100%;" src="assets/images/Accueil/s4.jpg">
+              </div>
+            </ion-col>
+            <ion-col size="8">
+              <div class="detail">
+                <ion-col class="objtitle">Sac à mains</ion-col> <br>
+                <ion-col class="descrtitle">Bamako</ion-col> <br>
+                <ion-row>
+                  <ion-col size="4">10h:00</ion-col>
+                  <ion-col>Il y'a 9jours</ion-col>
+                </ion-row>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+      <ion-card>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4">
+              <div>
+                <img style="height: 50px; width: 100%;" src="assets/images/Accueil/s3.jpg">
+              </div>
+            </ion-col>
+            <ion-col size="8">
+              <div class="detail">
+                <ion-col class="objtitle">Chargeur Iphone</ion-col> <br>
+                <ion-col class="descrtitle">Segou</ion-col> <br>
+                <ion-row>
+                  <ion-col size="4">10h:00</ion-col>
+                  <ion-col>Il y'a 24h</ion-col>
+                </ion-row>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col> <a href="">voir plus...</a> </ion-col>
         </ion-row>
-      </ion-grid>
-    </ion-card>
-    <ion-row>
-      <ion-col></ion-col>
-      <ion-col> <a href="">voir plus...</a> </ion-col>
-      </ion-row>
-  </ion-grid>
+    </ion-grid>
 </ion-content>
