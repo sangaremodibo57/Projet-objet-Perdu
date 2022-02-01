@@ -9,8 +9,8 @@ import { IonSlides } from '@ionic/angular';
 export class Tab1Page {
   id =[1,2,3,4,5,6,7,8,9,10]
   public slideOpts = {
-    slidesPerView: 3,
-    spaceBetween:30,
+    slidesPerView: 1.2,
+    spaceBetween:10,
     initialSlide:1,
     loop: true,
     autoplay: {
@@ -19,7 +19,7 @@ export class Tab1Page {
     coverflowEffect: {
       rotate: 0,
       stretch: 0,
-      depth: 50,
+      depth: 5,
       modifier: 1,
       slideShadows: true,
       

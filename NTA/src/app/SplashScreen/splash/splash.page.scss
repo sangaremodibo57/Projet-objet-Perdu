@@ -3,7 +3,7 @@ ion-content{
    
 }
 .content{
-    background: rgba(11, 75, 194, 0.527);
+    background: rgba(6, 48, 128, 0.815);
     height: 100%;
     @-webkit-keyframes scale-out-bottom {
         0% {
@@ -43,11 +43,11 @@ ion-content{
         -webkit-animation: scale-out-bottom 5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 	        animation: scale-out-bottom 5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
         img{
-            border: 1px solid white;
+            
             border-radius: 50%;
-            background-color:rgba(11, 75, 194, 0.815);
-            height: 100px;
-            margin-top: 100%;
+            background-color:none;
+            height: 170px;
+            margin-top: 80%;
         }
     }
 }

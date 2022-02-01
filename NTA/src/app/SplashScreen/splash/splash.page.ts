@@ -10,7 +10,7 @@ export class SplashPage implements OnInit {
 
   constructor(private router : Router) { 
     setTimeout(()=>{
-      this.router.navigateByUrl('login');
+      this.router.navigateByUrl('tabs/tabs/tab1');
     },3400)
   }
 
