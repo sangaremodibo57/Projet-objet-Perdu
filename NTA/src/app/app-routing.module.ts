@@ -44,6 +44,10 @@ const routes: Routes = [
   {
     path: 'ajout-perdu',
     loadChildren: () => import('./Perdu/ajout-perdu/ajout-perdu.module').then( m => m.AjoutPerduPageModule)
+  },
+  {
+    path: 'tab-info',
+    loadChildren: () => import('./tab-info/tab-info.module').then( m => m.TabInfoPageModule)
   }
 
 

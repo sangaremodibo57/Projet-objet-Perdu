@@ -7,12 +7,12 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule,FormsModule,ReactiveFormsModule ,IonicModule.forRoot(), AppRoutingModule],
+  imports: [Ng2GoogleChartsModule,BrowserModule,FormsModule,ReactiveFormsModule ,IonicModule.forRoot(), AppRoutingModule],
   providers: [FormsModule,NgForm,{ provide: RouteReuseStrategy ,useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

@@ -15,7 +15,7 @@
 <ion-content [fullscreen]="true">
     <ion-card class="cardbtn">
       <ion-card-header class="cardbtnHeader">
-        <p> <strong>FAIRE UNE ANNONCE</strong></p>
+        <strong>FAIRE UNE ANNONCE</strong>
       </ion-card-header>
       <ion-card-content class="cardbtnContent">
         <ion-grid>
@@ -36,33 +36,461 @@
     </ion-card>
     <ion-grid class="Gplus">
       <ion-item lines="none" class="ion-no-padding">
-        <ion-label>Récemment Perdu</ion-label>
+        <ion-label><ion-icon slot="start" name="bag-remove-sharp"></ion-icon> Récemment Trouvé</ion-label>
         <ion-button slot="end" size="small" shape="round" class="Bplus">plus</ion-button>
       </ion-item>
     </ion-grid>
     <ion-row class="cadreSlide">
-      <ion-slides pager="true" [options]="slideOpts" >
+      <ion-slides  [options]="slideOpts" >
         <ion-slide *ngFor="let i of id">
           <ion-card>
               <img src="assets/images/Accueil/s{{i}}.jpg" style="height: 70px;width: 100%;">
             <ion-card-content>
-              <ion-grid>
-                <ion-row>
-                  <ion-col size="2"><ion-icon name="bag"></ion-icon></ion-col>
-                  <ion-col>NOM DE L'OBJET</ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col size="2"><ion-icon name="location"></ion-icon></ion-col>
-                  <ion-col>BAMAKO</ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col size="2"><ion-icon name="time"></ion-icon></ion-col>
-                  <ion-col>10h-12h</ion-col>
-                </ion-row>
-              </ion-grid>
+              <ion-item class="infoSlide">
+                <ion-icon slot="start" name="bag-add"></ion-icon>
+                <ion-note slot="start" color="danger">
+                  <ion-icon slot="start" name="bag"></ion-icon>
+                  <ion-label>Nom :</ion-label>
+                </ion-note>
+                <ion-label>Objet Perdu</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-button class="iconfaces" fill="outline">
+                  <ion-icon class="iconface" name="logo-facebook"></ion-icon>
+                </ion-button>
+                <ion-button  class="iconwhat" fill="outline">
+                  <ion-icon name="logo-whatsapp"></ion-icon>
+                </ion-button>
+                <ion-button class="btnRecla"  fill="outline">Réclamer</ion-button>
+              </ion-item>
             </ion-card-content>
           </ion-card>
         </ion-slide>
       </ion-slides>
     </ion-row>
+    <div class="cadreObjetPerdu">
+      <div class="titleGategorie">
+        <ion-item lines="none" class="statitle">
+          <ion-icon slot="start" name="bag-remove-sharp"></ion-icon>
+          <ion-label>Objet Perdu</ion-label>
+        </ion-item>
+      </div>
+      <ion-grid class="Gplus">
+        <ion-item lines="none" class="ion-no-padding">
+          <ion-label>Récemment Perdu</ion-label>
+          <ion-button slot="end" size="small" shape="round" class="Bplus">plus</ion-button>
+        </ion-item>
+      </ion-grid>
+      <ion-card class="cadreOP">
+        <img src="assets/images/Accueil/s3.jpg" style="height: 90px;width: 100%;">
+      <ion-card-content>
+        <ion-item>
+          <ion-icon slot="start" name="bag-add"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-icon slot="start" name="bag"></ion-icon>
+            <ion-label>Nom :</ion-label>
+          </ion-note>
+          <ion-label>Objet Perdu</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-label>Lieu :</ion-label>
+          </ion-note>
+          <ion-label>Bamako</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-button class="iconfaces" fill="outline">
+            <ion-icon class="iconface" name="logo-facebook"></ion-icon>
+          </ion-button>
+          <ion-button  class="iconwhat" fill="outline">
+            <ion-icon class="iconface" name="logo-whatsapp"></ion-icon>
+          </ion-button>
+          <ion-button class="btnRecla"  fill="outline">Réclamer</ion-button>
+        </ion-item>
+      </ion-card-content>
+      </ion-card>
+      <ion-card class="cadreOP">
+        <img src="assets/images/Accueil/s10.jpg" style="height: 90px;width: 100%;">
+      <ion-card-content>
+        <ion-item>
+          <ion-icon slot="start" name="bag-add"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-icon slot="start" name="bag"></ion-icon>
+            <ion-label>Nom :</ion-label>
+          </ion-note>
+          <ion-label>Objet Perdu</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-label>Lieu :</ion-label>
+          </ion-note>
+          <ion-label>Bamako</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-button class="iconfaces" fill="outline">
+            <ion-icon class="iconface" name="logo-facebook"></ion-icon>
+          </ion-button>
+          <ion-button  class="iconwhat" fill="outline">
+            <ion-icon class="iconface" name="logo-whatsapp"></ion-icon>
+          </ion-button>
+          <ion-button class="btnRecla"  fill="outline">Réclamer</ion-button>
+        </ion-item>
+      </ion-card-content>
+      </ion-card>
+      <ion-card class="cadreOP">
+        <img src="assets/images/Accueil/s8.jpg" style="height: 90px;width: 100%;">
+      <ion-card-content>
+        <ion-item>
+          <ion-icon slot="start" name="bag-add"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-icon slot="start" name="bag"></ion-icon>
+            <ion-label>Nom :</ion-label>
+          </ion-note>
+          <ion-label>Objet Perdu</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-label>Lieu :</ion-label>
+          </ion-note>
+          <ion-label>Bamako</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-button class="iconfaces" fill="outline">
+            <ion-icon class="iconface" name="logo-facebook"></ion-icon>
+          </ion-button>
+          <ion-button  class="iconwhat" fill="outline">
+            <ion-icon class="iconface" name="logo-whatsapp"></ion-icon>
+          </ion-button>
+          <ion-button class="btnRecla"  fill="outline">Réclamer</ion-button>
+        </ion-item>
+      </ion-card-content>
+      </ion-card>
+      <ion-card class="cadreOP">
+        <img src="assets/images/Accueil/s5.jpg" style="height: 90px;width: 100%;">
+      <ion-card-content>
+        <ion-item>
+          <ion-icon slot="start" name="bag-add"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-icon slot="start" name="bag"></ion-icon>
+            <ion-label>Nom :</ion-label>
+          </ion-note>
+          <ion-label>Objet Perdu</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-label>Lieu :</ion-label>
+          </ion-note>
+          <ion-label>Bamako</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-button class="iconfaces" fill="outline">
+            <ion-icon class="iconface" name="logo-facebook"></ion-icon>
+          </ion-button>
+          <ion-button  class="iconwhat" fill="outline">
+            <ion-icon class="iconface" name="logo-whatsapp"></ion-icon>
+          </ion-button>
+          <ion-button class="btnRecla"  fill="outline">Réclamer</ion-button>
+        </ion-item>
+      </ion-card-content>
+      </ion-card>
+      <ion-card class="cadreOP">
+        <img src="assets/images/Accueil/s1.jpg" style="height: 90px;width: 100%;">
+      <ion-card-content>
+        <ion-item>
+          <ion-icon slot="start" name="bag-add"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-icon slot="start" name="bag"></ion-icon>
+            <ion-label>Nom :</ion-label>
+          </ion-note>
+          <ion-label>Objet Perdu</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-label>Lieu :</ion-label>
+          </ion-note>
+          <ion-label>Bamako</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-button class="iconfaces" fill="outline">
+            <ion-icon class="iconface" name="logo-facebook"></ion-icon>
+          </ion-button>
+          <ion-button  class="iconwhat" fill="outline">
+            <ion-icon class="iconface" name="logo-whatsapp"></ion-icon>
+          </ion-button>
+          <ion-button class="btnRecla"  fill="outline">Réclamer</ion-button>
+        </ion-item>
+      </ion-card-content>
+      </ion-card>
+      <ion-card class="cadreOP">
+        <img src="assets/images/Accueil/s2.jpg" style="height: 90px;width: 100%;">
+      <ion-card-content>
+        <ion-item>
+          <ion-icon slot="start" name="bag-add"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-icon slot="start" name="bag"></ion-icon>
+            <ion-label>Nom :</ion-label>
+          </ion-note>
+          <ion-label>Objet Perdu</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-label>Lieu :</ion-label>
+          </ion-note>
+          <ion-label>Bamako</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-button class="iconfaces" fill="outline">
+            <ion-icon class="iconface" name="logo-facebook"></ion-icon>
+          </ion-button>
+          <ion-button  class="iconwhat" fill="outline">
+            <ion-icon class="iconface" name="logo-whatsapp"></ion-icon>
+          </ion-button>
+          <ion-button class="btnRecla"  fill="outline">Réclamer</ion-button>
+        </ion-item>
+      </ion-card-content>
+      </ion-card>
+      <ion-card class="cadreOP">
+        <img src="assets/images/Accueil/s4.jpg" style="height: 90px;width: 100%;">
+      <ion-card-content>
+        <ion-item>
+          <ion-icon slot="start" name="bag-add"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-icon slot="start" name="bag"></ion-icon>
+            <ion-label>Nom :</ion-label>
+          </ion-note>
+          <ion-label>Objet Perdu</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-label>Lieu :</ion-label>
+          </ion-note>
+          <ion-label>Bamako</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-button class="iconfaces" fill="outline">
+            <ion-icon class="iconface" name="logo-facebook"></ion-icon>
+          </ion-button>
+          <ion-button  class="iconwhat" fill="outline">
+            <ion-icon class="iconface" name="logo-whatsapp"></ion-icon>
+          </ion-button>
+          <ion-button class="btnRecla"  fill="outline">Réclamer</ion-button>
+        </ion-item>
+      </ion-card-content>
+      </ion-card>
+      <ion-card class="cadreOP">
+        <img src="assets/images/Accueil/s5.jpg" style="height: 90px;width: 100%;">
+      <ion-card-content>
+        <ion-item>
+          <ion-icon slot="start" name="bag-add"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-icon slot="start" name="bag"></ion-icon>
+            <ion-label>Nom :</ion-label>
+          </ion-note>
+          <ion-label>Objet Perdu</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-label>Lieu :</ion-label>
+          </ion-note>
+          <ion-label>Bamako</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-button class="iconfaces" fill="outline">
+            <ion-icon class="iconface" name="logo-facebook"></ion-icon>
+          </ion-button>
+          <ion-button  class="iconwhat" fill="outline">
+            <ion-icon class="iconface" name="logo-whatsapp"></ion-icon>
+          </ion-button>
+          <ion-button class="btnRecla"  fill="outline">Réclamer</ion-button>
+        </ion-item>
+      </ion-card-content>
+      </ion-card>
+      <ion-card class="cadreOP">
+        <img src="assets/images/Accueil/s6.jpg" style="height: 90px;width: 100%;">
+      <ion-card-content>
+        <ion-item>
+          <ion-icon slot="start" name="bag-add"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-icon slot="start" name="bag"></ion-icon>
+            <ion-label>Nom :</ion-label>
+          </ion-note>
+          <ion-label>Objet Perdu</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-label>Lieu :</ion-label>
+          </ion-note>
+          <ion-label>Bamako</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-button class="iconfaces" fill="outline">
+            <ion-icon class="iconface" name="logo-facebook"></ion-icon>
+          </ion-button>
+          <ion-button  class="iconwhat" fill="outline">
+            <ion-icon class="iconface" name="logo-whatsapp"></ion-icon>
+          </ion-button>
+          <ion-button class="btnRecla"  fill="outline">Réclamer</ion-button>
+        </ion-item>
+      </ion-card-content>
+      </ion-card>
+      <ion-card class="cadreOP">
+        <img src="assets/images/Accueil/s8.jpg" style="height: 90px;width: 100%;">
+      <ion-card-content>
+        <ion-item>
+          <ion-icon slot="start" name="bag-add"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-icon slot="start" name="bag"></ion-icon>
+            <ion-label>Nom :</ion-label>
+          </ion-note>
+          <ion-label>Objet Perdu</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-label>Lieu :</ion-label>
+          </ion-note>
+          <ion-label>Bamako</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-button class="iconfaces" fill="outline">
+            <ion-icon class="iconface" name="logo-facebook"></ion-icon>
+          </ion-button>
+          <ion-button  class="iconwhat" fill="outline">
+            <ion-icon class="iconface" name="logo-whatsapp"></ion-icon>
+          </ion-button>
+          <ion-button class="btnRecla"  fill="outline">Réclamer</ion-button>
+        </ion-item>
+      </ion-card-content>
+      </ion-card>
+      <ion-card class="cadreOP">
+        <img src="assets/images/Accueil/s9.jpg" style="height: 90px;width: 100%;">
+      <ion-card-content>
+        <ion-item>
+          <ion-icon slot="start" name="bag-add"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-icon slot="start" name="bag"></ion-icon>
+            <ion-label>Nom :</ion-label>
+          </ion-note>
+          <ion-label>Objet Perdu</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-label>Lieu :</ion-label>
+          </ion-note>
+          <ion-label>Bamako</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-button class="iconfaces" fill="outline">
+            <ion-icon class="iconface" name="logo-facebook"></ion-icon>
+          </ion-button>
+          <ion-button  class="iconwhat" fill="outline">
+            <ion-icon class="iconface" name="logo-whatsapp"></ion-icon>
+          </ion-button>
+          <ion-button class="btnRecla"  fill="outline">Réclamer</ion-button>
+        </ion-item>
+      </ion-card-content>
+      </ion-card>
+      <ion-card class="cadreOP">
+        <img src="assets/images/Accueil/s10.jpg" style="height: 90px;width: 100%;">
+      <ion-card-content>
+        <ion-item>
+          <ion-icon slot="start" name="bag-add"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-icon slot="start" name="bag"></ion-icon>
+            <ion-label>Nom :</ion-label>
+          </ion-note>
+          <ion-label>Objet Perdu</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="danger">
+            <ion-label>Lieu :</ion-label>
+          </ion-note>
+          <ion-label>Bamako</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-button class="iconfaces" fill="outline">
+            <ion-icon class="iconface" name="logo-facebook"></ion-icon>
+          </ion-button>
+          <ion-button  class="iconwhat" fill="outline">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+          </ion-button>
+          <ion-button class="btnRecla"  fill="outline">Réclamer</ion-button>
+        </ion-item>
+      </ion-card-content>
+      </ion-card>
+    </div>
+    <div class="titleGategorie">
+      <ion-item lines="none" class="statitle2">
+        <ion-icon slot="start" name="sparkles-sharp"></ion-icon>
+        <ion-label>Partenaire</ion-label>
+      </ion-item>
+    </div>
+    <ion-slides  [options]="slideOpts" >
+      <ion-slide >
+        <ion-card>
+          <ion-card-header>
+            GANA TRANSPORT
+          </ion-card-header>
+          <ion-card-content>
+            <img src="assets/images/Accueil/gana.jpg" style="height: 50px;">
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide >
+        <ion-card>
+          <ion-card-header>
+            POLICE
+          </ion-card-header>
+          <ion-card-content>
+            <img src="assets/images/Accueil/police.png" style="height: 50px;">
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide >
+        <ion-card>
+          <ion-card-header>
+            GANA TRANSPORT
+          </ion-card-header>
+          <ion-card-content>
+            <img src="assets/images/Accueil/gana.jpg" style="height: 50px;">
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide >
+        <ion-card>
+          <ion-card-header>
+            AFRICA TOUR TRANSPORT
+          </ion-card-header>
+          <ion-card-content>
+            <img src="assets/images/Accueil/africa.jpg" style="height: 50px;">
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide >
+        <ion-card>
+          <ion-card-header>
+            AEROPORT
+          </ion-card-header>
+          <ion-card-content>
+            <img src="assets/images/Accueil/aero.jpg" style="height: 50px;">
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+  </ion-slides>
+   
+  
+
+ 
+  
 </ion-content>

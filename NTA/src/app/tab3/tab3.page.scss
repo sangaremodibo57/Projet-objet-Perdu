@@ -1,4 +1,5 @@
 ion-toolbar{
+    
     --background:linear-gradient(#3d85c6, #0000CD);
     color: white;
     ion-title{
@@ -13,23 +14,270 @@ ion-toolbar{
         }
     }
 }
-.div1{
-    padding: 0px;
-    border: 1px solid black;
-    height: 100px;
-    border-radius: 20px;
-    text-align: center;
-    ion-title{
-        font-size: 10px;
+ion-content{
+    .cardbtn{
+        margin:5px 0px;
+        padding: 2px;
+        border-radius: 0px 0px 10px 10px;
+       
+        ion-item{
+            width: 94%;
+            margin: 0 auto;
+            padding: 2px;
+            font-weight: bold;
+            color: #0000CD;
+            ion-button{
+                font-size: 10px;
+                border: 1px solid rgba(128, 128, 128, 0.438);
+                box-shadow: 2px 2px 2px black;
+                color: #0000CD;
+                font-weight: bold;
+            }
+        }
+       .cardbtnContent{
+            margin: 0px;
+            padding: 0px;
+            ion-grid{
+                text-align: center;
+                margin: 0px;
+                padding: 0px;
+                ion-col{
+                    .objtPerdu{
+                        ion-button{
+                            font-size: 10px;
+                            font-weight: bold;
+                            height: 25px;
+                            border: 0px solid rgba(41, 41, 41, 0.322);
+                            box-shadow: 2px 2px 2px rgba(149, 149, 149, 0.52);
+                            border-radius: 5px;
+                            --background: none;
+                            color: rgb(3, 49, 17);
+                        }
+                        ion-button:hover{
+                            font-size: 9px;
+                            border: 0.5px solid rgb(41, 41, 41);
+                            box-shadow: 2px 2px 2px rgba(149, 149, 149, 0.52);
+                            border-radius: 10px;
+                            --background: rgb(240, 15, 15);
+                            color: rgb(255, 255, 255);
+                        }
+                        
+                    }
+                    .objtTrouve{
+                        ion-button{
+                            font-size: 10px;
+                            font-weight: bold;
+                            height: 25px;
+                            border: 1px solid rgba(41, 41, 41, 0.322);
+                            box-shadow: 2px 2px 2px rgba(149, 149, 149, 0.52);
+                            border-radius: 5px;
+                            --background: none;
+                            color: rgb(47, 3, 3);
+                        }
+                        ion-button:hover{
+                            font-size: 10px;
+                            border: 0.5px solid rgb(41, 41, 41);
+                            box-shadow: 2px 2px 2px rgba(149, 149, 149, 0.52);
+                            border-radius: 10px;
+                            --background: rgb(10, 121, 7);
+                            color: rgb(255, 255, 255);
+                        }
+                        
+                    }
+                    
+                    
+                }
+            }
+        }
+    }
+    .Gplus{
+        ion-item{  
+            ion-label{
+                color: #3939c0;
+                font-size: 12px;
+                font-weight: 900;
+                ion-icon{
+                    font-size: 10px;
+                    border-radius: 50%;
+                    color: #fff;
+                    background-color: #3939c0;
+                    padding: 2px;
+                }
+            }
+            ion-buton{
+                margin: 0px;
+                padding: 0px;
+                font-size: 8px;
+            }
+        }
+    }
+    .cadreObjetPerdu{
+        margin: 0 auto;
+        padding: 0px;
+        border: 1px solid rgba(134, 133, 133, 0.493);
+        border-radius: 20px 20px 20px 20px;
+        background-color: #fff;
+        .statitle{
+            padding: 0px;
+            margin: 0px;
+            font-size: 15px;
+            font-weight: 800;
+            color: #0000CD;
+            ion-icon{
+                border-radius: 50%;
+                padding: 5px;
+                background-color: #0000CD;
+                color: #fff;
+            }
+        }
+        .titleGategorie{
+            width: 80%;
+            
+            ion-item{
+                --background:none;
+                color: #0000CD;
+            }
+        }
+        .cadreOP{
+            margin: 0px 5px 5px 5px;
+            padding: 5px;
+            --background: #0000CD;
+            color: #fff;   
+        }
+        ion-card-content{
+            margin: 0px;
+            padding: 0px;
+            font-weight: bold;
+            ion-item{
+                --background: #0000CD;
+                color: #fff;
+                font-weight: bold;
+                height: 40px;       
+            }
+            .nom{
+
+                ion-icon{
+                    color: #fff;
+                    font-size: 20px;
+                }
+                ion-note{
+                    color: #fff;
+                    
+                }
+                ion-label{
+                    font-size: 11px;
+                }
+            }
+            .lieu{
+
+                ion-icon{
+                    color: #fff;
+                    font-size: 20px
+                }
+                ion-note{
+                    color: #fff;
+                    
+                }
+                ion-label{
+                    font-size: 11px;
+                }
+            }
+            .lien{
+                .iconfaces{
+                    
+                    background-color: #fff;
+                    color: blue;
+                    font-size: 11px;
+                    font-weight: bold;
+                    ion-con{
+                        color: #fff; 
+                        font-size: 11px; 
+                        font-weight: bold; 
+                    }
+                }
+                .iconwhat{
+                    font-size: 11px;
+                    font-weight: bold;
+                    color: rgb(10, 126, 45);
+                    background-color: #fff;
+                }
+                .btnRecla{
+                    padding: 2px;
+                    background-color: #fff;
+                    color: blue;
+                    font-size:11px;
+                    font-weight: bold;
+                    ion-button{
+                        color: blue;
+                    }
+                }
+            }
+            
+        }
+        .cadreSlide{
+        
+            height: 180px;
+            padding: 0px;
+            margin: 0px;
+            ion-slides{
+                padding: 0px;
+                margin: 0px;
+                height: 178px;
+            ion-slide{
+                padding: 0px;
+                margin: 0px;
+                height: 176px;
+                ion-card{
+                    padding: 0px;
+                    
+                    height: 165px;
+                    width: 99%;
+                    ion-card-content{
+                        height: 60px;
+                        text-align: left;
+                        font-size: 9px;
+                        padding: 0px;
+                        .infoSlide{
+                            ion-icon{
+                                font-size: 15px;
+                            }
+                            
+                        }
+                        ion-item{
+                            font-size: 9px;
+                            height: 40px;    
+                            
+                            .iconfaces{
+                                color: blue;
+                            }
+                            .iconwhat{
+                                color: rgb(10, 126, 45);
+                            }
+                            .btnRecla{
+                                ion-button{
+                                    font-size: 8px;
+                                }
+                            }
+                        }
+                        
+                    }
+                    }
+                }
+            }
+            
+            
+        }
+        
     }
 }
-.div2{
-    padding: 0px;
+
+.partenaire{
     border: 1px solid black;
-    height: 100px;
-    border-radius: 20px;
-    text-align: center;
-    ion-title{
-        font-size: 10px;
-    }
+
 }
+
+
+
+
+
+

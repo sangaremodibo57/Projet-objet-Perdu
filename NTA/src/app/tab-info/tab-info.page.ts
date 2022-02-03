@@ -1,13 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { IonSlides } from '@ionic/angular';
-import { GoogleChartInterface } from 'ng2-google-charts';
-import { Chart } from "chart.js";
+import { Chart } from 'chart.js';
+
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-tab-info',
+  templateUrl: './tab-info.page.html',
+  styleUrls: ['./tab-info.page.scss'],
 })
-export class Tab1Page implements OnInit {
+export class TabInfoPage implements OnInit {
 
   v = 0.3;
   b = 0.7;
@@ -15,14 +14,14 @@ export class Tab1Page implements OnInit {
   @ViewChild("barCanvas") barCanvas: ElementRef;
   private barChart: Chart;
 
-  id =[1,2,3,4,5,6,8,9,10]
+  id =[1,2,3,4,5,6,7,8,9,10]
   public slideOpts = {
     slidesPerView: 1,
     spaceBetween:20,
     initialSlide:1,
     loop: true,
     autoplay: {
-          delay: 2000
+          delay: 4000
     },
     coverflowEffect: {
       rotate: 0,
@@ -154,7 +153,5 @@ export class Tab1Page implements OnInit {
   ngOnInit(){
     
   }
-
-  
 
 }

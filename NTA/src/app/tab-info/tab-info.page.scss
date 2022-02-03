@@ -1,0 +1,109 @@
+ion-content{
+    .cardStat{
+        .statitle{
+            padding: 0px;
+            margin: 0px;
+            font-size: 13px;
+            font-weight: 800;
+            color: #0000CD; 
+            ion-icon{
+                border-radius: 50%;
+                padding: 3px;
+                background-color: #0000CD;
+                color: #ffffff;
+            }
+        }
+        ion-list{
+            margin: 0 auto;
+            .stacontentP{
+                ion-item{
+                    font-size: 12px;
+                    ion-icon{
+                        color: #1b7038;
+                    }
+                }
+                
+            }
+            .stacontentT{
+                ion-item{
+                    font-size: 12px;
+                    ion-icon{
+                        color: #cd3000;
+                    }
+                }
+                
+            }
+            .stacontentS{
+                font-size: 9px;
+                height: 120px;
+                ion-item{
+                    font-size: 13px;
+                }
+            }
+            .statitle{
+                font-size: 12px;
+                font-weight: 800;
+                color: #0000CD;
+                ion-icon{
+                    border-radius: 50%;
+                    border: 1px solid rgb(245, 238, 238);
+                    padding: 3px;
+                    background-color: #0000CD;
+                    color: #ffffff;
+                }
+            }
+             
+        }
+    }
+    .titleGategorie{
+        width: 80%;
+        
+        margin: 0 auto;
+        .statitle{
+            padding: 0px;
+            margin: 0px;
+            font-size: 13px;
+            font-weight: 800;
+            color: #0000CD;
+            ion-icon{
+                border-radius: 50%;
+                padding: 1px;
+                background-color: #0000CD;
+                color: #ffffff;
+            }
+        }
+    }
+    .cadreSlide{
+        padding: 0px;
+        margin: 0px;
+        ion-slides{
+            ion-slide{
+                ion-card{
+                    width: 99%;
+                    ion-card-content{
+                        font-size: 9px;
+                        padding: 0px;
+                        ion-item{
+                            text-align: center;
+                            height: 130px;
+                            ion-label{
+                                font-size: 12px;
+                            }
+                        }  
+                    }
+                }
+            }
+        } 
+    }
+    .footer{
+        
+        ion-item{
+            color: #fff;
+            --background: rgba(9, 101, 240, 0.938);
+            ion-label{
+                font-size: 9px;
+            }
+        }
+    }
+    
+}
