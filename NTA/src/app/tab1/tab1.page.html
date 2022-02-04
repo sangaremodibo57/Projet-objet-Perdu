@@ -22,12 +22,7 @@
           <ion-row>
             <ion-col>
               <div class="objtPerdu">
-                <ion-button [routerLink]="['/ajout-perdu']" >OBJET PERDU</ion-button>
-              </div>
-            </ion-col>
-            <ion-col>
-              <div class="objtTrouve">
-              <ion-button>OBJET TROUVE</ion-button>
+                <ion-button [routerLink]="['/ajout-perdu']" >OBJET PERDU OU TROUVE</ion-button>
               </div>
             </ion-col>
           </ion-row>
@@ -47,12 +42,11 @@
               <img src="assets/images/Accueil/s{{i}}.jpg" style="height: 70px;width: 100%;">
             <ion-card-content>
               <ion-item class="infoSlide">
-                <ion-icon slot="start" name="bag-add"></ion-icon>
-                <ion-note slot="start" color="danger">
-                  <ion-icon slot="start" name="bag"></ion-icon>
+                <ion-icon color="dark" slot="start" name="bag"></ion-icon>
+                <ion-note slot="start" >
                   <ion-label>Nom :</ion-label>
                 </ion-note>
-                <ion-label>Objet Perdu</ion-label>
+                <ion-label class="ion-text-wrap">Le Nom de l'Objet Perdu</ion-label>
               </ion-item>
               <ion-item>
                 <ion-button class="iconfaces" fill="outline">
@@ -78,26 +72,25 @@
       <ion-grid class="Gplus">
         <ion-item lines="none" class="ion-no-padding">
           <ion-label>Récemment Perdu</ion-label>
-          <ion-button slot="end" size="small" shape="round" class="Bplus">plus</ion-button>
+          <ion-button slot="end" size="small" shape="round" color="light" class="Bplus">plus</ion-button>
         </ion-item>
       </ion-grid>
       <ion-card class="cadreOP">
         <img src="assets/images/Accueil/s3.jpg" style="height: 90px;width: 100%;">
       <ion-card-content>
         <ion-item>
-          <ion-icon slot="start" name="bag-add"></ion-icon>
-          <ion-note slot="start" color="danger">
-            <ion-icon slot="start" name="bag"></ion-icon>
-            <ion-label>Nom :</ion-label>
+          <ion-icon color="dark" slot="start" name="bag"></ion-icon>
+          <ion-note slot="start">
+            <ion-label  color="dark" >Nom :</ion-label>
           </ion-note>
-          <ion-label>Objet Perdu</ion-label>
+          <ion-label class="ion-text-wrap">Le Nom de l'Objet Perdu</ion-label>
         </ion-item>
         <ion-item>
-          <ion-icon slot="start" name="location"></ion-icon>
-          <ion-note slot="start" color="danger">
+          <ion-icon color="dark" slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="dark">
             <ion-label>Lieu :</ion-label>
           </ion-note>
-          <ion-label>Bamako</ion-label>
+          <ion-label class="ion-text-wrap">Bamako</ion-label>
         </ion-item>
         <ion-item>
           <ion-button class="iconfaces" fill="outline">
@@ -111,22 +104,21 @@
       </ion-card-content>
       </ion-card>
       <ion-card class="cadreOP">
-        <img src="assets/images/Accueil/s10.jpg" style="height: 90px;width: 100%;">
+        <img src="assets/images/Accueil/s3.jpg" style="height: 90px;width: 100%;">
       <ion-card-content>
         <ion-item>
-          <ion-icon slot="start" name="bag-add"></ion-icon>
-          <ion-note slot="start" color="danger">
-            <ion-icon slot="start" name="bag"></ion-icon>
-            <ion-label>Nom :</ion-label>
+          <ion-icon color="dark" slot="start" name="bag"></ion-icon>
+          <ion-note slot="start">
+            <ion-label  color="dark" >Nom :</ion-label>
           </ion-note>
-          <ion-label>Objet Perdu</ion-label>
+          <ion-label class="ion-text-wrap">Le Nom de l'Objet Perdu</ion-label>
         </ion-item>
         <ion-item>
-          <ion-icon slot="start" name="location"></ion-icon>
-          <ion-note slot="start" color="danger">
+          <ion-icon color="dark" slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="dark">
             <ion-label>Lieu :</ion-label>
           </ion-note>
-          <ion-label>Bamako</ion-label>
+          <ion-label class="ion-text-wrap">Bamako</ion-label>
         </ion-item>
         <ion-item>
           <ion-button class="iconfaces" fill="outline">
@@ -140,22 +132,21 @@
       </ion-card-content>
       </ion-card>
       <ion-card class="cadreOP">
-        <img src="assets/images/Accueil/s8.jpg" style="height: 90px;width: 100%;">
+        <img src="assets/images/Accueil/s3.jpg" style="height: 90px;width: 100%;">
       <ion-card-content>
         <ion-item>
-          <ion-icon slot="start" name="bag-add"></ion-icon>
-          <ion-note slot="start" color="danger">
-            <ion-icon slot="start" name="bag"></ion-icon>
-            <ion-label>Nom :</ion-label>
+          <ion-icon color="dark" slot="start" name="bag"></ion-icon>
+          <ion-note slot="start">
+            <ion-label  color="dark" >Nom :</ion-label>
           </ion-note>
-          <ion-label>Objet Perdu</ion-label>
+          <ion-label class="ion-text-wrap">Le Nom de l'Objet Perdu</ion-label>
         </ion-item>
         <ion-item>
-          <ion-icon slot="start" name="location"></ion-icon>
-          <ion-note slot="start" color="danger">
+          <ion-icon color="dark" slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="dark">
             <ion-label>Lieu :</ion-label>
           </ion-note>
-          <ion-label>Bamako</ion-label>
+          <ion-label class="ion-text-wrap">Bamako</ion-label>
         </ion-item>
         <ion-item>
           <ion-button class="iconfaces" fill="outline">
@@ -169,22 +160,21 @@
       </ion-card-content>
       </ion-card>
       <ion-card class="cadreOP">
-        <img src="assets/images/Accueil/s5.jpg" style="height: 90px;width: 100%;">
+        <img src="assets/images/Accueil/s3.jpg" style="height: 90px;width: 100%;">
       <ion-card-content>
         <ion-item>
-          <ion-icon slot="start" name="bag-add"></ion-icon>
-          <ion-note slot="start" color="danger">
-            <ion-icon slot="start" name="bag"></ion-icon>
-            <ion-label>Nom :</ion-label>
+          <ion-icon color="dark" slot="start" name="bag"></ion-icon>
+          <ion-note slot="start">
+            <ion-label  color="dark" >Nom :</ion-label>
           </ion-note>
-          <ion-label>Objet Perdu</ion-label>
+          <ion-label class="ion-text-wrap">Le Nom de l'Objet Perdu</ion-label>
         </ion-item>
         <ion-item>
-          <ion-icon slot="start" name="location"></ion-icon>
-          <ion-note slot="start" color="danger">
+          <ion-icon color="dark" slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="dark">
             <ion-label>Lieu :</ion-label>
           </ion-note>
-          <ion-label>Bamako</ion-label>
+          <ion-label class="ion-text-wrap">Bamako</ion-label>
         </ion-item>
         <ion-item>
           <ion-button class="iconfaces" fill="outline">
@@ -198,22 +188,21 @@
       </ion-card-content>
       </ion-card>
       <ion-card class="cadreOP">
-        <img src="assets/images/Accueil/s1.jpg" style="height: 90px;width: 100%;">
+        <img src="assets/images/Accueil/s3.jpg" style="height: 90px;width: 100%;">
       <ion-card-content>
         <ion-item>
-          <ion-icon slot="start" name="bag-add"></ion-icon>
-          <ion-note slot="start" color="danger">
-            <ion-icon slot="start" name="bag"></ion-icon>
-            <ion-label>Nom :</ion-label>
+          <ion-icon color="dark" slot="start" name="bag"></ion-icon>
+          <ion-note slot="start">
+            <ion-label  color="dark" >Nom :</ion-label>
           </ion-note>
-          <ion-label>Objet Perdu</ion-label>
+          <ion-label class="ion-text-wrap">Le Nom de l'Objet Perdu</ion-label>
         </ion-item>
         <ion-item>
-          <ion-icon slot="start" name="location"></ion-icon>
-          <ion-note slot="start" color="danger">
+          <ion-icon color="dark" slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="dark">
             <ion-label>Lieu :</ion-label>
           </ion-note>
-          <ion-label>Bamako</ion-label>
+          <ion-label class="ion-text-wrap">Bamako</ion-label>
         </ion-item>
         <ion-item>
           <ion-button class="iconfaces" fill="outline">
@@ -227,22 +216,21 @@
       </ion-card-content>
       </ion-card>
       <ion-card class="cadreOP">
-        <img src="assets/images/Accueil/s2.jpg" style="height: 90px;width: 100%;">
+        <img src="assets/images/Accueil/s3.jpg" style="height: 90px;width: 100%;">
       <ion-card-content>
         <ion-item>
-          <ion-icon slot="start" name="bag-add"></ion-icon>
-          <ion-note slot="start" color="danger">
-            <ion-icon slot="start" name="bag"></ion-icon>
-            <ion-label>Nom :</ion-label>
+          <ion-icon color="dark" slot="start" name="bag"></ion-icon>
+          <ion-note slot="start">
+            <ion-label  color="dark" >Nom :</ion-label>
           </ion-note>
-          <ion-label>Objet Perdu</ion-label>
+          <ion-label class="ion-text-wrap">Le Nom de l'Objet Perdu</ion-label>
         </ion-item>
         <ion-item>
-          <ion-icon slot="start" name="location"></ion-icon>
-          <ion-note slot="start" color="danger">
+          <ion-icon color="dark" slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="dark">
             <ion-label>Lieu :</ion-label>
           </ion-note>
-          <ion-label>Bamako</ion-label>
+          <ion-label class="ion-text-wrap">Bamako</ion-label>
         </ion-item>
         <ion-item>
           <ion-button class="iconfaces" fill="outline">
@@ -256,22 +244,21 @@
       </ion-card-content>
       </ion-card>
       <ion-card class="cadreOP">
-        <img src="assets/images/Accueil/s4.jpg" style="height: 90px;width: 100%;">
+        <img src="assets/images/Accueil/s3.jpg" style="height: 90px;width: 100%;">
       <ion-card-content>
         <ion-item>
-          <ion-icon slot="start" name="bag-add"></ion-icon>
-          <ion-note slot="start" color="danger">
-            <ion-icon slot="start" name="bag"></ion-icon>
-            <ion-label>Nom :</ion-label>
+          <ion-icon color="dark" slot="start" name="bag"></ion-icon>
+          <ion-note slot="start">
+            <ion-label  color="dark" >Nom :</ion-label>
           </ion-note>
-          <ion-label>Objet Perdu</ion-label>
+          <ion-label class="ion-text-wrap">Le Nom de l'Objet Perdu</ion-label>
         </ion-item>
         <ion-item>
-          <ion-icon slot="start" name="location"></ion-icon>
-          <ion-note slot="start" color="danger">
+          <ion-icon color="dark" slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="dark">
             <ion-label>Lieu :</ion-label>
           </ion-note>
-          <ion-label>Bamako</ion-label>
+          <ion-label class="ion-text-wrap">Bamako</ion-label>
         </ion-item>
         <ion-item>
           <ion-button class="iconfaces" fill="outline">
@@ -285,22 +272,21 @@
       </ion-card-content>
       </ion-card>
       <ion-card class="cadreOP">
-        <img src="assets/images/Accueil/s5.jpg" style="height: 90px;width: 100%;">
+        <img src="assets/images/Accueil/s3.jpg" style="height: 90px;width: 100%;">
       <ion-card-content>
         <ion-item>
-          <ion-icon slot="start" name="bag-add"></ion-icon>
-          <ion-note slot="start" color="danger">
-            <ion-icon slot="start" name="bag"></ion-icon>
-            <ion-label>Nom :</ion-label>
+          <ion-icon color="dark" slot="start" name="bag"></ion-icon>
+          <ion-note slot="start">
+            <ion-label  color="dark" >Nom :</ion-label>
           </ion-note>
-          <ion-label>Objet Perdu</ion-label>
+          <ion-label class="ion-text-wrap">Le Nom de l'Objet Perdu</ion-label>
         </ion-item>
         <ion-item>
-          <ion-icon slot="start" name="location"></ion-icon>
-          <ion-note slot="start" color="danger">
+          <ion-icon color="dark" slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="dark">
             <ion-label>Lieu :</ion-label>
           </ion-note>
-          <ion-label>Bamako</ion-label>
+          <ion-label class="ion-text-wrap">Bamako</ion-label>
         </ion-item>
         <ion-item>
           <ion-button class="iconfaces" fill="outline">
@@ -314,22 +300,21 @@
       </ion-card-content>
       </ion-card>
       <ion-card class="cadreOP">
-        <img src="assets/images/Accueil/s6.jpg" style="height: 90px;width: 100%;">
+        <img src="assets/images/Accueil/s3.jpg" style="height: 90px;width: 100%;">
       <ion-card-content>
         <ion-item>
-          <ion-icon slot="start" name="bag-add"></ion-icon>
-          <ion-note slot="start" color="danger">
-            <ion-icon slot="start" name="bag"></ion-icon>
-            <ion-label>Nom :</ion-label>
+          <ion-icon color="dark" slot="start" name="bag"></ion-icon>
+          <ion-note slot="start">
+            <ion-label  color="dark" >Nom :</ion-label>
           </ion-note>
-          <ion-label>Objet Perdu</ion-label>
+          <ion-label class="ion-text-wrap">Le Nom de l'Objet Perdu</ion-label>
         </ion-item>
         <ion-item>
-          <ion-icon slot="start" name="location"></ion-icon>
-          <ion-note slot="start" color="danger">
+          <ion-icon color="dark" slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="dark">
             <ion-label>Lieu :</ion-label>
           </ion-note>
-          <ion-label>Bamako</ion-label>
+          <ion-label class="ion-text-wrap">Bamako</ion-label>
         </ion-item>
         <ion-item>
           <ion-button class="iconfaces" fill="outline">
@@ -343,22 +328,21 @@
       </ion-card-content>
       </ion-card>
       <ion-card class="cadreOP">
-        <img src="assets/images/Accueil/s8.jpg" style="height: 90px;width: 100%;">
+        <img src="assets/images/Accueil/s3.jpg" style="height: 90px;width: 100%;">
       <ion-card-content>
         <ion-item>
-          <ion-icon slot="start" name="bag-add"></ion-icon>
-          <ion-note slot="start" color="danger">
-            <ion-icon slot="start" name="bag"></ion-icon>
-            <ion-label>Nom :</ion-label>
+          <ion-icon color="dark" slot="start" name="bag"></ion-icon>
+          <ion-note slot="start">
+            <ion-label  color="dark" >Nom :</ion-label>
           </ion-note>
-          <ion-label>Objet Perdu</ion-label>
+          <ion-label class="ion-text-wrap">Le Nom de l'Objet Perdu</ion-label>
         </ion-item>
         <ion-item>
-          <ion-icon slot="start" name="location"></ion-icon>
-          <ion-note slot="start" color="danger">
+          <ion-icon color="dark" slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="dark">
             <ion-label>Lieu :</ion-label>
           </ion-note>
-          <ion-label>Bamako</ion-label>
+          <ion-label class="ion-text-wrap">Bamako</ion-label>
         </ion-item>
         <ion-item>
           <ion-button class="iconfaces" fill="outline">
@@ -372,22 +356,21 @@
       </ion-card-content>
       </ion-card>
       <ion-card class="cadreOP">
-        <img src="assets/images/Accueil/s9.jpg" style="height: 90px;width: 100%;">
+        <img src="assets/images/Accueil/s3.jpg" style="height: 90px;width: 100%;">
       <ion-card-content>
         <ion-item>
-          <ion-icon slot="start" name="bag-add"></ion-icon>
-          <ion-note slot="start" color="danger">
-            <ion-icon slot="start" name="bag"></ion-icon>
-            <ion-label>Nom :</ion-label>
+          <ion-icon color="dark" slot="start" name="bag"></ion-icon>
+          <ion-note slot="start">
+            <ion-label  color="dark" >Nom :</ion-label>
           </ion-note>
-          <ion-label>Objet Perdu</ion-label>
+          <ion-label class="ion-text-wrap">Le Nom de l'Objet Perdu</ion-label>
         </ion-item>
         <ion-item>
-          <ion-icon slot="start" name="location"></ion-icon>
-          <ion-note slot="start" color="danger">
+          <ion-icon color="dark" slot="start" name="location"></ion-icon>
+          <ion-note slot="start" color="dark">
             <ion-label>Lieu :</ion-label>
           </ion-note>
-          <ion-label>Bamako</ion-label>
+          <ion-label class="ion-text-wrap">Bamako</ion-label>
         </ion-item>
         <ion-item>
           <ion-button class="iconfaces" fill="outline">
@@ -400,35 +383,12 @@
         </ion-item>
       </ion-card-content>
       </ion-card>
-      <ion-card class="cadreOP">
-        <img src="assets/images/Accueil/s10.jpg" style="height: 90px;width: 100%;">
-      <ion-card-content>
-        <ion-item>
-          <ion-icon slot="start" name="bag-add"></ion-icon>
-          <ion-note slot="start" color="danger">
-            <ion-icon slot="start" name="bag"></ion-icon>
-            <ion-label>Nom :</ion-label>
-          </ion-note>
-          <ion-label>Objet Perdu</ion-label>
+      <ion-grid class="Gplus">
+        <ion-item lines="none" class="ion-no-padding">
+          <ion-label>Pour Voir plus d'objet cliqué </ion-label>
+          <ion-button slot="end" size="small" color="light" class="Bplus">Ici</ion-button>
         </ion-item>
-        <ion-item>
-          <ion-icon slot="start" name="location"></ion-icon>
-          <ion-note slot="start" color="danger">
-            <ion-label>Lieu :</ion-label>
-          </ion-note>
-          <ion-label>Bamako</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-button class="iconfaces" fill="outline">
-            <ion-icon class="iconface" name="logo-facebook"></ion-icon>
-          </ion-button>
-          <ion-button  class="iconwhat" fill="outline">
-            <ion-icon name="logo-whatsapp"></ion-icon>
-          </ion-button>
-          <ion-button class="btnRecla"  fill="outline">Réclamer</ion-button>
-        </ion-item>
-      </ion-card-content>
-      </ion-card>
+      </ion-grid>
     </div>
     <div class="titleGategorie">
       <ion-item lines="none" class="statitle2">
@@ -487,10 +447,5 @@
           </ion-card-content>
         </ion-card>
       </ion-slide>
-  </ion-slides>
-   
-  
-
- 
-  
+  </ion-slides> 
 </ion-content>
