@@ -5,7 +5,7 @@ ion-tabs{
         --background: rgba(9, 101, 240, 0.096);
         --color:black;
         font-size: 9px;
-        --color-selected:  rgba(9, 101, 240, 0.938);
+        --color-selected: #17BB89;
         
         &::before {
           background-color: transparent;
@@ -17,7 +17,7 @@ ion-tabs{
         }
       
         &.tab-selected::before {
-          background-color: var(--ion-color-primary);
+          background-color:#17BB89;
         }
       }
     }

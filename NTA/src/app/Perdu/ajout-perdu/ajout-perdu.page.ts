@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AnnonceServiceService } from '../Service/annonce-service.service';
 
 @Component({
   selector: 'app-ajout-perdu',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ajout-perdu.page.scss'],
 })
 export class AjoutPerduPage implements OnInit {
+  listesCategorie : any;
   idString =["Comment retrouver un objet ?","Comment récupérer ses objets perdus ?" ]
   id =[1,2,3,4,5,6,7,8,9,10]
   public slideOpts = {
@@ -139,9 +141,18 @@ export class AjoutPerduPage implements OnInit {
     });
   }
 
-  constructor() { }
+  constructor(private service : AnnonceServiceService) { }
 
   ngOnInit() {
+    this.allCategorie();
+  }
+
+  allCategorie(){
+    return this.service.getAllCategorie().subscribe((data:any)=>{
+      this.listesCategorie = data;
+      console.log(this.listesCategorie);
+      
+    })
   }
 
 }

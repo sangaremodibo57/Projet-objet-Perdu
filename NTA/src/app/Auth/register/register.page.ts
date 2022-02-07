@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RegisterServiceService } from './Service/register-service.service';
 
 @Component({
   selector: 'app-register',
@@ -7,16 +9,20 @@ import {Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-  formtest = FormGroup;
-  ionicForm: FormGroup;
-  constructor(public formBuilder: FormBuilder){
+  user : any;
+  constructor(private service : RegisterServiceService, private route : Router){
 
   }
-  registreForm() {
-    console.log(this.formtest);
+  registreForm(userForm:any) {
+    console.log(userForm.value);
+    this.service.ajoutUser(userForm.value).subscribe((data : any)=>{
+      this.user = data;
+      this.route.navigateByUrl('tabs/tabs/tab1');
+    })
   }
   ngOnInit() {
   }
+
 
 
 

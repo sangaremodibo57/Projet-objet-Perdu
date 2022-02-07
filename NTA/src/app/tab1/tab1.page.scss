@@ -1,6 +1,6 @@
 ion-toolbar{
     
-    --background:linear-gradient(#3d85c6,  rgba(9, 101, 240, 0.938));
+    --background:linear-gradient(#17BB89,  #14a87c);
     color: white;
     ion-title{
         font-size: 14px;
@@ -22,7 +22,7 @@ ion-content{
             margin: 0px;
             padding: 0px;
             text-align: center;
-            color: rgba(9, 101, 240, 0.938);
+            color: #17BB89;
             strong{
                 font-size: 11px;
                 font-weight: 900;
@@ -108,7 +108,7 @@ ion-content{
                         ion-button{
                             -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
 	                        animation: heartbeat 1.5s ease-in-out infinite both;
-                            font-size: 10px;
+                            font-size: 12px;
                             font-weight: bold;
                             height: 25px;
                             border: 0px solid rgba(41, 41, 41, 0.322);
@@ -122,7 +122,7 @@ ion-content{
                             border: 0.5px solid rgb(41, 41, 41);
                             box-shadow: 2px 2px 2px rgba(149, 149, 149, 0.52);
                             border-radius: 10px;
-                            --background:  rgba(9, 101, 240, 0.938);
+                            --background:  #17BB89;
                             color: rgb(255, 255, 255);
                         }
                         
@@ -157,18 +157,20 @@ ion-content{
     .Gplus{
         ion-item{  
             ion-label{
-                color: rgba(9, 101, 240, 0.938);
+                color:#17BB89;
                 font-size: 12px;
                 font-weight: 900;
                 ion-icon{
                     font-size: 10px;
                     border-radius: 50%;
                     color: #ffffff;
-                    background-color: rgba(9, 101, 240, 0.938);
+                    background-color: #17BB89;
                     padding: 2px;
                 }
             }
             ion-buton{
+                --color:black;
+                background: #066448;
                 margin: 0px;
                 padding: 0px;
                 font-size: 8px;
@@ -195,7 +197,6 @@ ion-content{
                 width: 99%;
                 ion-card-content{
                     height: 60px;
-                    text-align: left;
                     font-size: 9px;
                     padding: 0px;
                     .infoSlide{
@@ -214,7 +215,7 @@ ion-content{
                         height: 40px;    
                         
                         .iconfaces{
-                            color: rgba(9, 101, 240, 0.938);
+                            color:#4124e7;
                         }
                         .iconwhat{
                             color: rgb(10, 126, 45);
@@ -238,18 +239,18 @@ ion-content{
         padding: 0px;
         border: 1px solid rgb(247, 241, 241);
         border-radius: 20px 20px 20px 20px;
-        background-color:  rgba(9, 101, 240, 0.938);
+        background-color: #17BB89;
         .statitle{
             padding: 0px;
             margin: 0px;
             font-size: 15px;
             font-weight: 800;
-            color: rgba(9, 101, 240, 0.938);
+            color: #17BB89;
             ion-icon{
                 border-radius: 50%;
                 padding: 5px;
                 background-color: #ffffff;
-                color: rgba(9, 101, 240, 0.938);
+                color:#17BB89;
             }
         }
         .titleGategorie{
@@ -297,7 +298,7 @@ ion-content{
                     font-weight: bold;
                 }
                 .iconfaces{
-                    color: rgba(9, 101, 240, 0.938);
+                    color: #5545ee;
                 }
                 .iconwhat{
                     color: rgb(10, 126, 45);
@@ -315,18 +316,18 @@ ion-content{
         
         ion-item{
             --background:none;
-            color: rgba(9, 101, 240, 0.938);
+            color: #17BB89;
         }
         .statitle2{
             padding: 0px;
             margin: 0px;
             font-size: 15px;
             font-weight: 800;
-            color: rgba(9, 101, 240, 0.938);
+            color: #17BB89;
             ion-icon{
                 border-radius: 50%;
                 padding: 5px;
-                background-color: rgba(9, 101, 240, 0.938);
+                background-color: #17BB89;
                 color: #fff;
             }
         }
