@@ -48,6 +48,10 @@ const routes: Routes = [
   {
     path: 'tab-info',
     loadChildren: () => import('./tab-info/tab-info.module').then( m => m.TabInfoPageModule)
+  },
+  {
+    path: 'ajout-reclamer',
+    loadChildren: () => import('./Reclamer/ajout-reclamer/ajout-reclamer.module').then( m => m.AjoutReclamerPageModule)
   }
 
 

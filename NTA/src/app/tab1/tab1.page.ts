@@ -1,7 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 import { GoogleChartInterface } from 'ng2-google-charts';
 import { Chart } from "chart.js";
+import { Router } from '@angular/router';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -147,7 +148,16 @@ export class Tab1Page implements OnInit {
     });
   }
 
-  constructor(){
+
+
+
+
+
+private connect :boolean =false;
+
+  constructor(
+    private router: Router
+  ){
 
   }
   
@@ -155,6 +165,19 @@ export class Tab1Page implements OnInit {
     
   }
 
+  navigateOP(){
+    this.router.navigateByUrl('tabs/tabs/tab2');
+  }
+  navigateOT(){
+    this.router.navigateByUrl('tabs/tabs/tab3');
+  }
   
+  logUser(){
+    if (this.connect) {
+      this.router.navigateByUrl('login');
+    } else {
+      this.router.navigateByUrl('login');
+    }
+  }
 
 }

@@ -1,31 +1,33 @@
 <ion-content>
   <ion-card class="ion-no-margin cardlogo">
-    <ion-img src="assets/images/Auth/header11.png"></ion-img>
+    <ion-img src="assets/images/Auth/Auth.png"></ion-img>
     <div class="logo ion-text-center">
       <ion-img src="assets/images/NTAB.png"></ion-img>
     </div>
   </ion-card>
- 
-    <div class="inputs">  
-      <ion-item>
-        <ion-icon name="person"></ion-icon>
-        <ion-input type="email" name="email" placeholder="Email" required></ion-input>
-      </ion-item>
-      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.required">
-        Email is required.
-      </span>
-  
-      <ion-item>
-        <ion-icon name="lock-closed"></ion-icon>
-        <ion-input type="password" name="password" placeholder="********" required></ion-input>
-      </ion-item>
-    </div>
-    <div class="password-f">
-      <ion-button fill="clear" [routerLink]="['/forgot']"> <b>Mot de passe oublié?</b> </ion-button>
-    </div>
-    <div class="btnConnect">
-      <ion-button  size="small"  [routerLink]="['/tabs/tabs/tab1']">Connexion</ion-button>
-    </div>
+    <form  #loginForm="ngForm"  (ngSubmit)="onLogin(loginForm.value)" autocomplete="off">
+      <div class="inputs">  
+        <ion-item>
+          <ion-icon name="person"></ion-icon>
+          <ion-input type="email" name ="email" ngModel placeholder="Email" required></ion-input>
+        </ion-item>
+        <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.required">
+          Email is required.
+        </span>
+    
+        <ion-item>
+          <ion-icon name="lock-closed"></ion-icon>
+          <ion-input type="password"  name="password" ngModel placeholder="********" required></ion-input>
+        </ion-item>
+      </div>
+      <div class="password-f">
+        <ion-button fill="clear" [routerLink]="['/forgot']"> <b>Mot de passe oublié?</b> </ion-button>
+      </div>
+      <div class="btnConnect">
+        <ion-button  size="small"  type="submit">Connexion</ion-button>
+      </div>
+    </form>
+
     <div class="textConnect">
       <span>Se connecter avec</span>
     </div>

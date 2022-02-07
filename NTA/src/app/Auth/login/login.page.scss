@@ -5,10 +5,11 @@ ion-content{
         box-shadow: none;
 
         .logo{
-            border: 1px solid white;
+            border: 1px solid rgb(110, 110, 110);
             border-radius: 50%;
-            background-color: rgba(11, 75, 194, 0.815);
-            margin: 0 auto;
+            box-shadow: 3px 3px 3px rgb(105, 105, 105);
+            background-color: #17BB89;
+            margin: 0px auto 3px auto;
             height: 100px;
             width: 100px;
         }
@@ -46,25 +47,25 @@ ion-content{
             }
         }
     }
-    
-        
+    form{
         .inputs{
             padding: 10px;
             ion-item{
-                color: #3753f5;
+                color: #0a3125;
+                font-weight: bold;
                 border-radius: 50px;
-                border: 1px inset rgba(110, 110, 110, 0.281);
-                box-shadow: 2px 2px 2px rgb(104, 103, 103);
+                border: 1px inset #012A10;
+                box-shadow: 2px 2px 2px rgba(83, 83, 83, 0.616);
                 text-align: center;
                 margin-top: 10px;
-                --highlight-color-focused:#3753f5;  
+                --highlight-color-focused:#012A10;  
                 ion-icon{
-                    color: #3753f5;
+                    color: #17BB89;
                 }
             }
             ion-item:hover{
-                border: 1px inset rgba(110, 110, 110, 0.281);
-                box-shadow: 4px 4px 4px rgb(104, 103, 103);
+                border: 1px insetrgba(83, 83, 83, 0.616);
+                box-shadow: 4px 4px 4px rgba(83, 83, 83, 0.616);
               
             }
         }
@@ -74,25 +75,29 @@ ion-content{
         text-align: right;
         ion-button{
             font-size: 9px;
+            color: #036126;
         }
     }
     .btnConnect{
         margin-top: 10px;
         text-align: center;
        ion-button{
-           --background: #3753f5;
+           --background: #17BB89;
            --border-radius: 50px;
            width: 60%;
            --box-shadow: 3px 3px 3px rgb(107, 106, 106);
        }
        ion-button:hover{
         --background: white;
-        color: #3753f5;
+        color: #17BB89;
         --border-radius: 50px;
         width: 60%;
         --box-shadow: 3px 3px 3px rgb(107, 106, 106);
         }
     }
+    }
+        
+     
     .textConnect{
         text-align: center;
         margin-top: 20px;

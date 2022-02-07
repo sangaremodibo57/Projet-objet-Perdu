@@ -1,7 +1,7 @@
 ion-content{
     --background: url('/assets/imageFont.jpg') no-repeat fixed center/cover;
    .content{
-        background: rgba(9, 101, 240, 0.527);
+        background: #215b3bd5;
         height: 100%;
         @-webkit-keyframes slide-in-right {
                 0% {
@@ -32,7 +32,7 @@ ion-content{
 	        animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
                 position: absolute;
                 top: 45%;
-                left: 30%;
+                left: 35%;
         }
         @-webkit-keyframes slide-in-left {
                 0% {
@@ -62,9 +62,10 @@ ion-content{
                 -webkit-animation: slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	        animation: slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
                 width: 50%;
-                margin: 0 auto;
+                margin: 0 ;
                 position: relative;
                 top: 52%;
+                left: 30%;
                 
         }
         @-webkit-keyframes text-flicker-in-glow {
@@ -322,6 +323,8 @@ ion-content{
           animation: text-flicker-in-glow 5s linear both;
           position: relative;
           top: 48%;
+          left: 5%;
+          
           color: white;
           font-weight: bold;
         }

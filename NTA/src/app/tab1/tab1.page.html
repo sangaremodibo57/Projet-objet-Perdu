@@ -4,7 +4,7 @@
       <ion-button [routerLink]="['/liste-notification']">
         <ion-icon name="notifications"></ion-icon>
       </ion-button>
-      <ion-button [routerLink]="['/login']">
+      <ion-button (click)="logUser()">
         <ion-icon name="person-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -32,7 +32,7 @@
     <ion-grid class="Gplus">
       <ion-item lines="none" class="ion-no-padding">
         <ion-label><ion-icon slot="start" name="bag-remove-sharp"></ion-icon> Récemment Trouvé</ion-label>
-        <ion-button slot="end" size="small" shape="round" class="Bplus">plus</ion-button>
+        <ion-button (click)="navigateOP()" slot="end" size="small" shape="round" class="Bplus">plus</ion-button>
       </ion-item>
     </ion-grid>
     <ion-row class="cadreSlide">
@@ -55,7 +55,7 @@
                 <ion-button  class="iconwhat" fill="outline">
                   <ion-icon name="logo-whatsapp"></ion-icon>
                 </ion-button>
-                <ion-button class="btnRecla"  fill="outline">Réclamer</ion-button>
+                <ion-button [routerLink]="['/ajout-reclamer']" class="btnRecla"  fill="outline">Réclamer</ion-button>
               </ion-item>
             </ion-card-content>
           </ion-card>
@@ -69,7 +69,7 @@
           <ion-label>Objet Perdu</ion-label>
         </ion-item>
       </div>
-      <ion-grid class="Gplus">
+      <ion-grid (click)="navigateOT()" class="Gplus">
         <ion-item lines="none" class="ion-no-padding">
           <ion-label>Récemment Perdu</ion-label>
           <ion-button slot="end" size="small" shape="round" color="light" class="Bplus">plus</ion-button>
