@@ -5,14 +5,11 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class AnnonceServiceService {
+export class AccueilServiceService {
 url = environment.URL;
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getAllCategorie(){
-    return this.http.get(this.url+"/allcategorie");
-  }
-  getAllObjet(){
-    return this.http.get(this.url+"/allobjet");
+  getAllAnnonce(){
+    return this.http.get(this.url+"/allannonce");
   }
 }

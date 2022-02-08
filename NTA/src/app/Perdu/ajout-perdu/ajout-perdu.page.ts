@@ -7,7 +7,7 @@ import { AnnonceServiceService } from '../Service/annonce-service.service';
   styleUrls: ['./ajout-perdu.page.scss'],
 })
 export class AjoutPerduPage implements OnInit {
-  listesCategorie : any;
+ 
   idString =["Comment retrouver un objet ?","Comment récupérer ses objets perdus ?" ]
   id =[1,2,3,4,5,6,7,8,9,10]
   public slideOpts = {
@@ -141,16 +141,34 @@ export class AjoutPerduPage implements OnInit {
     });
   }
 
+
+//---------------------fin slidde-------------------
+
+
+listesCategorie : any=[];
+listesObjet :any;
+cat: string = "men"; // default button
+
   constructor(private service : AnnonceServiceService) { }
 
   ngOnInit() {
     this.allCategorie();
+    this.allObjet();
   }
 
   allCategorie(){
     return this.service.getAllCategorie().subscribe((data:any)=>{
       this.listesCategorie = data;
       console.log(this.listesCategorie);
+      
+    })
+  }
+  allObjet(){
+    return this.service.getAllObjet().subscribe((data:any)=>{
+      this.listesObjet = data;
+      console.log(this.listesObjet);
+      console.log(this.listesObjet.nom);
+      
       
     })
   }

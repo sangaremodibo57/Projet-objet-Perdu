@@ -3,6 +3,7 @@ import { GoogleChartInterface } from 'ng2-google-charts';
 import { Chart } from "chart.js";
 import { Router } from '@angular/router';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AccueilServiceService } from './Service/accueil-service.service';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -152,17 +153,46 @@ export class Tab1Page implements OnInit {
 
 
 
-
+  cat: string = "men"; // default button
 private connect :boolean =false;
+private listeAnnonces : any;
+private listeAnnoncesTrouve : any=[];
+private listeAnnoncesPerdu : any = [];
 
   constructor(
-    private router: Router
+    private router: Router,
+    private service : AccueilServiceService
   ){
 
   }
   
   ngOnInit(){
-    
+    this.getAnnonce();
+  }
+
+  getAnnonce(){
+    return this.service.getAllAnnonce().subscribe((data:any)=>{
+      let listeAnnonce = data;
+      for (let i = 0; i <listeAnnonce.length; i++) {
+        console.log(listeAnnonce[i].etat);
+        if (listeAnnonce[i].etat == 'trouve') {
+          this.listeAnnoncesTrouve.push(listeAnnonce[i]);
+          console.log(this.listeAnnoncesTrouve);
+          
+        }
+        if (listeAnnonce[i].etat == 'perdu') {
+          this.listeAnnoncesPerdu.push(listeAnnonce[i]);
+          console.log(this.listeAnnoncesPerdu);
+          
+          
+          
+        }
+        
+      }
+      
+
+      
+    })
   }
 
   navigateOP(){

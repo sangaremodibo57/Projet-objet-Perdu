@@ -1,12 +1,13 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
+import { TrouveServiceService } from './Service/trouve-service.service';
 
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss']
 })
-export class Tab3Page {
+export class Tab3Page implements OnInit{
   v = 0.3;
   b = 0.7;
 
@@ -145,7 +146,30 @@ export class Tab3Page {
     });
   }
 
+  private listeAnnoncesTrouve : any = [];
+  constructor(private servive:TrouveServiceService) {}
 
-  constructor() {}
+  ngOnInit(): void {
+      this.getAnnonce();
+  }
+
+  getAnnonce(){
+    return this.servive.getAllAnnonceTrouve().subscribe((data:any)=>{
+      let listeAnnonce = data;
+      for (let i = 0; i <listeAnnonce.length; i++) {
+        console.log(listeAnnonce[i].etat);
+        if (listeAnnonce[i].etat == 'trouve') {
+          this.listeAnnoncesTrouve.push(listeAnnonce[i]);
+          console.log(this.listeAnnoncesTrouve);
+          
+        }
+
+        
+      }
+      
+
+      
+    })
+  }
 
 }

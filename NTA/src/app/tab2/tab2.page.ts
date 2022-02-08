@@ -1,12 +1,13 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
+import { PerduServiceService } from './Service/perdu-service.service';
 
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page {
+export class Tab2Page implements OnInit {
   v = 0.3;
   b = 0.7;
 
@@ -145,7 +146,31 @@ export class Tab2Page {
     });
   }
 
+  private listeAnnoncesPerdu : any = [];
+  constructor(private service :PerduServiceService) {}
 
-  constructor() {}
+  ngOnInit(): void {
+      this.getAnnonce();
+  }
+
+  getAnnonce(){
+    return this.service.getAllAnnoncePerdu().subscribe((data:any)=>{
+      let listeAnnonce = data;
+      for (let i = 0; i <listeAnnonce.length; i++) {
+        console.log(listeAnnonce[i].etat);
+        if (listeAnnonce[i].etat == 'perdu') {
+          this.listeAnnoncesPerdu.push(listeAnnonce[i]);
+          console.log(this.listeAnnoncesPerdu);
+          
+          
+          
+        }
+        
+      }
+      
+
+      
+    })
+  }
 
 }
