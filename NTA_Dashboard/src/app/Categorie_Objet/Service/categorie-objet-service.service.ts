@@ -16,7 +16,7 @@ url= environment.URL
   }
 
   listCategorieService(){
-    return this.http.get(this.url+'/allcategorie');
+    return this.http.get(this.url+'/categorieactive');
   }
 
   ajoutObjetService(data:any){
@@ -25,6 +25,22 @@ url= environment.URL
 
   listObjetService(){
     return this.http.get(this.url+'/allobjetactive');
+  }
+
+  getObjetById(id :any){
+    return this.http.get(this.url+`/oneobjet/${id}`);
+  }
+
+  desactiveOblet(id:any , data:any){
+    return this.http.put(this.url+`/changeetatobjetdesactive/${id}`, data);
+  }
+
+  desactiveCategorie(id:any, data:any){
+    return this.http.put(this.url+`/changecategorieetatdesactive/${id}`, data);
+  }
+
+  getCategorieById(id : any){
+    return this.http.get(this.url+`/onecategorie/${id}`);
   }
   
 }

@@ -2,11 +2,15 @@ ion-tabs{
     ion-tab-button{
         margin: 0px;
         padding: 0%;
-        --background: #17bb8a2d;
-        --color:black;
+        --background: #25ffbe2d;
+        --color:#17BB89;
+       
         font-size: 9px;
         --color-selected: #17BB89;
-        
+        ion-icon:hover{
+          color: #05956a;
+
+        }
         &::before {
           background-color: transparent;
           display: block;

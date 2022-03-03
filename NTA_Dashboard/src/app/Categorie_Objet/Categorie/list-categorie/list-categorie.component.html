@@ -32,19 +32,16 @@
                                 <table class="table no-wrap"  >
                                     <thead>
                                         <tr>
-                                            <th class="border-top-0"><b>Id</b></th>
                                             <th class="border-top-0"><b>Nom</b></th>
                                             <th class="border-top-0"><b>Action</b></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let liste of listeCategorie ">
-                                            <td class="txt-oflo">{{liste.id}}</td>
                                             <td class="txt-oflo">{{liste.nom}}</td>
                                             <td>
                                                 <span class="text-success alignement">
-                                                    <a> <i class="fa fa-edit" aria-hidden="true"></i></a>
-                                                    <a ><i style="color: red;" class="fa fa-trash" aria-hidden="true" onclick ="return(confirm('Êtes-vous certain de vouloir supprimer cet administrateur ?'));"></i></a>
+                                                    <a ><i (click)="desactiveCategorie(liste.id)" style="color: red;" class="fa fa-trash" aria-hidden="true" onclick ="return(confirm('Êtes-vous certain de vouloir supprimer cet administrateur ?'));"></i></a>
                                                     <a><i style="color: #03224c;" class="fas fa-info-circle" aria-hidden="true"></i></a>
                                                 </span>
                                             </td>
@@ -73,7 +70,7 @@
                                             <a href="" class="active">
                                                 <i class="fa fa-search"></i>
                                             </a>
-                                            <input type="text" name="search"  autocomplete="off" placeholder="Search..." class="form-control mt-0">
+                                            <input  type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search..." class="form-control mt-0">
                                         </form>
                                     </div>
                                 </div>
@@ -88,14 +85,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor = "let listeObjt of listeObjet">
+                                        <tr *ngFor = "let listeObjt of listeObjet | filter:searchText">
                                             <td class="txt-oflo">{{listeObjt.nom}}</td>
                                             <td class="txt-oflo">{{listeObjt.categorie.nom}}</td>
                                             <td>
                                                 <span class="text-success alignement">
-                                                    <a> <i class="fa fa-edit" aria-hidden="true"></i></a>
-                                                    <a ><i style="color: red;" class="fa fa-trash" aria-hidden="true" onclick ="return(confirm('Êtes-vous certain de vouloir supprimer cet administrateur ?'));"></i></a>
-                                                    <a><i style="color: #03224c;" class="fas fa-info-circle" aria-hidden="true"></i></a>
+                                                    <a (click)="desactiveObjet(listeObjt.id)" ><i style="color: red;" class="fa fa-trash" aria-hidden="true" onclick ="return(confirm('Êtes-vous certain de vouloir supprimer cet administrateur ?'));"></i></a>
                                                 </span>
                                             </td>
                                         </tr>
