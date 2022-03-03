@@ -17,6 +17,7 @@ import { ListeobjettrouveComponent } from './Objets_Trouves/listeobjettrouve/lis
 import { ReclamerComponent } from './Reclamer/reclamer/reclamer.component';
 import { AjoutCategorieComponent } from './Categorie_Objet/Categorie/ajout-categorie/ajout-categorie.component';
 import { ListCategorieComponent } from './Categorie_Objet/Categorie/list-categorie/list-categorie.component';
+import { CorbeilleComponent } from './CorbPOP/corbeille/corbeille.component';
 
 
 const routes: Routes = [
@@ -48,6 +49,10 @@ const routes: Routes = [
   // Gestion Categorie
   {path:'ajoutCategorie', component:AjoutCategorieComponent},
   {path:'listCategorie', component:ListCategorieComponent},
+
+
+   // Gestion Corbeille
+   {path:'corbeille', component:CorbeilleComponent},
 ];
 
 @NgModule({

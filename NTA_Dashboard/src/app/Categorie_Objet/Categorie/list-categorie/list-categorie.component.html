@@ -82,17 +82,15 @@
                                 <table class="table no-wrap" >
                                     <thead>
                                         <tr>
-                                            <th class="border-top-0"><b>Id</b></th>
                                             <th class="border-top-0"><b>Nom</b></th>
                                             <th class="border-top-0"><b>Categories</b></th>
                                             <th class="border-top-0"><b>Action</b></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="txt-oflo">1</td>
-                                            <td class="txt-oflo">Bague</td>
-                                            <td class="txt-oflo">Bijoux</td>
+                                        <tr *ngFor = "let listeObjt of listeObjet">
+                                            <td class="txt-oflo">{{listeObjt.nom}}</td>
+                                            <td class="txt-oflo">{{listeObjt.categorie.nom}}</td>
                                             <td>
                                                 <span class="text-success alignement">
                                                     <a> <i class="fa fa-edit" aria-hidden="true"></i></a>

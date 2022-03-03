@@ -45,6 +45,7 @@ import {MenuItem} from 'primeng/api';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { AjoutCategorieComponent } from './Categorie_Objet/Categorie/ajout-categorie/ajout-categorie.component';
 import { ListCategorieComponent } from './Categorie_Objet/Categorie/list-categorie/list-categorie.component';
+import { CorbeilleComponent } from './CorbPOP/corbeille/corbeille.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { ListCategorieComponent } from './Categorie_Objet/Categorie/list-categor
     ReclamerComponent,
     AjoutCategorieComponent,
     ListCategorieComponent,
+    CorbeilleComponent,
    
     
    

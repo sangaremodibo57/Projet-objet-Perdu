@@ -24,7 +24,7 @@ url= environment.URL
   }
 
   listObjetService(){
-    return this.http.get(this.url+'/allobjet');
+    return this.http.get(this.url+'/allobjetactive');
   }
   
 }
