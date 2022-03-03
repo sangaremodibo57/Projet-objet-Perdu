@@ -1,0 +1,298 @@
+ion-toolbar{
+    
+    --background:linear-gradient(#17BB89, #17BB89);
+    color: white;
+    ion-title{
+        font-size: 14px;
+        font-weight: 900;
+    }
+    ion-buttons{
+        ion-button{
+           ion-icon{
+               font-size: 25px;
+           }
+        }
+    }
+  }
+   ion-content{
+       padding: 0px;
+       margin: 0px;
+ 
+    ion-slides{
+        padding: 0px;
+        margin:5px 0px;
+        width: 100%;
+        ion-slide{
+            width: 100%;
+            padding: 0px;
+            margin: 0px;
+            ion-card{
+                width: 98%;
+                padding: 0px;
+                margin: 10px 0px;
+                ion-card-header{
+                    width: 98%;
+                    padding: 0px;
+                    margin: 0px auto;
+                    img{
+                        height: 100px;
+                        width: 100%;
+                    }
+                }
+                ion-card-content{
+                   
+                    width: 98%;
+                    padding: 0px;
+                    margin: 0px;
+                    font-family: Georgia, 'Times New Roman', Times, serif;
+                    font-size: 12px;
+                    ion-item{
+                        height: 30px;
+                        padding: 0px;
+                        margin: 0px 0px 5px 0px;
+                        font-family: Georgia, 'Times New Roman', Times, serif;
+                        font-size: 12px;
+                        ion-icon{
+                            margin: 0px;
+                        }
+                        ion-label{
+                            margin: 0px;
+                        }
+                        button{
+                            color: #0f8561;
+                           
+                        }  
+                    }
+                    
+                }
+            }
+        }
+    }
+
+    // Amination sur button Publier une Annonce dans div class=cadreAnnonce
+        //Lato font
+    @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+
+    //color/ui color variables
+    $white: #ececec;
+    $black: #111111;
+    $red1: #17BB89;
+    $red2: #0f8561;
+    $colorPrimary: $red1;
+    $colorSecondary: $red2;
+    $cubic-bezier: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    //split button mixin
+    @mixin btn__split($foregroundColor, $backgroundColor, $textColor) {
+    .btnPublier {
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: 900;
+        margin: 0 auto;
+        border: 0;
+        //display: block;
+        position: relative;
+        letter-spacing: 0.15em;
+        margin: 0 auto;
+        padding: 1rem 2.5rem;
+        background: transparent;
+        border: 1px solid #17BB89;
+        outline: none;
+        font-size: 12px;
+        color: $textColor;
+        transition: all 0.5s $cubic-bezier 0.15s;
+        &::after,
+        &::before {
+        border: 0;
+        content: "";
+        position: absolute;
+        height: 40%;
+        width: 10%;
+        transition: all 0.5s $cubic-bezier;
+        z-index: -2;
+        border-radius: 50%;
+        //animation: grow 1s infinite;
+        }
+        &::before {
+        border: 0;
+        background-color: $backgroundColor;
+        top: -0.75rem;
+        left: 0.5rem;
+        animation: topAnimation 2s $cubic-bezier 0.25s infinite alternate;
+        }
+        &::after {
+        background-color: $foregroundColor;
+        top: 3rem;
+        left: 13rem;
+        animation: bottomAnimation 2s $cubic-bezier 0.5s infinite alternate;
+        }
+        &:hover {
+        color: white;
+        &::before,
+        &::after {
+            top: 0;
+            //transform: skewx(-10deg);
+            height: 100%;
+            width: 100%;
+            border-radius: 0;
+            animation: none;
+        }
+        &::after {
+            left: 0rem;
+        }
+        &::before {
+            top: 0.5rem;
+            left: 0.35rem;
+        }
+        }
+    }
+    }
+    .cadreAnnonce {
+    font-family: "Lato", sans-serif;
+    color: $black;
+    display: flex;
+    width: 90%;
+    margin: 5px auto 15px 10px;
+    align-content: center;
+    justify-content: center;
+    }
+
+    .container {
+    width: auto;
+    margin: auto;
+    }
+    // a {
+    //  text-transform: uppercase;
+    //  text-decoration: none;
+    //  font-weight: 700;
+    // }
+    @keyframes topAnimation {
+    from {
+        transform: translate(0rem, 0);
+    }
+    to {
+        transform: translate(0rem, 3.5rem);
+    }
+    }
+    @keyframes bottomAnimation {
+    from {
+        transform: translate(-11.5rem, 0);
+    }
+    to {
+        transform: translate(0rem, 0);
+    }
+    }
+
+    @include btn__split($colorPrimary, $colorSecondary, $black);
+
+    // fin  Amination sur button Publier une Annonce
+
+   
+    //btnRePublier
+
+    .btnRePublier{
+        --background: #17BB89;
+        border: none;
+    }
+    // Fin Slide
+
+
+    .cadreObjetPerdu{
+        margin: 0px;
+        padding: 0px;
+        border: 1px solid rgb(247, 241, 241);
+        background-color: #17BB89;
+        .titleGategorie{
+            width: 100%;
+            margin: 0 auto;
+            ion-item{
+                --background:none;
+                color: #fff;
+                font-weight: bold;
+                border: 1px inset #fff;
+            }
+            
+        }
+        
+        .Gplus{
+            border: none;
+            color: #fff;
+            --background:none;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        ion-card{
+            width: 90%;
+            padding: 0px;
+            margin: 10px auto;
+            ion-card-header{
+                width: 98%;
+                padding: 0px;
+                margin: 0px auto;
+                img{
+                    height: 100px;
+                    width: 100%;
+                }
+            }
+            ion-card-content{
+               
+                width: 98%;
+                padding: 0px;
+                margin: 0px;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+                font-size: 12px;
+                ion-item{
+                    height: 30px;
+                    padding: 0px;
+                    margin: 0px 0px 5px 0px;
+                    font-family: Georgia, 'Times New Roman', Times, serif;
+                    font-size: 12px;
+                    ion-icon{
+                        margin: 0px;
+                    }
+                    ion-label{
+                        margin: 0px;
+                    }
+                    button{
+                        color: #0f8561;
+                       
+                    }  
+                }
+                
+            }
+        }
+        
+        .Gplus2{
+            border: none;
+            color: #fff;
+            --background:none;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        
+    }
+    // Titre Partenair
+    .titlePartenair{
+        margin-top: 10px;
+       border: 1px solid #17BB89;
+       
+        ion-item{
+            --background:#17BB89 ;
+            ion-icon{
+                color: rgb(255, 255, 255);
+                font-weight: bold;
+            }
+            ion-label{
+                color: rgb(255, 255, 255);
+                font-size: 18px;
+                font-weight: bold;
+            }
+        }
+    }
+}
+.listMargin{
+ 
+    margin : 5px;
+}
+

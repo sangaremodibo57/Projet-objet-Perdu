@@ -1,0 +1,161 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Objet Perdu
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-fab *ngIf="test === false" horizontal="end" vertical="top" slot="fixed" style="margin-top: -30px;" edge>
+    <ion-fab-button title="Profile" size="small" color="light">
+      <ion-icon style="pointer-events: none;"  name="person-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list>
+      <ion-fab-button size="small" color="light">
+        <ion-icon [routerLink]="['/detail-profil', userConnecte.id]"  name="person-sharp"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon  [routerLink]="['/notification']" name="notifications"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon color="danger" (click)="logout()" name="power-sharp"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+  <ion-fab *ngIf="test === true" horizontal="end" vertical="top" slot="fixed"  style="margin-top: -30px;" edge>
+    <ion-fab-button title="Profile" size="small" color="light">
+      <ion-icon style="pointer-events: none;"  name="person-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list>
+      <ion-fab-button title="Connexion"  size="small" color="light">
+        <a href="login"  style="color: black;"><ion-icon style="pointer-events: none;"  name="person-sharp"></ion-icon></a>
+        
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+    <div class="CadreAnnoce">
+      <div class="cadreAnnoceBtn">
+        <div class="box">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+            <ion-item lines="none">
+              <ion-thumbnail slot="start">
+                <img src="assets/Accueil/imgOP.png" alt="" srcset="" style="width: 50px;height: 60px;">
+              </ion-thumbnail>
+              <ion-button *ngIf="test === false" [routerLink]="['/ajout-annonce']" size="small" color="success" style="font-size: 9px;font-weight: bold;" fill="outline">Publier Une Annoncer</ion-button>
+              <ion-button *ngIf="test === true" (click)="showAlertA()" size="small" color="success" style="font-size: 9px;font-weight: bold;" fill="outline">Publier Une Annoncer</ion-button>
+            </ion-item>
+        </div>
+      </div>
+    </div>
+    <ion-searchbar animated></ion-searchbar>
+   <!-- content Objet Récemment Trouve -->
+   <div class="cadreObjetPerdu">
+    <div class="titleGategorie">
+      <ion-item lines="none" class="statitle">
+        <ion-icon slot="start" style="color: #17BB89;" name="bag-remove-sharp"></ion-icon>
+        <ion-label>Objet Trouvé</ion-label>
+      </ion-item>
+    </div>
+    <ion-card *ngFor="let listeP of listeAnnoncesPerdu  | paginate: { itemsPerPage: 10, currentPage: cp }">
+      <ion-card-header>
+      <img src="{{listeP.photo}}">
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-icon  name="bag" slot="start"></ion-icon>
+          <ion-label >{{listeP?.nom}}</ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-icon name="location-sharp" slot="start"></ion-icon>
+          <ion-label slot="start">{{listeP?.lieu}}</ion-label>
+          <ion-icon  name="time-sharp" ></ion-icon>
+          <ion-label >{{listeP?.date |  date:'shortDate'}}</ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card> 
+    <!-- Fin -->
+    <div class="paginationContent">
+      <pagination-controls class="paginationLien" (pageChange)="cp = $event" previousLabel="Prec..." nextLabel="...suiv"></pagination-controls>
+      </div>
+
+    <!-- BUTTON POUR PLUS D'OBJET TROUVE -->
+    <ion-item class="Gplus2" lines="none">
+      <ion-label>Pour Plus Objet Trouvé Cliqué</ion-label>
+      <ion-button [routerLink]="['/tabs/tab3']" style="font-size: 9px;" color="light" slot="end">
+        ici
+      </ion-button>
+    </ion-item>
+  </div>
+  <!-- Fin -->
+
+
+  <!-- PARTENAIR -->
+  <div class="titlePartenair">
+    <ion-item lines="none">
+      <ion-icon slot="start" name="sparkles-sharp"></ion-icon>
+      <ion-label>Partenaire</ion-label>
+    </ion-item>
+  </div>
+  <!-- Fin -->
+
+
+  <!-- Partenair Slide -->
+  <ion-slides  [options]="slideOpts" >
+    <ion-slide >
+      <ion-card >
+        <ion-card-header >
+          GANA TRANSPORT
+        </ion-card-header>
+        <ion-card-content>
+          <img src="assets/Partenair/gana.jpg" style="height: 100px;width: 100%;">
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide >
+      <ion-card>
+        <ion-card-header>
+          POLICE
+        </ion-card-header>
+        <ion-card-content>
+          <img src="assets/Partenair/Police.jpg" style="height: 100px;width: 100%;">
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide >
+      <ion-card>
+        <ion-card-header>
+          MAIRIE DE LA DISTRICT DE BAMAKO
+        </ion-card-header>
+        <ion-card-content>
+          <img src="assets/Partenair/Mairie.jpg" style="height: 100px;width: 100%;">
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide >
+      <ion-card>
+        <ion-card-header>
+          AFRICA TOUR TRANSPORT
+        </ion-card-header>
+        <ion-card-content>
+          <img src="assets/Partenair/africa.jpg" style="height: 100px;width: 100%;">
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide >
+      <ion-card>
+        <ion-card-header>
+          AEROPORT
+        </ion-card-header>
+        <ion-card-content>
+          <img src="assets/Partenair/taxi.jpg" style="height: 100px;width: 100%;">
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides> 
+
+</ion-content>

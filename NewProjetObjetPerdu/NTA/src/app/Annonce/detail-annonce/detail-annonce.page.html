@@ -1,0 +1,93 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [routerLink]="['/tabs/tabs/tab1']"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Réclamer Objet
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <form  #formReclame="ngForm" (ngSubmit)="reclamerObjet(formReclame)" novalidate>
+    <ion-card>
+      <ion-card-header>
+      <img src="{{objet?.photo}}">
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-icon  name="bag" slot="start"></ion-icon>
+          <ion-label >{{objet?.nom}}</ion-label>
+          <ion-label slot="end">{{objet?.lieu}}</ion-label>
+          <ion-icon name="location-sharp" slot="end"></ion-icon>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-icon  name="time-sharp" slot="start"></ion-icon>
+          <ion-label >{{objet?.date |  date:'shortDate'}}</ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card> 
+            
+    <div *ngIf="objet?.nomC == 'TELEPHONE'">
+      <h6 class="title"><ion-icon name="time-sharp"></ion-icon> Quelle est le Model ?</h6>
+      <ion-subtitle>Donner le Model du Telephone <span style="color: red; font-size: 15px;">*</span></ion-subtitle>  
+      <ion-item lines="full"  class="itemA">
+        <ion-input type="text" pattern="[a-z0-9]{1,10}" name="model" placeholder="exemple: s28" ngModel #model="ngModel" required></ion-input>
+      </ion-item>
+      <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="model.valid || model.pristine" class="alert alert-danger">
+        Respecter le Format svp : exemple xmax / s28
+      </div>
+    </div>
+
+    <h6 class="title"> <ion-icon name="color-palette-sharp"></ion-icon> Quelle Couleur est l'objet ?</h6>
+    <ion-subtitle>Sélectionnez une Couleur <span style="color: red; font-size: 15px;">*</span></ion-subtitle>
+    <ion-item  class="itemA">
+      <ion-label>Couleur</ion-label>
+      <ion-select name="couleur" interface="popover" ngModel class="custom-options" required>
+        <ion-select-option value="Argent">Argent</ion-select-option>
+        <ion-select-option value="Blanc">Blanc</ion-select-option>
+        <ion-select-option value="Chocolat">Chocolat</ion-select-option>
+        <ion-select-option value="Fer">Fer</ion-select-option>
+        <ion-select-option value="Gris">Gris</ion-select-option>
+        <ion-select-option value="Jaune">Jaune</ion-select-option>
+        <ion-select-option value="Marron">Marron</ion-select-option>
+        <ion-select-option value="Noir">Noir</ion-select-option>
+        <ion-select-option value="Orange">Orange</ion-select-option>
+        <ion-select-option value="Rouge">Rouge</ion-select-option>
+        <ion-select-option value="Vert">Vert</ion-select-option>
+        <ion-select-option value="Turquoise">Turquoise</ion-select-option>
+        <ion-select-option value="Rose">Rose</ion-select-option>
+        <ion-select-option value="Autre">Autre</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <div *ngIf="objet?.nomC == 'DOCUMENTS'">
+      <h6 class="title"><ion-icon name="time-sharp"></ion-icon> Quelle l'annee de delivrance ?</h6>
+      <ion-subtitle>Donner l'annee de delivrance/obtention <span style="color: red; font-size: 15px;">*</span></ion-subtitle> 
+      <ion-item lines="full" class="itemA">
+        <ion-input type="text" pattern="[1-9]{4}" placeholder=" exemple 2022" name="annee_obttion" #annee_obttion="ngModel" ngModel required></ion-input>
+      </ion-item>
+      <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="annee_obttion.valid || annee_obttion.pristine" class="alert alert-danger">
+        Respecter le Format svp : exemple 2022
+      </div>
+    </div>
+
+    <h6 class="title"> <ion-icon name="reader-sharp"></ion-icon> Description/Contenu</h6>
+    <ion-subtitle>Celà nous aidera pour authentification </ion-subtitle>
+    <ion-item  class="itemA">
+      <ion-label position="floating">Description</ion-label>
+      <ion-textarea name="contenu" ngModel ></ion-textarea>
+    </ion-item>
+    
+   
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" size="small" color="success" expand="block" [disabled]="formReclame.form.invalid">Reclamer</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+</ion-content>

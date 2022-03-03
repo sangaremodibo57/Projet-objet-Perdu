@@ -1,0 +1,121 @@
+ion-toolbar{
+    
+    --background:linear-gradient(#17BB89, #17BB89);
+    color: white;
+    ion-title{
+        font-size: 14px;
+        font-weight: 900;
+    }
+    ion-buttons{
+        ion-button{
+           ion-icon{
+               font-size: 25px;
+           }
+        }
+    }
+  }
+ 
+ion-content{
+    
+    form{
+        padding: 0px;
+        margin-top: 10px 0px 0px 0px;
+        border: 1px solid rgba(0, 0, 0, 0.294);
+        ion-card{
+            width: 98%;
+            padding: 0px;
+            margin: 10px auto;
+            ion-card-header{
+                width: 98%;
+                padding: 0px;
+                margin: 0px auto;
+                img{
+                    height: 100px;
+                    width: 100%;
+                }
+            }
+            ion-card-content{
+               
+                width: 98%;
+                padding: 0px;
+                margin: 0px;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+                font-size: 12px;
+                ion-item{
+                    height: 30px;
+                    padding: 0px;
+                    margin: 0px 0px 5px 0px;
+                    font-family: Georgia, 'Times New Roman', Times, serif;
+                    font-size: 12px;
+                    ion-icon{
+                        margin: 0px;
+                    }
+                    ion-label{
+                        margin: 0px;
+                    }
+                    button{
+                        color: #0f8561;
+                       
+                    }  
+                }
+                
+            }
+        }
+        .itemA{
+            border: 1px solid rgb(150, 150, 150);
+            color: #0d0d0e;
+            font-size: 12px;
+            margin: 10px auto;
+            font-weight: bold;
+            --highlight-color-focused: #14a87c;
+            ion-input{
+                text-align: left;
+            }
+            
+        }
+    }
+        
+    
+}
+
+ 
+
+
+.title{
+    margin-top: 10px;
+    font-size: 18px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color:  #14a87c;
+    ion-icon{
+        font-size: 20px;
+    }
+
+}
+
+.titleT{
+  margin-top: 10px;
+  font-size: 18px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color:  #010e0a;
+  ion-icon{
+      font-size: 20px;
+  }
+  
+}
+ion-subtitle{
+    font-size: 11px;
+    
+}
+
+.ajoutImageIcon{
+    margin: 0 auto;
+    font-size: 50px;
+}
+
+  
+
+  
+    
+    
+
+

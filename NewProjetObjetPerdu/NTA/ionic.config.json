@@ -1,0 +1,7 @@
+{
+  "name": "NTA",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

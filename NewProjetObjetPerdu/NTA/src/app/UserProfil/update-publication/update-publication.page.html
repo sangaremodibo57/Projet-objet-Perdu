@@ -1,0 +1,105 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Modifier Annonce
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+ 
+  <h2 style="font-size: 20px; color:  #14a87c; font-weight: bold;"> <b>Publié une Annonce</b></h2>
+      
+      
+          <form  #userForm="ngForm" (ngSubmit)="updateMyAnnonce(userForm)" novalidate>
+            <ion-title class="title"> <ion-icon name="bag"></ion-icon> Qu'avez-vous Perdu ?</ion-title>
+              <ion-subtitle>Sélectionnez une catégorie pour pouvoir choisir un objet.</ion-subtitle>
+              <ion-item>
+                <ion-label> Catégorie</ion-label>
+                <ion-select interface="popover"  name="categorie" id="selectCategorie" required >
+                  <ion-select-option value="categorie.id" *ngFor="let categorie of listesCategorie">{{categorie.nom}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            <ion-item>
+              <ion-label> OBJET</ion-label>
+              <ion-select interface="popover"  [(ngModel)]="detaiannonce.nom" name="nom" id="selectObjet" required ngModel>
+                <ion-select-option  *ngFor="let objet of listesObjet">{{objet.nom}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-title class="title"><ion-icon name="time-sharp"></ion-icon> Quant l'avez-vous Perdu ?</ion-title>
+              <ion-subtitle>Sélectionnez une Date </ion-subtitle>  
+              <ion-item lines="full">
+                <!-- <ion-input type="date" name="datef" ngModel required></ion-input> -->
+                <input type="date" [(ngModel)]="detaiannonce.date" name="datef" ngModel id="" style="border: none; width: 100%;"  required>
+              </ion-item>
+    
+              <ion-title class="title"> <ion-icon name="location"></ion-icon> Où l'avez-vous Perdu ?</ion-title>
+              <ion-subtitle>Sélectionnez un lieu </ion-subtitle>
+              <ion-item >
+                <ion-label>Region</ion-label>
+                <ion-select name="lieu" [(ngModel)]="detaiannonce.lieu" ngModel interface="popover" class="custom-options" required>
+                  <ion-select-option value="Bamako">Bamako</ion-select-option>
+                  <ion-select-option value="Kayes">Kayes</ion-select-option>
+                  <ion-select-option value="Koulikoro">Koulikoro</ion-select-option>
+                  <ion-select-option value="Sikasso">Sikasso</ion-select-option>
+                  <ion-select-option value="Ménaka">Ménaka</ion-select-option>
+                  <ion-select-option value="Taoudénit">Taoudénit</ion-select-option>
+                  <ion-select-option value="Kidal">Kidal</ion-select-option>
+                  <ion-select-option value="Gao">Gao</ion-select-option>
+                  <ion-select-option value="Tombouctou">Tombouctou</ion-select-option>
+                  <ion-select-option value="Ségou">Ségou</ion-select-option>
+                  <ion-select-option value="Mopti">Mopti</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-title class="title"> <ion-icon name="color-palette-sharp"></ion-icon> Quelle Couleur est l'objet ?</ion-title>
+              <ion-subtitle>Sélectionnez une Couleur </ion-subtitle>
+              <ion-item>
+                <ion-label>Couleur</ion-label>
+                <ion-select name="couleur" interface="popover" [(ngModel)]="detaiannonce.couleur" ngModel class="custom-options" required>
+                  <ion-select-option value="Argent">Argent</ion-select-option>
+                  <ion-select-option value="Blanc">Blanc</ion-select-option>
+                  <ion-select-option value="Black">Black</ion-select-option>
+                  <ion-select-option value="Chocolat">Chocolat</ion-select-option>
+                  <ion-select-option value="Fer">Fer</ion-select-option>
+                  <ion-select-option value="Gris">Gris</ion-select-option>
+                  <ion-select-option value="Jaune">Jaune</ion-select-option>
+                  <ion-select-option value="Marron">Marron</ion-select-option>
+                  <ion-select-option value="Noir">Noir</ion-select-option>
+                  <ion-select-option value="Orange">Orange</ion-select-option>
+                  <ion-select-option value="Rouge">Rouge</ion-select-option>
+                  <ion-select-option value="Vert">Vert</ion-select-option>
+                  <ion-select-option value="Turquoise">Turquoise</ion-select-option>
+                  <ion-select-option value="Rose">Rose</ion-select-option>
+                  <ion-select-option value="Autre">Autre</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+
+              <ion-title class="title"> <ion-icon name="reader-sharp"></ion-icon> Description/Contenu</ion-title>
+              <ion-subtitle>Celà nous aidera pour authentification </ion-subtitle>
+              <ion-item>
+                <ion-label position="floating">Description</ion-label>
+                <ion-textarea name="contenu" [(ngModel)]="detaiannonce.contenu" ngModel ></ion-textarea>
+              </ion-item>
+              
+              <ion-card>
+                <ion-card-header>
+                  <ion-title>Photo de l'objet</ion-title>
+                  <ion-subtitle>Les photo permettent d'augmenter l'efficacité de votre Recherche</ion-subtitle>
+                </ion-card-header>
+                <ion-card-content class="ajoutImageContent">
+                  <ion-icon class="ajoutImageIcon" name="camera"></ion-icon>
+                </ion-card-content>
+              </ion-card>
+            <ion-row>
+              <ion-col>
+                <ion-button type="submit" size="small" color="success" expand="block" [disabled]="userForm.form.invalid">Publier</ion-button>
+              </ion-col>
+            </ion-row>
+          </form>  
+
+      
+</ion-content>
