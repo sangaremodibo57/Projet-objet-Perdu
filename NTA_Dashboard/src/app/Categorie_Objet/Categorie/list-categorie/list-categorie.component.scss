@@ -1,0 +1,644 @@
+h1, .h1 {
+    font-size: 3.8em;
+  }
+  
+  h2, .h2 {
+    font-size: 1.5em;
+    line-height: 1.6em;
+    font-weight: bold;
+    font-family: "Roboto Slab", "Times New Roman", serif;
+    text-align: center;
+  }
+  
+  h3, .h3 {
+    font-size: 1.825em;
+    line-height: 1.4em;
+    margin: 30px 0 30px;
+    font-weight: 700;
+    font-family: "Roboto Slab", "Times New Roman", serif;
+    text-align: center;
+  }
+  
+  h4, .h4 {
+    font-size: 1.3em;
+    line-height: 1.55em;
+  }
+  
+  h5, .h5 {
+    font-size: 1.25em;
+    line-height: 1.55em;
+    margin-bottom: 15px;
+  }
+  
+  h6, .h6 {
+    font-size: 0.9em;
+    font-weight: 500;
+  }
+  .section-cards {
+    z-index: 3;
+    position: relative;
+}
+
+.section-gray {
+    background: #fff;
+    
+    padding: 60px 0 30px 0;
+}
+   
+
+
+
+
+
+
+
+
+/*---------------------------------------------------------------------- /
+CARDS
+----------------------------------------------------------------------- */
+
+.card {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.card .card-image {
+    height: 150px;
+    position: relative;
+    background-color: #313131;
+    overflow: hidden;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: -30px;
+    border-radius: 6px;
+    box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.card .card-image img {
+    width: 90%;
+    height: 90%;
+    border-radius: 6px;
+    pointer-events: none;
+}
+
+.card .card-image .card-caption {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    color: #fff;
+    font-size: 1.3em;
+    text-shadow: 0 2px 5px rgba(33, 33, 33, 0.5);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.img-raised {
+    box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.card .ftr {
+    margin-top: 15px;
+}
+
+.card .ftr div {
+    display: inline-block;
+}
+
+.card .ftr .author {
+    color: #888;
+}
+
+.card .ftr .stats {
+    float: right;
+    line-height: 30px;
+}
+
+.card .ftr .stats {
+    position: relative;
+    top: 1px;
+    font-size: 14px;
+}
+
+
+// /* ============ Card Table ============ */
+
+.table {
+    margin-bottom: 0px;
+}
+
+.card .table {
+    padding: 15px 30px;
+}
+
+
+
+
+
+
+
+
+// /* ============ Card Blog ============ */
+
+.card-blog {
+    margin-top: 30px;
+}
+
+.card-blog .card-caption {
+    margin-top: 5px;
+}
+
+.card-blog .card-image + .category {
+    margin-top: 20px;
+}
+
+.card-raised {
+    box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+
+// /* ============ Card Background ============ */
+
+.card-background {
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+}
+
+
+
+
+// /* ============ Card Profile ============ */
+
+.card-profile {
+    margin-top: 30px;
+    text-align: center;
+}
+
+
+// /* ============ Card Category ============ */
+
+
+// /* ============ Card Author ============ */
+
+.card .author .avatar {
+    width: 36px;
+    height: 36px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.card .author a {
+    color: #333;
+    text-decoration: none;
+}
+
+.card .author a .ripple-cont {
+    display: none;
+}
+
+
+// /* ============ Card Product ============ */
+
+.card-product {
+    margin-top: 30px;
+}
+
+.card-product .btn-simple.btn-just-icon {
+    padding: 0;
+}
+
+.card-product .ftr {
+    margin-top: 5px;
+}
+
+.card-product .ftr .stats {
+    margin-top: 4px;
+    top: 0;
+}
+
+.card-product .ftr h4 {
+    margin-bottom: 0;
+}
+
+.card-product .card-caption,
+.card-product .category,
+.card-product .card-description {
+    text-align: center;
+}
+
+.card-description p {
+    color: #888;
+}
+
+.card-caption,
+.card-caption a {
+    color: #333;
+    text-decoration: none;
+}
+
+.card-caption {
+    font-weight: 700;
+    font-family: "Roboto Slab", "Times New Roman", serif;
+}
+
+
+// /* ============ Card Testimonial ============ */
+
+.card-testimonial {
+    margin-top: 0;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.card-profile .btn-just-icon.btn-raised,
+.card-testimonial .btn-just-icon.btn-raised {
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.card-profile .card-avatar,
+.card-testimonial .card-avatar {
+    max-width: 130px;
+    max-height: 130px;
+    margin: -50px auto 0;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.card-profile.card-plain .card-avatar,
+.card-testimonial.card-plain .card-avatar {
+    margin-top: 0;
+}
+
+.card-testimonial .card-avatar {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.card-testimonial .card-description {
+    font-style: italic;
+}
+
+.card-testimonial .card-description + .card-caption {
+    margin-top: 30px;
+}
+
+.card-testimonial .icon {
+    margin-top: 30px;
+}
+
+.card-testimonial .icon {
+    font-size: 40px;
+}
+
+.card-testimonial .ftr {
+    margin-top: 0;
+}
+
+.card-testimonial .ftr .card-avatar {
+    margin-top: 10px;
+    margin-bottom: -50px;
+}
+
+
+// /* ============ Text Color ============ */
+
+
+// /*---------------------------------------------------------------------- /
+// BUTTONS
+// ----------------------------------------------------------------------- */
+
+
+// /* Button Info */
+
+// .btn.btn-warning.btn-simple,
+// .navbar .navbar-nav > li > a.btn.btn-warning.btn-simple {
+//     background-color: transparent;
+//     color: #ff9800;
+//     box-shadow: none;
+// }
+
+
+
+
+
+// /*---------------------------------------------------------------------- /
+// SOCIAL MEDIA BUTTONS
+// ----------------------------------------------------------------------- */
+
+
+
+// /*---------------------------------------------------------------------- /
+// BOOTSTRAP COL-MD-12 CLASS
+// ----------------------------------------------------------------------- */
+
+// .col-md-12 {
+//     padding-right: 0px;
+//     padding-left: 0px;
+// }
+
+
+// /*---------------------------------------------------------------------- /
+// FONT AWESOME FA CLASS
+// ----------------------------------------------------------------------- */
+
+// .fa {
+//     display: inline-block;
+//     font: normal normal normal 14px/1 FontAwesome;
+//     font-size: inherit;
+//     text-rendering: auto;
+//     -webkit-font-smoothing: antialiased;
+//     -moz-osx-font-smoothing: grayscale;
+// }
+
+/***********Only4Demo*******************/
+/**************************************/
+
+/* ======= GENERAL  ======= */
+
+
+
+//  --------------- OBJET TROUVE--------------
+
+.containerT{
+    background-color: none;
+    margin: 0px 18px;
+    width: 30%;
+}
+.containerT .card .icon {
+
+    position: absolute;
+    
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background: #45474b;
+
+    border: 1px solid black;
+
+    color: #fff;
+
+    padding: 5px;
+
+    font-weight: 500;
+
+    text-align: center;
+
+    font-size: 15px;
+
+}
+
+
+.containerT .card .slide {
+
+    width: 300px;
+
+    height: 200px;
+
+    transition: 0.5s;
+    
+
+}
+
+.containerT .card .slide.slide1 {
+
+    position: relative;
+    
+
+    display: flex;
+    
+
+    justify-content: space-around;
+
+    align-items: center;
+
+    z-index: 1;
+
+    transition: .7s;
+
+    transform: translateY(100px);
+
+    
+
+}
+
+.containerT .card:hover .slide.slide1{
+
+    transform: translateY(0px);
+
+}
+
+.containerT .card .slide.slide2 {
+
+    position: relative;
+    
+    
+    padding: 2px;
+
+    box-sizing: border-box;
+
+    transition: .8s;
+
+    transform: translateY(-100px);
+
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+
+    
+
+}
+
+.containerT .card:hover .slide.slide2{
+
+    transform: translateY(0);
+
+}
+
+.containerT .card .slide.slide2::after{
+
+    content: "";
+
+    position: absolute;
+
+    width: 30px;
+
+    height: 4px;
+
+    bottom: 15px;
+
+    left: 50%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: #17BB89;
+
+}
+
+@media screen and (min-width: 768px) {
+    .carousel-inner .active,
+    .carousel-inner .active+.carousel-item {
+      display: block;
+    }
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left)+.carousel-item {
+      -webkit-transition: none;
+      transition: none;
+    }
+    .carousel-inner .carousel-item-next,
+    .carousel-inner .carousel-item-prev {
+      position: relative;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+    .carousel-inner .active.carousel-item+.carousel-item+.carousel-item+.carousel-item {
+      position: absolute;
+      top: 0;
+      right: -50%;
+      z-index: -1;
+      display: block;
+      visibility: visible;
+    }
+    /* left or forward direction */
+    .active.carousel-item-left+.carousel-item-next.carousel-item-left,
+    .carousel-item-next.carousel-item-left+.carousel-item {
+      position: relative;
+      -webkit-transform: translate3d(-100%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
+      visibility: visible;
+    }
+    /* farthest right hidden item must be abso position for animations */
+    .carousel-inner .carousel-item-prev.carousel-item-right {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      display: block;
+      visibility: visible;
+    }
+    /* right or prev direction */
+    .active.carousel-item-right+.carousel-item-prev.carousel-item-right,
+    .carousel-item-prev.carousel-item-right+.carousel-item {
+      position: relative;
+      -webkit-transform: translate3d(100%, 0, 0);
+      transform: translate3d(100%, 0, 0);
+      visibility: visible;
+      display: block;
+      visibility: visible;
+    }
+  }
+  
+  /* Desktop and up */
+  
+  @media screen and (min-width: 992px) {
+    .carousel-inner .active,
+    .carousel-inner .active+.carousel-item,
+    .carousel-inner .active+.carousel-item+.carousel-item {
+      display: block;
+    }
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left)+.carousel-item,
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left)+.carousel-item+.carousel-item {
+      -webkit-transition: none;
+      transition: none;
+    }
+    .carousel-inner .carousel-item-next,
+    .carousel-inner .carousel-item-prev {
+      position: relative;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+    .carousel-inner .active.carousel-item+.carousel-item+.carousel-item+.carousel-item {
+      position: absolute;
+      top: 0;
+      right: -33.3333%;
+      z-index: -1;
+      display: block;
+      visibility: visible;
+    }
+    /* left or forward direction */
+    .active.carousel-item-left+.carousel-item-next.carousel-item-left,
+    .carousel-item-next.carousel-item-left+.carousel-item,
+    .carousel-item-next.carousel-item-left+.carousel-item+.carousel-item,
+    .carousel-item-next.carousel-item-left+.carousel-item+.carousel-item+.carousel-item {
+      position: relative;
+      -webkit-transform: translate3d(-100%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
+      visibility: visible;
+    }
+    /* farthest right hidden item must be abso position for animations */
+    .carousel-inner .carousel-item-prev.carousel-item-right {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      display: block;
+      visibility: visible;
+    }
+    /* right or prev direction */
+    .active.carousel-item-right+.carousel-item-prev.carousel-item-right,
+    .carousel-item-prev.carousel-item-right+.carousel-item,
+    .carousel-item-prev.carousel-item-right+.carousel-item+.carousel-item,
+    .carousel-item-prev.carousel-item-right+.carousel-item+.carousel-item+.carousel-item {
+      position: relative;
+      -webkit-transform: translate3d(100%, 0, 0);
+      transform: translate3d(100%, 0, 0);
+      visibility: visible;
+      display: block;
+      visibility: visible;
+    }
+  }
+  
+  .sous-header{
+    padding-top: 20px;
+}
+
+.btn-orange{
+    background-color: #FF9900;
+    color: white;
+}
+
+.alignement a{
+    margin: 5px;
+}
+form{
+    display: flex;
+    justify-content: space-between;
+    
+}
+form input {
+    width: 200px;
+    border-radius: 20px;
+    -webkit-transition: width 0.6s ease-in-out;
+    transition: width 0.6s ease-in-out;
+  }
+  
+  /* When the input field gets focus, change its width to 100% */
+  input[type=text]:focus {
+    width: 100%;
+  }
+  .active{
+      position: relative;
+      left: 92%;
+      top: 7px;
+  }
+  .ajoutadmin{
+      color: #17BB89;
+  }
+ 

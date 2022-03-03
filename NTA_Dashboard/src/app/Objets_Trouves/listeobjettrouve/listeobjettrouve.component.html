@@ -1,0 +1,77 @@
+<app-header></app-header>
+<app-side-menu></app-side-menu>
+
+<div class="page-wrapper">
+  <div class="page-breadcrumb bg-white">
+    <div class="row align-items-center">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title" style="font-size: 18px;">OBJET TROUVE</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <div class="d-md-flex">
+                <ol class="breadcrumb ms-auto">
+                    <li><a href="#" class="fw-normal text-success" style="font-weight: bold;">PUBLIER UNE ANNONCE</a></li>
+                </ol>
+                
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <div class="container-fluid">
+
+    <h2>LISTE DES OBJET PERDU</h2>
+    <!-- ============================================================== -->
+    <div class="row" >
+        <div class="container bg-white" style="display: flex;justify-content: space-between; flex-wrap: wrap;" >
+            <div class="card" *ngFor="let liste of listeAnnoncesTrouve">
+                <div class="slide slide1">
+                    <div class="content">
+                        <div class="icon">
+                            <img src="../../../assets/Accueil/NTAB.png" width="130px" alt="" srcset="">
+                            <h3>{{liste.nom}}</h3>
+                            <P>Date : {{liste.date  | date:'shortDate'}}</P>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide slide2">
+                    <div class="content">
+                        <div class="table">
+                            <div class="ftr">
+                              <div class="author">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>{{liste.lieu}}</span>
+                              </div>
+                              <div class="stats"> {{liste.couleur}} <i class=" fas fa-eraser"></i></div>
+                            </div>
+                            <div class="ftr">
+                              <div class="author">
+                                <i class="fas fa-credit-card"></i><span>{{liste.date  | date:'shortDate'}}</span>
+                              </div>
+                              <div id="pop" class="stats">
+                                <button style="font-size: 9px; color: black;" type="button" class="btn btn-default " 
+                                    popover=" {{liste.contenu}} "
+                                    popoverTitle="Description" placement="top">
+                                   Description
+                                </button>
+                                <i class="fas fa-list-alt"></i>
+                              </div>
+                            </div>
+                            <div class="ftr">
+                                <div class="author">
+                                    <a href="#"> <img src="../../../assets/Accueil/logoUserAccueil.png" width="40px" alt="..." class="avatar img-raised"> <span style="font-size: 10px;">{{liste.utilisateur.email}}</span> </a>
+                                </div>
+                                <div class="stats"> <i class="fa fa-clock-o"></i> <a href="">Retirer</a> </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer text-center">
+      
+      2021 © Ample Admin brought to you by <a
+            href="https://www.wrappixel.com/">wrappixel.com</a>
+    </footer>
+  </div>
+</div>

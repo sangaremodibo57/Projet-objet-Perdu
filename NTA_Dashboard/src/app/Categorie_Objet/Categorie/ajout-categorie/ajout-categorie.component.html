@@ -1,0 +1,73 @@
+<app-header></app-header>
+<app-side-menu></app-side-menu>
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center sous-header">
+            <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">AJOUT CATEGORIS/OBJETS</h4>
+            </div>
+            <div class="col-lg-6 col-sm-8 col-md-8 col-xs-12">
+                <div class="d-md-flex"> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+    <div class="row justify-content-center" style="margin: 0 auto;">
+        <div class="col-lg-3 col-xlg-3 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="form-horizontal form-material" #categorie="ngForm" (ngSubmit)="ajoutCategorie(categorie)">
+                        <div class="form-group mb-4">
+                            <label class="col-md-12 p-0">Nom Categories</label>
+                            <div class="col-md-12 border-bottom p-0">
+                                <input type="text" placeholder="Saisissez le Nom ici"
+                                            class="form-control p-0 border-0" name="nom" required ngModel>
+                            </div>
+                        </div>
+                       
+                        <div class="form-group mb-4">
+                            <div class="col-sm-12 align-button">
+                                <button class="btn btn-success" [disabled]="categorie.invalid" type="submit">Ajouter</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xlg-3 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="form-horizontal form-material" #objet="ngForm"  >
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Nom Categories</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <select name="categorie" id="categorie" class="form-comtrol">
+                                        <option value="">selectionnez une categorie</option>
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Nom Objet</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input type="text" placeholder="Saisissez le Nom ici"
+                                                class="form-control p-0 border-0" name="nom" required ngModel>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <div class="col-sm-12 align-button">
+                                    <button class="btn btn-success" [disabled]="objet.invalid" type="submit">Ajouter</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        </div>
+           
+
+    </div>
+    </div>
+</div>

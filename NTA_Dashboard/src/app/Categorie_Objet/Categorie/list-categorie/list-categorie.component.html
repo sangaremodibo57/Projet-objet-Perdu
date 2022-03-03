@@ -1,0 +1,119 @@
+<app-header></app-header>
+<app-side-menu></app-side-menu>
+
+<div class="page-wrapper">
+  <div class="page-breadcrumb bg-white">
+    <div class="row align-items-center">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title" style="font-size: 18px;">CATEGORIES/OBJETS</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <div class="d-md-flex">
+                <ol class="breadcrumb ms-auto">
+                    <li><a href="ajoutCategorie" class="fw-normal " style="font-weight: bold; color: #17BB89;"> <i class="fas fa-plus"></i> AJOUTER CATEGOTIES/OBJETS</a></li>
+                </ol>
+                
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <div class="container-fluid">
+    <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <h2>LES CATEGORIES</h2>
+            <!-- Categorie -->
+            <div class="cards-1 section-gray">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="white-box">
+                            <div class="table-responsive">
+                                <table class="table no-wrap"  >
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0"><b>Id</b></th>
+                                            <th class="border-top-0"><b>Nom</b></th>
+                                            <th class="border-top-0"><b>Action</b></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let liste of listeCategorie ">
+                                            <td class="txt-oflo">{{liste.id}}</td>
+                                            <td class="txt-oflo">{{liste.nom}}</td>
+                                            <td>
+                                                <span class="text-success alignement">
+                                                    <a> <i class="fa fa-edit" aria-hidden="true"></i></a>
+                                                    <a ><i style="color: red;" class="fa fa-trash" aria-hidden="true" onclick ="return(confirm('Êtes-vous certain de vouloir supprimer cet administrateur ?'));"></i></a>
+                                                    <a><i style="color: #03224c;" class="fas fa-info-circle" aria-hidden="true"></i></a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="col-sm">
+            <h2>LES OBJETS</h2>
+            <!-- Objet -->
+            <div class="cards-1 section-gray">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="white-box">
+                            <div class="d-md-flex mb-3">
+                                <div class="row col-md-12 col-lg-12 col-sm-12">
+                                    <div class="col-md-6 col-lg-6 col-sm-6">
+                                    </div>                            
+                                    <div class="col-md-6 col-lg-6 col-sm-6">
+                                        <form role="search" >
+                                            <a href="" class="active">
+                                                <i class="fa fa-search"></i>
+                                            </a>
+                                            <input type="text" name="search"  autocomplete="off" placeholder="Search..." class="form-control mt-0">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table no-wrap" >
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0"><b>Id</b></th>
+                                            <th class="border-top-0"><b>Nom</b></th>
+                                            <th class="border-top-0"><b>Categories</b></th>
+                                            <th class="border-top-0"><b>Action</b></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="txt-oflo">1</td>
+                                            <td class="txt-oflo">Bague</td>
+                                            <td class="txt-oflo">Bijoux</td>
+                                            <td>
+                                                <span class="text-success alignement">
+                                                    <a> <i class="fa fa-edit" aria-hidden="true"></i></a>
+                                                    <a ><i style="color: red;" class="fa fa-trash" aria-hidden="true" onclick ="return(confirm('Êtes-vous certain de vouloir supprimer cet administrateur ?'));"></i></a>
+                                                    <a><i style="color: #03224c;" class="fas fa-info-circle" aria-hidden="true"></i></a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+    <!-- ============================================================== -->
+    
+    
+  </div>
+</div>
