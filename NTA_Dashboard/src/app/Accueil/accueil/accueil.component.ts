@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserServiceService } from 'src/app/GestionUser/Service/user-service.service';
+import { Notification } from 'src/app/Models/Notification';
 import { AccueilServiceService } from '../Service/accueil-service.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AccueilServiceService } from '../Service/accueil-service.service';
 })
 export class AccueilComponent implements OnInit {
   
-  
+  notification = new Notification;
   perdu: number = 1;
   trouve: number = 1;
   R: number = 3;
@@ -23,15 +24,49 @@ export class AccueilComponent implements OnInit {
   infoReclame: any;
   nombreObjetPerdu: any;
   nombreObjetTrouve: any;
+  listeAnnoncesTrouve: any;
+  AnnonceIdDesactive: any;
+  annonceDesactive: any;
+  reclamationDesactive: any;
+  reclamationIdDesactive: any;
   constructor(private service : AccueilServiceService, private serviceuser : UserServiceService) { }
 
   ngOnInit(): void {
     this.afficheFemmeTs();
     this.afficheHommeTs();
-    this.getAnnonce();
+    this.getAnnoncePerdu();
+    this.getAnnonceTrouve();
     this.AfficheUser();
     this.afficheReclame();
   }
+
+
+  ajoutNotification(data:any){
+    console.log('je suis dataaaaaaaaaaaaaaaaaaa',data);
+    this.AnnonceIdDesactive = data.annonce.id;
+    this.annonceDesactive = data.annonce;
+    this.reclamationDesactive = data;
+    this.reclamationIdDesactive = data.id
+    console.log('je suis Id de annonce a desactive', this.AnnonceIdDesactive);
+    this.notification.etat = 'active'
+    this.notification.description='Objet est a vous contacter nous sur 77 04 92 70'
+    this.notification.reclame = data;
+    console.log('new valeurrrrrrrrrrrrrrrrrrrr',this.notification);
+    this.service.addNotification(this.notification).subscribe(data=>{
+      this.service.desactiveAnnonce(this.AnnonceIdDesactive, this.annonceDesactive).subscribe(data=>{
+        console.log('annonce desactive');
+      })
+      console.log('les donnees de reclamatio',this.reclamationDesactive, 'end',this.reclamationIdDesactive);
+      
+      this.service.desactiveReclamation(this.reclamationIdDesactive,this.reclamationDesactive).subscribe(data=>{
+        console.log('reclamation Desactive');
+        
+      })
+    })
+
+  }
+
+
   afficheFemmeTs(){
     return this.service.afficheFemmeService().subscribe(data=>{
       this.nombre = data;
@@ -45,6 +80,20 @@ export class AccueilComponent implements OnInit {
       this.nombreTotal = parseInt(this.nombreFemme) +  parseInt(this.nombreHomme)
       
       
+    })
+  }
+
+  getAnnoncePerdu(){
+    return this.service.getAllAnnoncePerdu().subscribe((data:any)=>{
+     this.listeAnnoncesPerdu = data;
+      
+    })
+  }
+
+  getAnnonceTrouve(){
+    return this.service.getAllAnnonceTrouve().subscribe((data:any)=>{
+      this.listeAnnoncesTrouve = data;
+     
     })
   }
   getAnnonce(){
@@ -79,17 +128,14 @@ export class AccueilComponent implements OnInit {
   }
 
   afficheReclame(){
-    return this.service.getAllReclame().subscribe(data=>{
-      console.log('reclamer ----------',data);
+    return this.service.getAllReclameActive().subscribe(data=>{
+      console.log('reclamer ----------',data,'rrrrrrrrrrr');
       this.infoReclame = data;
-      console.log(this.infoReclame[1].id);
-      
     })
   }
 
   modifierEtatDesactive(data: any){
     this.service.afficheByIdAnnonce(data).subscribe(datas =>{
-      console.log('tessssssssssssssssssssssss',data);
       
     })
   }

@@ -24,19 +24,12 @@ export class ListeobjetperduComponent implements OnInit {
     this.pageOfItems = pageOfItems;
 }
 
-  getAnnonce(){
-    return this.service.getAllAnnoncePerdu().subscribe((data:any)=>{
-      let listeAnnonce = data;
-      for (let i = 0; i <listeAnnonce.length; i++) {
-        console.log(listeAnnonce[i].etat);
-        if (listeAnnonce[i].etat == 'perdu') {
-          this.listeAnnoncesPerdu.push(listeAnnonce[i]);
-          console.log(this.listeAnnoncesPerdu);
-        }
-        
-      }
-    })
-  }
+getAnnonce(){
+  return this.service.getAllAnnoncePerdu().subscribe((data:any)=>{
+   this.listeAnnoncesPerdu = data;
+    
+  })
+}
   suppAnnonce(data:any){
     this.service.deleteAnnonce(data).subscribe(data=>{
       window.location.reload();

@@ -168,7 +168,7 @@
       <div class="cards-1 section-gray">
         <div class="objetTrouve"  >
           <div class="row" >
-            <div class="containerT " *ngFor="let liste of recemmentTrouve | paginate: { itemsPerPage: 3, currentPage: trouve }">
+            <div class="containerT " *ngFor="let liste of listeAnnoncesTrouve | paginate: { itemsPerPage: 3, currentPage: trouve }">
                 <div class="card" style="background: none; border: none; box-shadow: none;" >
                     <div class="slide slide1">
                         <div class="content">
@@ -231,11 +231,11 @@
                     </h4>
                     <div class="ftr">
                         <div class="author">
-                            <a href="#" style="font-size: 12px;"> <img src="../../../assets/Accueil/logoUserAccueil.png" alt="" class="avatar img-raised"> <span>Modibo Sangaré</span>
+                            <a href="#" style="font-size: 12px;"> <img src="../../../assets/Accueil/logoUserAccueil.png" alt="" class="avatar img-raised"> <span>{{liste.user.nom_complet}}</span>
                                 
                             </a>
                         </div>
-                        <div class="stats"> <button style="font-size: 9px;border: none;margin: 0px;color: red;"> Non Valider</button> &nbsp; <button style="font-size: 9px;border: none;margin: 0px;color: #17BB89;">Valider</button> </div>
+                        <div class="stats"> <button style="font-size: 9px;border: none;margin: 0px;color: red;"> Non Valider</button> &nbsp; <button (click)="ajoutNotification(liste)"  style="font-size: 9px;border: none;margin: 0px;color: #17BB89;">Valider</button> </div>
                     </div>
                 </div>
             </div>

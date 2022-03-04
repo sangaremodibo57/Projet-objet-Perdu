@@ -10,7 +10,7 @@ export class ObjettrouveserviceService {
   constructor(private http: HttpClient) { }
 
   getAllAnnonceTrouve(){
-    return this.http.get(this.url+"/allannonce");
+    return this.http.get(this.url+"/listeannonceactivetrouve");
   }
   deleteAnnonce(id: any){
     return this.http.delete(this.url+`/deleteannonce/${id}`);

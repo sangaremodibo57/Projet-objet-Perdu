@@ -20,14 +20,8 @@ export class ListeobjettrouveComponent implements OnInit {
 
   getAnnonce(){
     return this.service.getAllAnnonceTrouve().subscribe((data:any)=>{
-      let listeAnnonce = data;
-      for (let i = 0; i <listeAnnonce.length; i++) {
-        if (listeAnnonce[i].etat == 'trouve') {
-          this.listeAnnoncesTrouve.push(listeAnnonce[i]);
-          console.log(this.listeAnnoncesTrouve);
-        }
-        
-      }
+      this.listeAnnoncesTrouve = data;
+     
     })
   }
   suppAnnonce(data:any){

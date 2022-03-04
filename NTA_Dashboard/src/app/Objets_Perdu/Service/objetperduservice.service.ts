@@ -9,11 +9,12 @@ export class ObjetperduserviceService {
   url = environment.URL;
   constructor(private http: HttpClient) { }
 
-  getAllAnnoncePerdu(){
-    return this.http.get(this.url+"/allannonce");
-  }
   deleteAnnonce(id: any){
     return this.http.delete(this.url+`/deleteannonce/${id}`);
+  }
+
+  getAllAnnoncePerdu(){
+    return this.http.get(this.url+"/listeannonceactive");
   }
  
 }
