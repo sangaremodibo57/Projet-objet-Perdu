@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button [routerLink]="['/tabs/tabs/tab1']"></ion-back-button>
+      <ion-back-button mode="md" [routerLink]="['/tabs/tabs/tab1']"></ion-back-button>
     </ion-buttons>
     <ion-title>
       Notification
@@ -11,4 +11,17 @@
 
 <ion-content>
 
+ 
+  <ion-item>
+    <ion-thumbnail slot="start">
+      <img src="assets/Accueil/logoUserAccueil.png">
+    </ion-thumbnail>
+    <ion-label>
+      <h3>Administrateur</h3>
+      <p>Reponse suite a votr</p>
+    </ion-label>
+    <ion-icon (click)="presentActionSheet()" name="ellipsis-horizontal-circle-sharp"></ion-icon>
+  </ion-item>
+  
+  
 </ion-content>

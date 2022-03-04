@@ -47,22 +47,34 @@ export class AccueilComponent implements OnInit {
     this.annonceDesactive = data.annonce;
     this.reclamationDesactive = data;
     this.reclamationIdDesactive = data.id
-    console.log('je suis Id de annonce a desactive', this.AnnonceIdDesactive);
+
+
     this.notification.etat = 'active'
     this.notification.description='Objet est a vous contacter nous sur 77 04 92 70'
     this.notification.reclame = data;
-    console.log('new valeurrrrrrrrrrrrrrrrrrrr',this.notification);
-    this.service.addNotification(this.notification).subscribe(data=>{
-      this.service.desactiveAnnonce(this.AnnonceIdDesactive, this.annonceDesactive).subscribe(data=>{
-        console.log('annonce desactive');
-      })
-      console.log('les donnees de reclamatio',this.reclamationDesactive, 'end',this.reclamationIdDesactive);
+   
+
+    this.service.desactiveReclamation(this.reclamationIdDesactive,this.reclamationDesactive).subscribe(data=>{
+      console.log('reclamation Desactive',data);
       
-      this.service.desactiveReclamation(this.reclamationIdDesactive,this.reclamationDesactive).subscribe(data=>{
-        console.log('reclamation Desactive');
-        
-      })
     })
+
+
+    
+    this.service.addNotification(this.notification).subscribe(data=>{
+     
+      
+     
+    })
+
+    this.service.desactiveAnnonce(this.AnnonceIdDesactive, this.annonceDesactive).subscribe(data=>{
+      console.log(data);
+      console.log('annonce desactive');
+
+    })
+    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa',this.reclamationIdDesactive,this.reclamationDesactive);
+    
+   
 
   }
 
