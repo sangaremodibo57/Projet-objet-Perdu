@@ -10,6 +10,9 @@ import { ContentChild } from '@angular/core';
 })
 export class NotificationPage implements OnInit {
   userConnecte: any;
+  myNotification: any=[];
+  nombreMessage: any ;
+  nombre: number;
 
   constructor(private serve : NotificationServiceService,public actionSheetController: ActionSheetController) { }
   @ViewChild (ContentChild) content : ContentChild ;
@@ -63,7 +66,10 @@ export class NotificationPage implements OnInit {
   afficheNotificationUser(){
     return this.serve.listeNoticationByUser(this.userConnecte.id).subscribe(data=>{
       console.log('okkkkkkkkkkkkkkkk',data);
-      
+      this.myNotification = data;
+      this.nombre = this.myNotification.length;
+      console.log(this.nombre);
+      localStorage.setItem('nombreNotication', JSON.stringify(this.nombre));
     })
   }
 

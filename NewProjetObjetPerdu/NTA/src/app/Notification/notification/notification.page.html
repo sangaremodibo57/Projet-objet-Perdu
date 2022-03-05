@@ -12,13 +12,13 @@
 <ion-content>
 
  
-  <ion-item>
+  <ion-item style="border: 1px solid black;margin: 5px 0px;padding: 0px;" *ngFor="let liste of myNotification">
     <ion-thumbnail slot="start">
-      <img src="assets/Accueil/logoUserAccueil.png">
+      <img style="width: 40px;height: 40px;" src="assets/Accueil/logoUserAccueil.png">
     </ion-thumbnail>
     <ion-label>
       <h3>Administrateur</h3>
-      <p>Reponse suite a votr</p>
+      <p>{{liste.description}}</p>
     </ion-label>
     <ion-icon (click)="presentActionSheet()" name="ellipsis-horizontal-circle-sharp"></ion-icon>
   </ion-item>

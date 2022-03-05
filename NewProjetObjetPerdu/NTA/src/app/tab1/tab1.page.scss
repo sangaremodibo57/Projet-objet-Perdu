@@ -17,7 +17,27 @@ ion-toolbar{
    ion-content{
        padding: 0px;
        margin: 0px;
- 
+    
+       ion-badge{
+           color: #fff;
+           background-color: RED;
+           text-align: center;
+           border: 2px solid white;
+           text-align: center;
+           height: 17px;
+           width: 18px;
+           font-size: 8px;
+           border-radius: 50px;
+           position: absolute;
+           top: 2px;
+           right: 1px;
+           z-index: 1;
+           ion-icon{
+               text-align: center;
+               margin-left: -1px;
+               margin-bottom: 10px;
+           }
+       }
     ion-slides{
         padding: 0px;
         margin:5px 0px;

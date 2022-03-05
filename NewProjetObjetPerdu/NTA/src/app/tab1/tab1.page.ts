@@ -208,6 +208,8 @@ private recemmentPerdu5 : any = [];
   user: string;
   userConnecte: any;
   test :boolean;
+  nombreNotif: any;
+  indice: boolean = false;
 
   constructor(
     private service : Tab1ServiceService,
@@ -227,6 +229,12 @@ private recemmentPerdu5 : any = [];
       }else{
         this.test=false;
         console.log(this.test);
+      }
+
+      this.nombreNotif = JSON.parse(localStorage.getItem('nombreNotication'))
+      console.log('nombre de Notifationnnnnnnnnnnnnnnn',this.nombreNotif);
+      if (this.nombreNotif != null) {
+        this.indice = true
       }
       
   }
