@@ -16,4 +16,8 @@ export class RegisterServiceService {
   afficheUser(){
     return this.http.get(this.url+'/listeUserActive');
   }
+
+  public verifier(tel: string, email: string) {
+    return this.http.get(this.url+"/verifieTelOrEmail?tel="+tel+"&email="+email)
+  }
 }

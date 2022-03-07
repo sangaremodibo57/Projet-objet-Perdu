@@ -21,10 +21,10 @@ export class LoginPage implements OnInit {
     
   }
   onLogin(loginForm:any) {
- 
-    this.service.verifier(loginForm.email, loginForm.password)
-      .subscribe(
-        (data:any)=> {
+    console.log(loginForm.value);
+    
+    if ( loginForm.email!='' ,loginForm.password != '') {
+       this.service.verifier(loginForm.email, loginForm.password).subscribe((data:any)=> {
           if (data!=null) {
             
             localStorage.setItem('userData', JSON.stringify(data));
@@ -36,10 +36,11 @@ export class LoginPage implements OnInit {
             }).then(res => {
       
             res.present();
-              
+            setTimeout(()=>res.dismiss(),1000);
+            loginForm['email']['password'].reset();
             });
             loginForm['email']['password'].reset();
-          }else{
+          }else {
             this.service.verifieTel(loginForm.email, loginForm.password).subscribe(data=>{
               if (data != null) {
                 localStorage.setItem('userData', JSON.stringify(data));
@@ -51,7 +52,8 @@ export class LoginPage implements OnInit {
                 }).then(res => {
           
                 res.present();
-          
+                setTimeout(()=>res.dismiss(),2000);
+                loginForm['email']['password'].reset();
                 });
                 loginForm['email']['password'].reset();
                 loginForm['email']='';
@@ -62,7 +64,9 @@ export class LoginPage implements OnInit {
                   }).then(res => {
             
                   res.present();
-            
+                  setTimeout(()=>res.dismiss(),2000);
+
+                  loginForm['email']['password'].reset();
                   });
               }
             })
@@ -73,9 +77,15 @@ export class LoginPage implements OnInit {
         
       )
       loginForm['email']['password'].reset();
+      
+    } else {
+      this.alertController.create({
+        message : "Veillez Remplire tout les champs",
+      }).then(msg=>{
+        msg.present();
+        setTimeout(()=>msg.dismiss(),2000);
+      })
+    }
   }
-
-  
-  
 }
 

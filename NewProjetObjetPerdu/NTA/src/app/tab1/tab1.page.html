@@ -17,11 +17,13 @@
         <ion-icon [routerLink]="['/detail-profil']"  name="person-sharp"></ion-icon>
       </ion-fab-button>
       <ion-fab-button color="light">
-        <ion-badge>{{nombreNotif}}</ion-badge>
+        <ion-badge  *ngIf="indice == true"><span>{{nombre}}</span></ion-badge>
         <ion-icon  [routerLink]="['/notification']" name="notifications"></ion-icon>
       </ion-fab-button>
       <ion-fab-button color="light">
+        <a href="login">
         <ion-icon color="danger" (click)="logout()" name="power-sharp"></ion-icon>
+        </a>
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
@@ -40,7 +42,7 @@
   <!-- Content Publier Une Annonce -->
   <div class="cadreAnnonce">
     <div class="content" *ngIf="test === false">
-      <button [routerLink]="['/ajout-annonce']" class="btnPublier"> Publier une Annonce Ici </button>
+      <button class="btnPublier"> <a href="ajout-annonce" style="text-decoration: none;color: black; ">Publier une Annonce Ici</a></button>
     </div>
     <div class="content" *ngIf="test === true">
       <button (click)="showAlertA()" class="btnPublier">Publier une Annonce Ici</button>
@@ -124,13 +126,7 @@
     <pagination-controls (pageChange)="cp = $event"></pagination-controls>
 
 
-    <!-- BUTTON POUR PLUS D'OBJET TROUVE -->
-    <ion-item class="Gplus2" lines="none">
-      <ion-label>Pour Plus Objet Trouvé Cliqué</ion-label>
-      <ion-button [routerLink]="['/tabs/tabs/tab3']" style="font-size: 9px;" color="light" slot="end">
-        ici
-      </ion-button>
-    </ion-item>
+    
   </div>
   <!-- Fin -->
 

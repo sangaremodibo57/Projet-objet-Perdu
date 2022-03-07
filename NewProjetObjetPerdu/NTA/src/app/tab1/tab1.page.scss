@@ -23,8 +23,8 @@ ion-toolbar{
            background-color: RED;
            text-align: center;
            border: 2px solid white;
-           text-align: center;
-           height: 17px;
+           text-align: left;
+           height: 20px;
            width: 18px;
            font-size: 8px;
            border-radius: 50px;
@@ -32,9 +32,13 @@ ion-toolbar{
            top: 2px;
            right: 1px;
            z-index: 1;
+           span{
+               margin: -7px;
+               font-size: 12px;
+           }
            ion-icon{
                text-align: center;
-               margin-left: -1px;
+               margin-left: -3px;
                margin-bottom: 10px;
            }
        }
@@ -50,6 +54,7 @@ ion-toolbar{
                 width: 98%;
                 padding: 0px;
                 margin: 10px 0px;
+                border: 1px solid #17bb8a60;
                 ion-card-header{
                     width: 98%;
                     padding: 0px;

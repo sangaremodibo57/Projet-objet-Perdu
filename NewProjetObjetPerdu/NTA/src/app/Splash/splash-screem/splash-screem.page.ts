@@ -11,7 +11,7 @@ export class SplashScreemPage implements OnInit {
   constructor(private router : Router) { 
     setTimeout(()=>{
       this.router.navigateByUrl('tabs/tabs/tab1');
-    },4000)
+    },3000)
   }
 
   ngOnInit() {

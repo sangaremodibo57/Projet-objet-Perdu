@@ -28,10 +28,10 @@ ion-content{
                 }
               }
         .head{
-                -webkit-animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+          -webkit-animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	        animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
                 position: absolute;
-                top: 45%;
+                top: 43%;
                 left: 35%;
         }
         @-webkit-keyframes slide-in-left {
@@ -64,7 +64,7 @@ ion-content{
                 width: 50%;
                 margin: 0 ;
                 position: relative;
-                top: 52%;
+                top: 50%;
                 left: 30%;
                 
         }

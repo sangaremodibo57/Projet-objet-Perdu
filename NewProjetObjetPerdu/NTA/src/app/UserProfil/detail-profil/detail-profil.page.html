@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button [routerLink]="['/tabs/tabs/tab1']"></ion-back-button>
+      <ion-back-button mode="md" [routerLink]="['/tabs/tabs/tab1']"></ion-back-button>
     </ion-buttons>
     <ion-title>
       Detail Profil
@@ -38,36 +38,60 @@
 
 
   <!-- -------------------------------------------------- -->
-  <p style="text-align: center; color: white; border: 1px solid #17BB89; background-color: #17BB89;font-size: 16px;padding: 5px;font-weight: bold; height: 30px;">Mes publications</p>
-<ion-card style="border: 2px solid black;" *ngFor="let liste of annoncebyuser ">
-  <ion-item>
-    <ion-avatar slot="start">
-      <img src="../../../assets/Accueil/logoUserAccueil.png">
-    </ion-avatar>
-    <ion-label>
-      <h3> {{userConnecte.nom_complet}} </h3>
-      <p> {{userConnecte.email}} </p>
-    </ion-label>
-  </ion-item>
-  <img src="../../../assets/Accueil/Objet-perdu .jpg" style="height: 100px;border: 1px solid black;text-align: center;margin:0 auto;width: 100%;" alt="ion">
-  <ion-card-header>
-    <ion-card-title style="font-size: 14px;"> {{liste.nom}} </ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-    <P style="font-size: 12px;"><ion-icon style="font-size: 12px; margin-right: 5px;text-align: start;" name="location-sharp"></ion-icon>{{liste.lieu}}</P>
-    <P style="font-size: 12px;"><ion-icon style="font-size: 12px; margin-right: 5px;text-align: start;" name="calendar-sharp"></ion-icon>{{liste.date}}</P>
-    <P style="font-size: 12px;"><ion-icon style="font-size: 12px; margin-right: 5px;text-align: start;" name="color-palette-sharp"></ion-icon>{{liste.couleur}}</P>
-    <P style="font-size: 12px;"><ion-icon style="font-size: 12px; margin-right: 5px;text-align: start;" name="book-sharp"></ion-icon>{{liste.contenu}}</P>
+  <div class="cadreObjetPerdu">
+    <div class="titleGategorie">
+      <ion-item class="statitle">
+        <ion-icon slot="start" color="light" name="bag-remove-sharp"></ion-icon>
+        <ion-label>Mes Publications</ion-label>
+      </ion-item>
+    </div>
     
-    {{liste.description}}
-  </ion-card-content>
-  <ion-footer>
-    <ion-item>
-      <ion-icon (click)="presentConfirm(liste.id)" color="danger" name="trash-sharp"></ion-icon>
-      <ion-icon button [routerLink]="['/update-publication',liste.id]" color="primary"  slot="end" name="create-sharp"></ion-icon>
-    </ion-item>
-  </ion-footer>
-</ion-card>
 
+  
+    <ion-card *ngFor="let liste of annoncebyuser ">
+      <ion-item (click)="testClick()">
+        <ion-avatar slot="start">
+          <img src="../../../assets/Accueil/logoUserAccueil.png">
+        </ion-avatar>
+        <ion-label>
+          {{userConnecte.nom_complet}}
+        </ion-label>
+      </ion-item>
+      <ion-card-header>
+        
+      <img src=" {{liste.photo}}">
+      </ion-card-header>
+      <ion-card-content>
+        
+        <ion-item lines="none">
+          <ion-icon  name="bag" slot="start"></ion-icon>
+          <ion-label > {{liste.nom}}</ion-label>
+          <ion-label slot="end"> {{liste.lieu}}</ion-label>
+          <ion-icon name="location-sharp" slot="end"></ion-icon>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-icon  name="time-sharp" slot="start"></ion-icon>
+          <ion-label >{{liste.date  |  date:'shortDate'}}</ion-label>
+          <ion-label slot="end">{{liste.couleur}}</ion-label>
+          <ion-icon  name="color-palette-sharp" slot="end"></ion-icon>
+        </ion-item>
+        <ion-item detail>
+          <ion-icon  name="book-sharp"></ion-icon>
+          <ion-label>
+            Description
+          </ion-label>
+          <ion-label>
+            {{liste.contenu}}
+          </ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label slot="start"> Statut : {{liste.statut}}</ion-label>
+          <ion-icon slot="end" (click)="presentConfirm(liste.id)" color="danger" name="trash-sharp"></ion-icon>
+        </ion-item>
+      </ion-card-content>
+    </ion-card> 
+   
+    <!-- Fin --> 
+  </div>
   
 </ion-content>

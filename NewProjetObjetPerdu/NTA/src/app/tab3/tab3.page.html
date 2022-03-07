@@ -8,18 +8,23 @@
 
 <ion-content [fullscreen]="true">
   <ion-fab *ngIf="test === false" horizontal="end" vertical="top" slot="fixed" style="margin-top: -30px;" edge>
+    
     <ion-fab-button title="Profile" size="small" color="light">
+      <ion-badge *ngIf="indice == true"><ion-icon name="radio-button-on-sharp"></ion-icon></ion-badge>
       <ion-icon style="pointer-events: none;"  name="person-outline"></ion-icon>
     </ion-fab-button>
     <ion-fab-list>
       <ion-fab-button size="small" color="light">
-        <ion-icon [routerLink]="['/detail-profil', userConnecte.id]"  name="person-sharp"></ion-icon>
+        <ion-icon [routerLink]="['/detail-profil']"  name="person-sharp"></ion-icon>
       </ion-fab-button>
       <ion-fab-button color="light">
+        <ion-badge  *ngIf="indice == true"><span>{{nombre}}</span></ion-badge>
         <ion-icon  [routerLink]="['/notification']" name="notifications"></ion-icon>
       </ion-fab-button>
       <ion-fab-button color="light">
+        <a href="login">
         <ion-icon color="danger" (click)="logout()" name="power-sharp"></ion-icon>
+        </a>
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
@@ -43,10 +48,10 @@
           <span></span>
             <ion-item lines="none">
               <ion-thumbnail slot="start">
-                <img src="assets/Accueil/trouv.jpg" alt="" srcset="" style="width: 50px;height: 60px;">
+                <img src="assets/Accueil/trouv.jpg" alt="" srcset="" style="width: 50px;height: 70px;">
               </ion-thumbnail>
-              <ion-button *ngIf="test === false" [routerLink]="['/ajout-annonce']" size="small" color="light" style="font-size: 9px;font-weight: bold;" fill="outline">Publier Une Annoncer</ion-button>
-              <ion-button *ngIf="test === true" (click)="showAlertA()" size="small" color="light" style="font-size: 9px;font-weight: bold;" fill="outline">Publier Une Annoncer</ion-button>
+              <a href="ajout-annonce" *ngIf="test === false">Publier Une Annonce</a>
+              <a href="" *ngIf="test === true" (click)="showAlertA()" >Publier Une Annonce</a>
             </ion-item>
         </div>
       </div>
@@ -56,25 +61,27 @@
    <div class="cadreObjetPerdu">
     <div class="titleGategorie">
       <ion-item lines="none" class="statitle">
-        <ion-icon slot="start" style="color: #17BB89;" name="bag-remove-sharp"></ion-icon>
-        <ion-label>Objet Trouvé</ion-label>
+        <ion-icon slot="start" name="bag-remove-sharp"></ion-icon>
+        <ion-label><h4>Liste Objet Trouvé</h4></ion-label>
       </ion-item>
     </div>
     
-    <ion-card *ngFor="let listeP of listeAnnoncesTrouve  | paginate: { itemsPerPage: 10, currentPage: cp }">
+    <ion-card *ngFor="let listeT of listeAnnoncesTrouve  | paginate: { itemsPerPage: 10, currentPage: cp }">
       <ion-card-header>
-      <img src="{{listeP.photo}}">
+      <img src="{{listeT.photo}}">
       </ion-card-header>
       <ion-card-content>
         <ion-item lines="none">
           <ion-icon  name="bag" slot="start"></ion-icon>
-          <ion-label >{{listeP?.nom}}</ion-label>
+          <ion-label >{{listeT.nom}}</ion-label>
+          <ion-label slot="end">{{listeT.lieu}}</ion-label>
+          <ion-icon name="location-sharp" slot="end"></ion-icon>
         </ion-item>
         <ion-item lines="none">
-          <ion-icon name="location-sharp" slot="start"></ion-icon>
-          <ion-label slot="start">{{listeP?.lieu}}</ion-label>
-          <ion-icon  name="time-sharp" ></ion-icon>
-          <ion-label >{{listeP?.date |  date:'shortDate'}}</ion-label>
+          <ion-icon  name="time-sharp" slot="start"></ion-icon>
+          <ion-label >{{listeT.date |  date:'shortDate'}}</ion-label>
+          <button *ngIf="test === false" [routerLink]="['/detail-annonce', listeT.id]">Réclamer</button>
+          <button *ngIf="test === true" (click)="showAlertR()">Réclamer</button>
         </ion-item>
       </ion-card-content>
     </ion-card>
@@ -82,18 +89,8 @@
     <div class="paginationContent">
     <pagination-controls class="paginationLien" (pageChange)="cp = $event"></pagination-controls>
     </div>
-
-    <!-- BUTTON POUR PLUS D'OBJET TROUVE -->
-    <ion-item class="Gplus2" lines="none">
-      <ion-label>Pour Plus Objet Trouvé Cliqué</ion-label>
-      <ion-button [routerLink]="['/tabs/tab3']" style="font-size: 9px;" color="light" slot="end">
-        ici
-      </ion-button>
-    </ion-item>
   </div>
   <!-- Fin -->
-
-
   <!-- PARTENAIR -->
   <div class="titlePartenair">
     <ion-item lines="none">
@@ -102,59 +99,57 @@
     </ion-item>
   </div>
   <!-- Fin -->
-
-
   <!-- Partenair Slide -->
   <ion-slides  [options]="slideOpts" >
-    <ion-slide >
-      <ion-card >
-        <ion-card-header >
+    <ion-slide> 
+      <ion-card>
+        <ion-card-header>
+        <img src="assets/Partenair/gana.jpg">
+        </ion-card-header>
+        <ion-card-content>
           GANA TRANSPORT
-        </ion-card-header>
-        <ion-card-content>
-          <img src="assets/Partenair/gana.jpg" style="height: 100px;width: 100%;">
         </ion-card-content>
-      </ion-card>
+      </ion-card>    
     </ion-slide>
-    <ion-slide >
+    <ion-slide> 
       <ion-card>
         <ion-card-header>
+        <img src="assets/Partenair/Police.jpg">
+        </ion-card-header>
+        <ion-card-content>
           POLICE
-        </ion-card-header>
-        <ion-card-content>
-          <img src="assets/Partenair/Police.jpg" style="height: 100px;width: 100%;">
         </ion-card-content>
-      </ion-card>
+      </ion-card>    
     </ion-slide>
-    <ion-slide >
+    <ion-slide> 
       <ion-card>
         <ion-card-header>
+        <img src="assets/Partenair/Mairie.jpg">
+        </ion-card-header>
+        <ion-card-content>
           MAIRIE DE LA DISTRICT DE BAMAKO
-        </ion-card-header>
-        <ion-card-content>
-          <img src="assets/Partenair/Mairie.jpg" style="height: 100px;width: 100%;">
         </ion-card-content>
-      </ion-card>
+      </ion-card>    
     </ion-slide>
-    <ion-slide >
+    <ion-slide> 
       <ion-card>
         <ion-card-header>
+        <img src="assets/Partenair/africa.jpg">
+        </ion-card-header>
+        <ion-card-content>
           AFRICA TOUR TRANSPORT
-        </ion-card-header>
-        <ion-card-content>
-          <img src="assets/Partenair/africa.jpg" style="height: 100px;width: 100%;">
         </ion-card-content>
-      </ion-card>
+      </ion-card>    
     </ion-slide>
-    <ion-slide >
+    <ion-slide> 
       <ion-card>
         <ion-card-header>
-          AEROPORT
+        <img src="assets/Partenair/taxi.jpg">
         </ion-card-header>
         <ion-card-content>
-          <img src="assets/Partenair/taxi.jpg" style="height: 100px;width: 100%;">
+           TAXI
         </ion-card-content>
-      </ion-card>
+      </ion-card>    
     </ion-slide>
   </ion-slides> 
 

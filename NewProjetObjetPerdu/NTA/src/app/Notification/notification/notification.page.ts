@@ -69,7 +69,6 @@ export class NotificationPage implements OnInit {
       this.myNotification = data;
       this.nombre = this.myNotification.length;
       console.log(this.nombre);
-      localStorage.setItem('nombreNotication', JSON.stringify(this.nombre));
     })
   }
 

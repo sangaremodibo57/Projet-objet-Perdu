@@ -21,4 +21,10 @@ url = environment.URL
   getAllAnnonceActiveTrouve(){
     return this.http.get(this.url+"/listeannonceactivetrouve");
   }
+
+
+  //notification
+  listeNoticationByUser(id : any){
+    return this.http.get(this.url+`/notificationByUser/${id}`);
+  }
 }

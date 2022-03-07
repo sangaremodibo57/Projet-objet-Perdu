@@ -159,7 +159,7 @@ userConnecte: any;
             }).then(res => {
         
               res.present();
-        
+              setTimeout(()=>res.dismiss(),2000);
             });
           } else {
             if (this.test['statut'] == 'trouve') {
@@ -174,7 +174,7 @@ userConnecte: any;
                     }).then(res => {
                 
                       res.present();
-                
+                      setTimeout(()=>res.dismiss(),2000);
                     });
                   } else {
                     this.reclamer.nom = this.annonce.nom
@@ -196,7 +196,7 @@ userConnecte: any;
                       }).then(res => {
                   
                         res.present();
-                  
+                        setTimeout(()=>res.dismiss(),2000);
                       });
                       
                     }) 
@@ -224,7 +224,7 @@ userConnecte: any;
                       }).then(res => {
                   
                         res.present();
-                  
+                        setTimeout(()=>res.dismiss(),2000);
                       });
                       
                     }) 
@@ -241,7 +241,7 @@ userConnecte: any;
                 }).then(res => {
             
                   res.present();
-            
+                  setTimeout(()=>res.dismiss(),2000);
                 });
                 
               }) 
@@ -260,7 +260,7 @@ userConnecte: any;
             }).then(res => {
         
               res.present();
-        
+              setTimeout(()=>res.dismiss(),2000);
             });
             
           })
@@ -332,7 +332,7 @@ userConnecte: any;
           }).then(res => {
       
             res.present();
-      
+            setTimeout(()=>res.dismiss(),2000);
           });
         } else {
           this.service.verifyReclame(this.annonce.nom,formTrouve.value['nomC'],this.annonce.couleur).subscribe((data:any)=>{
@@ -344,7 +344,7 @@ userConnecte: any;
                 }).then(res => {
             
                   res.present();
-            
+                  setTimeout(()=>res.dismiss(),2000);
                 });
               } else {
                 this.reclamer.nom = this.annonce.nom
@@ -366,7 +366,7 @@ userConnecte: any;
                   }).then(res => {
               
                     res.present();
-              
+                    setTimeout(()=>res.dismiss(),2000);
                   });
                   
                 }) 
@@ -391,7 +391,7 @@ userConnecte: any;
                 }).then(res => {
             
                   res.present();
-            
+                  setTimeout(()=>res.dismiss(),2000);
                 });
                 
               }) 
@@ -410,7 +410,7 @@ userConnecte: any;
           }).then(res => {
       
             res.present();
-      
+            setTimeout(()=>res.dismiss(),2000);
           });
           
         })

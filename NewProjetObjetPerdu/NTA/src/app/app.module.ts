@@ -16,10 +16,12 @@ import {NgxPaginationModule} from 'ngx-pagination';
 
 import { SwiperModule } from 'swiper/angular';
 
+import { PipesModule } from 'pipes-module';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [SwiperModule,NgxPaginationModule,Ng2SearchPipeModule,HttpClientModule,BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [PipesModule,SwiperModule,NgxPaginationModule,Ng2SearchPipeModule,HttpClientModule,BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

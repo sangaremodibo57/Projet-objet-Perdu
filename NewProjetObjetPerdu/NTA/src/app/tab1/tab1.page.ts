@@ -210,6 +210,8 @@ private recemmentPerdu5 : any = [];
   test :boolean;
   nombreNotif: any;
   indice: boolean = false;
+  myNotification: any;
+  nombre: any;
 
   constructor(
     private service : Tab1ServiceService,
@@ -218,6 +220,8 @@ private recemmentPerdu5 : any = [];
   ) {}
 
   ngOnInit(): void {
+      
+      
       this.getAnnonceActiveTrouve();
       this.getAnnonceActive();
       this.userConnecte = JSON.parse(localStorage.getItem('userData'))
@@ -231,11 +235,18 @@ private recemmentPerdu5 : any = [];
         console.log(this.test);
       }
 
-      this.nombreNotif = JSON.parse(localStorage.getItem('nombreNotication'))
-      console.log('nombre de Notifationnnnnnnnnnnnnnnn',this.nombreNotif);
-      if (this.nombreNotif != null) {
-        this.indice = true
-      }
+
+      //notification
+      this.service.listeNoticationByUser(this.userConnecte.id).subscribe(data=>{
+        console.log('okkkkkkkkkkkkkkkk',data);
+        this.myNotification = data;
+        this.nombre = this.myNotification.length;
+        console.log(this.nombre);
+        if (this.nombre > 0) {
+          this.indice = true
+        }
+      })
+      
       
   }
 
@@ -246,7 +257,7 @@ private recemmentPerdu5 : any = [];
     }).then(res => {
 
       res.present();
-
+      setTimeout(() => res.dismiss(), 3000);
     });
 
   }
@@ -257,14 +268,14 @@ private recemmentPerdu5 : any = [];
     }).then(res => {
 
       res.present();
-
+      setTimeout(() => res.dismiss(), 3000);
     });
 
   }
   logout(){
     localStorage.removeItem('userData')
     localStorage.clear();
-    this.route.navigateByUrl('login');
+    
   }
 
   getAnnonceActive(){
@@ -280,4 +291,6 @@ private recemmentPerdu5 : any = [];
       console.log('my lissssssssssssssssssssst ',data);
     })
   }
+
+  
 }

@@ -9,10 +9,10 @@
       <div class="inputs">  
 
         <div class="label-float" >
-          <input type="text" name="email" ngModel #email="ngModel" placeholder=" "  />
+          <input type="text" pattern=".{1,20}" name="email" ngModel #email="ngModel" placeholder=" "  />
           <label> <ion-icon name="person"></ion-icon> Tel / Email <span style="color: red;">*</span> </label>
         </div>
-        <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="email.valid || email.pristine" class="alert alert-danger">
+        <div  style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="email.valid || email.pristine" class="alert alert-danger">
           Respecter le Format
         </div>
 

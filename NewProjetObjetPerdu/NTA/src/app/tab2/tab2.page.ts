@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Tab2ServiceService } from './Service/tab2-service.service';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { NotificationServiceService } from '../Notification/Service/notification-service.service';
 
 @Component({
   selector: 'app-tab2',
@@ -106,7 +107,7 @@ export class Tab2Page implements OnInit {
   }
 
   cp: number = 1;
-  
+  searchText ='';
   private listeAnnoncesPerdu : any 
   private recemmentTrouve : any
   private recemmentPerdu : any 
@@ -114,7 +115,10 @@ export class Tab2Page implements OnInit {
   user: string;
   userConnecte: any;
   test :boolean;
-  constructor(private route :Router, public alertController: AlertController ,private service :Tab2ServiceService) {}
+  myNotification: any;
+  nombre: any;
+  indice: boolean;
+  constructor(private srvc : NotificationServiceService,private route :Router, public alertController: AlertController ,private service :Tab2ServiceService) {}
 
   ngOnInit(): void {
       this.getAnnonce();
@@ -129,6 +133,18 @@ export class Tab2Page implements OnInit {
         this.test=false;
         console.log(this.test);
       }
+
+
+      //notification
+      this.srvc.listeNoticationByUser(this.userConnecte.id).subscribe(data=>{
+        console.log('okkkkkkkkkkkkkkkk',data);
+        this.myNotification = data;
+        this.nombre = this.myNotification.length;
+        console.log(this.nombre);
+        if (this.nombre > 0) {
+          this.indice = true
+        }
+      })
       
   }
 
@@ -164,7 +180,7 @@ export class Tab2Page implements OnInit {
   logout(){
     localStorage.removeItem('userData')
     localStorage.clear();
-    this.route.navigateByUrl('login');
+    
   }
 }
 
