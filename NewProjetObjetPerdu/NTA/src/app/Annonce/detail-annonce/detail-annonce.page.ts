@@ -55,7 +55,7 @@ export class DetailAnnoncePage implements OnInit {
       this.reclamer.statut='nonvalide'
       this.reclamer.certificate_perte='vide'
       this.reclamer.description=formReclame.value['description']
-      this.reclamer.annee_obttion = formReclame.value['annee_obttion']
+      this.reclamer.anneeObttion = formReclame.value['annee_obttion']
       this.reclamer.nomC =this.objet.nomC
       this.reclamer.model = 'vide'
       this.reclamer.etat = 'active'
@@ -117,7 +117,7 @@ export class DetailAnnoncePage implements OnInit {
       this.reclamer.statut='nonvalide'
       this.reclamer.certificate_perte='vide'
       this.reclamer.description=formReclame.value['description']
-      this.reclamer.annee_obttion = 'vide'
+      this.reclamer.anneeObttion = 'vide'
       this.reclamer.nomC =this.objet.nomC
       this.reclamer.model = formReclame.value['model']
       this.reclamer.etat = 'active'
@@ -178,7 +178,7 @@ export class DetailAnnoncePage implements OnInit {
       this.reclamer.statut='nonvalide'
       this.reclamer.certificate_perte='vide'
       this.reclamer.description=formReclame.value['description']
-      this.reclamer.annee_obttion = 'vide'
+      this.reclamer.anneeObttion = 'vide'
       this.reclamer.nomC =this.objet.nomC
       this.reclamer.model = 'vide'
       this.reclamer.etat = 'active'

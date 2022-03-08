@@ -151,9 +151,9 @@
               <h6 class="title"><ion-icon name="time-sharp"></ion-icon> Quelle l'annee de delivrance ?</h6>
               <ion-subtitle>Donner l'annee de delivrance/obtention <span style="color: red; font-size: 15px;">*</span></ion-subtitle> 
               <ion-item lines="full">
-                <ion-input type="text" pattern="[1-2][0-9]{3}" placeholder=" exemple 2022" name="annee_obttion" #annee_obttion="ngModel" ngModel required></ion-input>
+                <ion-input type="text" pattern="[1-2][0-9]{3}" placeholder=" exemple 2022" name="anneeObttion" #anneeObttion="ngModel" ngModel required></ion-input>
               </ion-item>
-              <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="annee_obttion.valid || annee_obttion.pristine" class="alert alert-danger">
+              <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="anneeObttion.valid || anneeObttion.pristine" class="alert alert-danger">
                 Respecter le Format svp : exemple 2022
               </div>
             </div>
@@ -164,19 +164,10 @@
               <ion-label position="floating">Description</ion-label>
               <ion-textarea name="contenu" ngModel ></ion-textarea>
             </ion-item>
-              
-            <ion-card>
-              <ion-card-header>
-                <h6>Photo de l'objet</h6>
-                <ion-subtitle>Les photo permettent d'augmenter l'efficacité de votre Recherche</ion-subtitle>
-              </ion-card-header>
-              <ion-card-content class="ajoutImageContent">
-                <ion-icon class="ajoutImageIcon" name="camera"></ion-icon>
-              </ion-card-content>
-            </ion-card>
+        
             <ion-row>
               <ion-col>
-                <ion-button type="submit" size="small" color="success" expand="block" [disabled]="userForm.form.invalid"></ion-button>
+                <ion-button type="submit" size="small" color="success" expand="block" [disabled]="userForm.form.invalid">PUBLIER</ion-button>
               </ion-col>
             </ion-row>
           </form>  
@@ -267,9 +258,9 @@
               <h6 class="titleT"><ion-icon name="time-sharp"></ion-icon> Quelle l'annee de delivrance ?</h6>
               <ion-subtitle style="color: #17BB89;">Donner l'annee de delivrance/obtention <span style="color: red; font-size: 15px;">*</span></ion-subtitle> 
               <ion-item lines="full">
-                <ion-input type="text" pattern="[1-2][0-9]{3}" placeholder=" exemple 2022" name="annee_obttion" #annee_obttion="ngModel" ngModel required></ion-input>
+                <ion-input type="text" pattern="[1-2][0-9]{3}" placeholder=" exemple 2022" name="anneeObttion" #anneeObttion="ngModel" ngModel required></ion-input>
               </ion-item>
-              <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="annee_obttion.valid || annee_obttion.pristine" class="alert alert-danger">
+              <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="anneeObttion.valid || anneeObttion.pristine" class="alert alert-danger">
                 Respecter le Format svp : exemple 2022
               </div>
             </div>
@@ -280,19 +271,9 @@
               <ion-label position="floating">Description</ion-label>
               <ion-textarea name="contenu" ngModel ></ion-textarea>
             </ion-item>
-              
-            <ion-card>
-              <ion-card-header>
-                <h6>Photo de l'objet</h6>
-                <ion-subtitle>Les photo permettent d'augmenter l'efficacité de votre Recherche</ion-subtitle>
-              </ion-card-header>
-              <ion-card-content class="ajoutImageContent">
-                <ion-icon class="ajoutImageIcon" name="camera"></ion-icon>
-              </ion-card-content>
-            </ion-card>
             <ion-row>
               <ion-col>
-                <ion-button type="submit" size="small" color="success" expand="block">Envoyer</ion-button>
+                <ion-button type="submit" size="small" color="success" expand="block" [disabled]="formTrouve.form.invalid">PUBLIER</ion-button>
               </ion-col>
             </ion-row>
           </form>      

@@ -9,6 +9,6 @@ export class ReclamerServiceService {
 url= environment.URL;
   constructor(private http : HttpClient) { }
   afficheReclame(){
-    return this.http.get(this.url+'/allreclame');
+    return this.http.get(this.url+'/listereclamationactivenovalide');
   }
 }

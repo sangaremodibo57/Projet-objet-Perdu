@@ -10,8 +10,9 @@ export class Reclamation{
     date:any;
     etat:any;
     photo : any;
-    annee_obttion:any;
+    anneeObttion:any;
     model:any;
     nomC:any;
+    lieu:any;
    
 }
