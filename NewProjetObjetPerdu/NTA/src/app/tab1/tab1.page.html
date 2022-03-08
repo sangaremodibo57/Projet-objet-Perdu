@@ -68,13 +68,13 @@
         <ion-card-content>
           <ion-item lines="none">
             <ion-icon  name="bag" slot="start"></ion-icon>
-            <ion-label >{{listeP?.nom}}</ion-label>
+            <ion-label >Nom : {{listeP?.nom}}</ion-label>
           </ion-item>
           <ion-item lines="none">
-            <ion-icon name="location-sharp" slot="start"></ion-icon>
-            <ion-label slot="start">{{listeP?.lieu}}</ion-label>
+            <ion-icon name="stats-chart-sharp" slot="start"></ion-icon>
+            <ion-label slot="start"> Statut: {{listeP?.statut}}</ion-label>
             <ion-icon  name="time-sharp" ></ion-icon>
-            <ion-label >{{listeP?.date |  date:'shortDate'}}</ion-label>
+            <ion-label >Date : {{listeP?.date |  date:'shortDate'}}</ion-label>
           </ion-item>
         </ion-card-content>
       </ion-card>    
@@ -109,13 +109,13 @@
       <ion-card-content>
         <ion-item lines="none">
           <ion-icon  name="bag" slot="start"></ion-icon>
-          <ion-label >{{listeT.nom}}</ion-label>
-          <ion-label slot="end">{{listeT.lieu}}</ion-label>
-          <ion-icon name="location-sharp" slot="end"></ion-icon>
+          <ion-label >Nom :{{listeT.nom}}</ion-label>
+          <ion-icon name="stats-chart-sharp" slot="end"></ion-icon>
+          <ion-label slot="start" slot="end"> Statut: {{listeT?.statut}}</ion-label>
         </ion-item>
         <ion-item lines="none">
           <ion-icon  name="time-sharp" slot="start"></ion-icon>
-          <ion-label >{{listeT.date |  date:'shortDate'}}</ion-label>
+          <ion-label >Date : {{listeT.date |  date:'shortDate'}}</ion-label>
           <button *ngIf="test === false" [routerLink]="['/detail-annonce', listeT.id]">Réclamer</button>
           <button *ngIf="test === true" (click)="showAlertR()">Réclamer</button>
         </ion-item>

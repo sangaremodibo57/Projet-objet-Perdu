@@ -149,7 +149,7 @@ userConnecte: any;
       this.annonce.couleur = userForm.value['couleur']
       this.annonce.nomC = userForm.value['nomC']
       this.annonce.etat = 'active'
-      if (userForm.value['nomC'] !=null) {
+      if (userForm.value['nomC'] !== null) {
         this.annonce.photo='assets/objet/'+userForm.value['nomC']+'.jpg'
       } else {
         this.annonce.photo='vide'
@@ -188,13 +188,18 @@ userConnecte: any;
             });
           } else {
             // verification si resVerifieTrouve existe dans Reclamation
-            this.service.verifyReclamation(this.annonce.nom,this.annonce.lieu,this.annonce.couleur,this.dateveri,'nonvalide',this.annonce.model,this.annonce.anneeObttion).subscribe(data=>{
+            this.service.verifyReclamation(this.annonce.nom,this.annonce.lieu,this.annonce.couleur,this.dateveri,'nonvalide',this.annonce.model,this.annonce.anneeObttion).subscribe((data:any)=>{
               console.log("resultat GGGGGGGGGGGGGGGGGGGGGGGG");
               this.resVerifieReclamation = data;
-              console.log(this.resVerifieReclamation);
-              if (this.resVerifieReclamation!=null) {
-                // Comparaison des user
-                if (this.userConnecte.id == this.resVerifieReclamation.user.id ) {
+              if (data.lenght !==0) {
+                data.forEach(element => {
+                  //Comparaison user
+                  if (element.user.id === this.userConnecte.id ) {
+                    this.dataArray.push(element);
+                  }
+                });
+                 // Comparaison des user
+                 if (this.dataArray.length!== 0 ) {
                   this.alertController.create({
                     cssClass:'my-custom-class',
                     message: "Vous avez deja publier l'annonce consulter mes publication",
@@ -230,7 +235,7 @@ userConnecte: any;
                     });
                   })
                 }
-              } else {
+              }else {
                 // ajout Reclamation
                 
                 this.reclamer.nom = this.annonce.nom
@@ -259,7 +264,6 @@ userConnecte: any;
                   });
                 })
               }
-              
             }) 
           }
         } else {
@@ -364,7 +368,7 @@ userConnecte: any;
     this.annonce.couleur = formTrouve.value['couleur']
     this.annonce.nomC = formTrouve.value['nomC']
     this.annonce.etat = 'active'
-    if (formTrouve.value['nomC'] !=null) {
+    if (formTrouve.value['nomC'] !== null) {
       this.annonce.photo='assets/objet/'+formTrouve.value['nomC']+'.jpg'
     } else {
       this.annonce.photo='vide'
