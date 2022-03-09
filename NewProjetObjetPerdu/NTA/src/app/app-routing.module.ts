@@ -49,6 +49,10 @@ const routes: Routes = [
   {
     path: 'update-publication/:id',
     loadChildren: () => import('./UserProfil/update-publication/update-publication.module').then( m => m.UpdatePublicationPageModule)
+  },
+  {
+    path: 'detail-notification/:id',
+    loadChildren: () => import('./Notification/detail-notification/detail-notification.module').then( m => m.DetailNotificationPageModule)
   }
 ];
 @NgModule({

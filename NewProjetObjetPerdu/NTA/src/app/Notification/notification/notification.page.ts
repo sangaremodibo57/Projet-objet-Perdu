@@ -3,6 +3,7 @@ import { NotificationServiceService } from '../Service/notification-service.serv
 import { ActionSheetController } from '@ionic/angular';
 import { ViewChild } from '@angular/core';
 import { ContentChild } from '@angular/core';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-notification',
   templateUrl: './notification.page.html',
@@ -14,7 +15,7 @@ export class NotificationPage implements OnInit {
   nombreMessage: any ;
   nombre: number;
 
-  constructor(private serve : NotificationServiceService,public actionSheetController: ActionSheetController) { }
+  constructor(private route : Router, private serve : NotificationServiceService,public actionSheetController: ActionSheetController) { }
   @ViewChild (ContentChild) content : ContentChild ;
 
   async presentActionSheet() {
@@ -25,7 +26,7 @@ export class NotificationPage implements OnInit {
         text: 'Ouvrire',
         icon: 'mail-open-sharp',
         handler: () => {
-          console.log('Delete clicked');
+          this.route.navigateByUrl('/detail-notification/:',this.myNotification.id)
         }
       }, {
         text: 'Supprinmer',
@@ -36,7 +37,7 @@ export class NotificationPage implements OnInit {
           type: 'delete'
         },
         handler: () => {
-          console.log('Share clicked');
+          
         }
       },{
         text: 'Annuler',
@@ -62,6 +63,9 @@ export class NotificationPage implements OnInit {
     
   }
 
+  updateetat(id){
+
+  }
   
   afficheNotificationUser(){
     return this.serve.listeNoticationByUser(this.userConnecte.id).subscribe(data=>{

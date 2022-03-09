@@ -34,4 +34,10 @@ url= environment.URL;
   getAllObjet(){
     return this.http.get(this.url+"/allobjet");
   }
+
+   // desactiver Annonce  
+   updateEtatDesactive(id:any , data:any){
+    return this.http.put(this.url+'/changeannoncedesactive/'+id, data);
+  }
+
 }

@@ -86,9 +86,9 @@
       <h6 class="title"><ion-icon name="time-sharp"></ion-icon> Quelle l'annee de delivrance ?</h6>
       <p>Donner l'annee de delivrance/obtention <span style="color: red; font-size: 15px;">*</span></p> 
       <ion-item lines="full" class="itemA">
-        <ion-input type="text" pattern="[1-9]{4}" placeholder=" exemple 2022" name="anneeObttion" #anneeObttion="ngModel" ngModel ></ion-input>
+        <ion-input type="text" pattern="[1-9]{4}" placeholder=" exemple 2022" name="anneeObttion" #anneeObttion="ngModel" ngModel required></ion-input>
       </ion-item>
-      <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="anneeOttion.valid || anneeObttion.pristine" class="alert alert-danger">
+      <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="anneeObttion.valid || anneeObttion.pristine" class="alert alert-danger">
         Respecter le Format svp : exemple 2022
       </div>
     </div>

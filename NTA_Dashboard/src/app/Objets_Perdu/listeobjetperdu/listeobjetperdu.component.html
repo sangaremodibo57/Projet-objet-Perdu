@@ -38,12 +38,18 @@
                   <div class="ripple-cont"></div>
                 </div>
                 <div class="table">
-                <div class="ftr">
-                  <div class="author">
-                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>{{listeP.lieu}}</span>
+                  <div class="ftr">
+                    <div class="author">
+                      <i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>Lieu : {{listeP.lieu}}</span>
+                    </div>
+                    <div class="stats">Couleut : {{listeP.couleur}} <i class=" fas fa-eraser"></i></div>
                   </div>
-                  <div class="stats"> {{listeP.couleur}} <i class=" fas fa-eraser"></i></div>
-                </div>
+                  <div class="ftr">
+                    <div class="author" *ngIf="listeP.nomC === '7'">
+                      <i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>Model :{{listeP.model}}</span>
+                    </div>
+                    <div class="stats" *ngIf="listeP.nomC === '3'">Année Obtention : {{listeP.anneeObttion}} <i class=" fas fa-eraser"></i></div>
+                  </div>
                 <div class="ftr">
                   <div class="author">
                     <i class="fas fa-credit-card"></i><span>{{listeP.date  | date:'shortDate'}}</span>
@@ -58,10 +64,13 @@
                   </div>
                 </div>
                 <div class="ftr">
-                    <div class="author">
-                        <a href="#"> <img src="../../../assets/Accueil/logoUserAccueil.png" alt="..." class="avatar img-raised"> <span style="font-size: 10px;">{{listeP.utilisateur.email}}</span> </a>
-                    </div>
-                    <div class="stats"> <i class="fa fa-clock-o"></i> <a href="">Retirer</a> </div>
+                  <div class="author" (click)="detalUserAnnonce(listeP.utilisateur.id)">
+                    <a > <img src="../../../assets/Accueil/logoUserAccueil.png" alt="..."
+                        class="avatar img-raised"> <span
+                        style="font-size: 10px;">{{listeP.utilisateur.email}}</span> </a>
+                  </div>
+                  <div class="stats" (click)="desactiveAnnonce(listeP.id)">
+                     <i class="fa fa-clock-o"></i> <a>Retirer</a> </div>
                 </div>
               </div>
             </div>

@@ -23,7 +23,7 @@
     <h2>LISTE DES OBJET PERDU</h2>
     <!-- ============================================================== -->
     <div class="row" >
-        <div class="container bg-white" style="display: flex;justify-content: space-between; flex-wrap: wrap;" >
+        <div class="container bg-white" style="display: flex;justify-content: space-around; flex-wrap: wrap;" >
             <div class="card" *ngFor="let liste of listeAnnoncesTrouve">
                 <div class="slide slide1">
                     <div class="content">
@@ -57,10 +57,10 @@
                               </div>
                             </div>
                             <div class="ftr">
-                                <div class="author">
-                                    <a href="#"> <img src="../../../assets/Accueil/logoUserAccueil.png" width="40px" alt="..." class="avatar img-raised"> <span style="font-size: 10px;">{{liste.utilisateur.email}}</span> </a>
+                                <div class="author" (click)="detalUserAnnonce(liste.utilisateur.id)">
+                                    <a> <img src="../../../assets/Accueil/logoUserAccueil.png" width="40px" alt="..." class="avatar img-raised"> <span style="font-size: 10px;">{{liste.utilisateur.email}}</span> </a>
                                 </div>
-                                <div class="stats"> <i class="fa fa-clock-o"></i> <a href="">Retirer</a> </div>
+                                <div class="stats" (click)="desactiveAnnonce(liste.id)"> <i class="fa fa-clock-o"></i> <a>Retirer</a> </div>
                             </div>
                           </div>
                     </div>

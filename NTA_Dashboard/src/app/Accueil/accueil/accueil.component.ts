@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserServiceService } from 'src/app/GestionUser/Service/user-service.service';
 import { Notification } from 'src/app/Models/Notification';
+import Swal from 'sweetalert2';
 import { AccueilServiceService } from '../Service/accueil-service.service';
 
 @Component({
@@ -9,6 +11,8 @@ import { AccueilServiceService } from '../Service/accueil-service.service';
   styleUrls: ['./accueil.component.scss']
 })
 export class AccueilComponent implements OnInit {
+
+  
   
   notification = new Notification;
   perdu: number = 1;
@@ -29,7 +33,8 @@ export class AccueilComponent implements OnInit {
   annonceDesactive: any;
   reclamationDesactive: any;
   reclamationIdDesactive: any;
-  constructor(private service : AccueilServiceService, private serviceuser : UserServiceService) { }
+  detailUser: any;
+  constructor(private service : AccueilServiceService, private serviceuser : UserServiceService , private route : Router) { }
 
   ngOnInit(): void {
     this.afficheFemmeTs();
@@ -38,11 +43,12 @@ export class AccueilComponent implements OnInit {
     this.getAnnonceTrouve();
     this.AfficheUser();
     this.afficheReclame();
+    
   }
 
 
   ajoutNotification(data:any){
-    console.log('je suis dataaaaaaaaaaaaaaaaaaa',data);
+   
     this.AnnonceIdDesactive = data.annonce.id;
     this.annonceDesactive = data.annonce;
     this.reclamationDesactive = data;
@@ -55,7 +61,7 @@ export class AccueilComponent implements OnInit {
    
 
     this.service.desactiveReclamation(this.reclamationIdDesactive,this.reclamationDesactive).subscribe(data=>{
-      console.log('reclamation Desactive',data);
+     
       
     })
 
@@ -68,14 +74,106 @@ export class AccueilComponent implements OnInit {
     })
 
     this.service.desactiveAnnonce(this.AnnonceIdDesactive, this.annonceDesactive).subscribe(data=>{
-      console.log(data);
-      console.log('annonce desactive');
-
     })
-    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa',this.reclamationIdDesactive,this.reclamationDesactive);
-    
-   
+  }
+  //liste de tout les annonce
+  afficheAnnonce(){
+    return this.service.getAllAnnonce().subscribe(data=>{})
+  }
 
+  // affiche annonce par id (Annonce)
+  detalUserAnnonce(id : any){
+    this.service.afficherUserById(id).subscribe(data=>{
+      this.detailUser = data;
+      const Toast = Swal.mixin({
+        imageUrl: '../../../assets/Accueil/logoUserAccueil.png',
+        imageWidth: 100,
+        imageHeight: 100,
+        imageAlt: 'Custom image',
+        html:
+            '<p> Nom : '+this.detailUser.nom_complet+'</p>' +
+            '<p>Tel : '+this.detailUser.tel+'</p>',
+        toast: true,
+        showConfirmButton: false,
+        
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        
+      })
+  
+    })
+  }
+  
+  // Desactiver L'annonce (Annonce)
+  desactiveAnnonce(id : any){
+
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success m-10',
+        cancelButton: 'btn btn-danger  m-10'
+      },
+      buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: 'Êtes-vous sûr?',
+      text: "Vous ne pourrez pas revenir en arrière !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Oui, supprimez-le !',
+      cancelButtonText: 'Non, annulez !',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.desactiveAnnonce(id, this.afficheAnnonce).subscribe(data=>{
+          window.location.reload();
+          this.route.navigateByUrl('/accueil', {skipLocationChange: true}).then(()=>
+          this.route.navigate(['accueil']));
+        })
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 4000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'success',
+          title: 'Signed in successfully'
+        })
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 4000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'error',
+          title: 'Suppression Annuler'
+        })
+      }
+    })
   }
 
 
@@ -94,42 +192,21 @@ export class AccueilComponent implements OnInit {
       
     })
   }
-
+  // liste objet Perdu (perdu)
   getAnnoncePerdu(){
     return this.service.getAllAnnoncePerdu().subscribe((data:any)=>{
      this.listeAnnoncesPerdu = data;
-      
+     this.nombreObjetPerdu = data.length
+     console.log(this.listeAnnoncesPerdu);
+     console.log(this.nombreObjetPerdu);
     })
   }
 
+  // liste objet Perdu (trouve)
   getAnnonceTrouve(){
     return this.service.getAllAnnonceTrouve().subscribe((data:any)=>{
       this.listeAnnoncesTrouve = data;
-     
-    })
-  }
-  getAnnonce(){
-    return this.service.getAllAnnoncePerdu().subscribe((data:any)=>{
-      let listeAnnonce = data;
-      for (let i = 0; i <listeAnnonce.length; i++) {
-        if (listeAnnonce[i].etat == 'perdu') {
-          this.listeAnnoncesPerdu.push(listeAnnonce[i]);
-          console.log('-------------PERDU',this.listeAnnoncesPerdu);
-          this.nombreObjetPerdu = this.listeAnnoncesPerdu.length;
-          
-          
-        }
-        if (listeAnnonce[i].etat == 'trouve') {
-          this.recemmentTrouve.push(listeAnnonce[i]);
-          console.log('-------ttttt-------tttttt---------',this.recemmentTrouve);
-          this.nombreObjetTrouve = this.recemmentTrouve.length;
-          
-        }
-        
-      }
-      
-
-      
+      this.nombreObjetTrouve = data.length;
     })
   }
 
@@ -138,19 +215,90 @@ export class AccueilComponent implements OnInit {
       this.listesUser = data;
     })
   }
-
+// reclamation active liste (Reclamation)
   afficheReclame(){
     return this.service.getAllReclameActive().subscribe(data=>{
-      console.log('reclamer ----------',data,'rrrrrrrrrrr');
+     
       this.infoReclame = data;
     })
   }
-
+// modifier eteat (Annonce pas use)
   modifierEtatDesactive(data: any){
     this.service.afficheByIdAnnonce(data).subscribe(datas =>{
-      
+      window.location.reload();
+        this.route.navigateByUrl('/accueil', {skipLocationChange: true}).then(()=>
+        this.route.navigate(['/accueil']));
     })
   }
 
+
+  //Reclamation desactive
+  desactiveReclamation(id : any){
+
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success m-10',
+        cancelButton: 'btn btn-danger  m-10'
+      },
+      buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: 'Êtes-vous sûr?',
+      text: "Vous ne pourrez pas revenir en arrière !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Oui, supprimez-le !',
+      cancelButtonText: 'Non, annulez !',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.desactiveReclamation(id, this.afficheReclame).subscribe(data=>{
+          window.location.reload();
+          this.route.navigateByUrl('/accueil', {skipLocationChange: true}).then(()=>
+          this.route.navigate(['accueil']));
+        })
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 4000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'success',
+          title: 'Signed in successfully'
+        })
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 4000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'error',
+          title: 'Suppression Annuler'
+        })
+      }
+    })
+  }
+
+
+  //Validation des reclamation => desactive annonce,statut valide , reclamation et annonce
   
 }

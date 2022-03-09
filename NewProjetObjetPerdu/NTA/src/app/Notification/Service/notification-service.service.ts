@@ -12,4 +12,12 @@ url = environment.URL;
   listeNoticationByUser(id : any){
     return this.http.get(this.url+`/notificationByUser/${id}`);
   }
+
+  getNotificationById(id){
+    return this.http.get(this.url+`/getnotificationByid/${id}`);
+  }
+
+  desactiveEtatById(id : any, data){
+    return this.http.put(this.url+`/updateEtatByDesactive/${id}`, data);
+  }
 }

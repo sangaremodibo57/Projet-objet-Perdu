@@ -13,8 +13,23 @@ export class ObjetperduserviceService {
     return this.http.delete(this.url+`/deleteannonce/${id}`);
   }
 
-  getAllAnnoncePerdu(){
-    return this.http.get(this.url+"/listeannonceactive");
-  }
+ //liste des objet Perdu par etat active
+ getAllAnnoncePerdu(){
+  return this.http.get(this.url+"/listeannonceactive");
+}
+
+afficherUserById(id : any){
+  return this.http.get(this.url+`/userByid/${id}`)
+}
+
+ //desactiver l annonce
+ desactiveAnnonce(id:any , data: any){
+  return this.http.put(this.url+`/changeannoncedesactive/${id}`, data)
+
+}
+
+afficheByIdAnnonce(id:any){
+  return this.http.get(this.url+'/oneannonce/'+id);
+}
  
 }

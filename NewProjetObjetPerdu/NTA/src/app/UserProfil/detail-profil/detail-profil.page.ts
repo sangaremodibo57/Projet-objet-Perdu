@@ -39,8 +39,6 @@ export class DetailProfilPage implements OnInit {
     })
   }
 
-  
-
   presentConfirm() {
     this.alertCtrl.create({
       cssClass:'my-custom-class',
@@ -55,8 +53,8 @@ export class DetailProfilPage implements OnInit {
         },
         {
           text: 'Supprimer',
-          handler: (data) => {
-            this.service.supprimerAnnonce(data).subscribe(data=>{
+          handler: (id) => {
+            this.service.updateEtatDesactive(id, this.annoncebyuser).subscribe(data=>{
               window.location.reload();
               this.route.navigateByUrl('/detail-profil', {skipLocationChange: true}).then(()=>
               this.route.navigate(['detail-profil']));
