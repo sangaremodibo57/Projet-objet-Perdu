@@ -64,6 +64,16 @@ url = environment.URL;
     return this.http.post(this.url+'/addnotification', data)
   }
 
+  //affiche reclamation par id
+  getReclamationById(id : any){
+    return this.http.get(this.url+`/reclameByid/${id}`);
+  }
+  // changer etat en Desactive (Reclamation)
+  putReclamationEtatDesactive(id : any, data : any){
+    return this.http.put(this.url+`/putReclamationEtatEnDesactive/${id}`, data);
+  }
+
+
   afficheFemmeService(){
     return this.http.get(this.url+'/userfemme');
   }

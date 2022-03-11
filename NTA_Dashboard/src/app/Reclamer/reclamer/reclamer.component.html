@@ -29,19 +29,22 @@
       <div class="cards-3 section-gray">
         <div class="container">
           <div class="row" >
-            <div class="col-md-4" *ngFor="let liste of listeReclame " >
+            <div class="col-md-4" *ngFor="let liste of listeReclame | paginate: { itemsPerPage: 6, currentPage: p } " >
               <div class="card">
                 <div class="table">
                     <h4 class="card-caption">
-                      <a href="#" style="font-size: 12px;">{{liste.description}}</a>
+                      <a style="font-size: 12px;">{{liste.description}}</a>
                     </h4>
                     <div class="ftr">
-                        <div class="author">
-                            <a href="#" style="font-size: 12px;"> <img src="../../../assets/Accueil/logoUserAccueil.png" alt="" class="avatar img-raised"> <span>Modibo Sangaré</span>
-                                
+                        <div class="author"  (click)="detalUserAnnonce(liste.user.id)">
+                            <a style="font-size: 12px;"> <img src="../../../assets/Accueil/logoUserAccueil.png" alt="" class="avatar img-raised"> 
+                              <span>{{liste.user.nom_complet}}</span>
                             </a>
                         </div>
-                        <div class="stats"> <button style="font-size: 9px;border: none;margin: 0px;color: red;"> Non Valider</button> &nbsp; <button style="font-size: 9px;border: none;margin: 0px;color: #17BB89;">Valider</button> </div>
+                        <div class="stats" >
+                          <button (click)="desactiveReclamation(liste.id)" style="font-size: 9px;border: none;margin: 0px;color: red;"> Non Valider</button>
+                          &nbsp;
+                          <button (click)="ajoutNotification(liste)" style="font-size: 9px;border: none;margin: 0px;color: #17BB89;">Valider</button> </div>
                     </div>
                 </div>
             </div>
@@ -72,14 +75,14 @@
                 </div>
               </div>
               <div class="ftr">
-                  <div class="author">
-                      <a href="#"> <img src="../../../assets/Accueil/logoUserAccueil.png" alt="..." class="avatar img-raised"> <span style="font-size: 10px;">{{liste.annonce.utilisateur.email}}</span> </a>
+                  <div class="author"  (click)="detalUserAnnonce(liste.annonce.utilisateur.id)">
+                      <a > <img src="../../../assets/Accueil/logoUserAccueil.png" alt="..." class="avatar img-raised"> <span style="font-size: 10px;">{{liste.annonce.utilisateur.email}}</span> </a>
                   </div>
-                  <div class="stats"> <i class="fa fa-clock-o"></i> <a href="">Retirer</a> </div>
               </div>
             </div>
           </div>
             </div>
+            <pagination-controls  nextLabel="Suiv" previousLabel="Pre" (pageChange)="p = $event"></pagination-controls>
         </div>
         </div>
       </div>

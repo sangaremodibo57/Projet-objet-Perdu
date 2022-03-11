@@ -34,6 +34,9 @@ export class AccueilComponent implements OnInit {
   reclamationDesactive: any;
   reclamationIdDesactive: any;
   detailUser: any;
+  admin: any;
+  reclamationById: any;
+  adminConnect: any;
   constructor(private service : AccueilServiceService, private serviceuser : UserServiceService , private route : Router) { }
 
   ngOnInit(): void {
@@ -43,39 +46,11 @@ export class AccueilComponent implements OnInit {
     this.getAnnonceTrouve();
     this.AfficheUser();
     this.afficheReclame();
-    
+    this.admin =  localStorage.getItem('userData');
+    this.adminConnect = JSON.parse(this.admin);
   }
 
-
-  ajoutNotification(data:any){
-   
-    this.AnnonceIdDesactive = data.annonce.id;
-    this.annonceDesactive = data.annonce;
-    this.reclamationDesactive = data;
-    this.reclamationIdDesactive = data.id
-
-
-    this.notification.etat = 'active'
-    this.notification.description='Objet est a vous contacter nous sur 77 04 92 70'
-    this.notification.reclame = data;
-   
-
-    this.service.desactiveReclamation(this.reclamationIdDesactive,this.reclamationDesactive).subscribe(data=>{
-     
-      
-    })
-
-
-    
-    this.service.addNotification(this.notification).subscribe(data=>{
-     
-      
-     
-    })
-
-    this.service.desactiveAnnonce(this.AnnonceIdDesactive, this.annonceDesactive).subscribe(data=>{
-    })
-  }
+ 
   //liste de tout les annonce
   afficheAnnonce(){
     return this.service.getAllAnnonce().subscribe(data=>{})
@@ -210,18 +185,8 @@ export class AccueilComponent implements OnInit {
     })
   }
 
-  AfficheUser(){
-    return this.serviceuser.listeUser().subscribe(data=>{
-      this.listesUser = data;
-    })
-  }
-// reclamation active liste (Reclamation)
-  afficheReclame(){
-    return this.service.getAllReclameActive().subscribe(data=>{
-     
-      this.infoReclame = data;
-    })
-  }
+
+
 // modifier eteat (Annonce pas use)
   modifierEtatDesactive(data: any){
     this.service.afficheByIdAnnonce(data).subscribe(datas =>{
@@ -231,10 +196,24 @@ export class AccueilComponent implements OnInit {
     })
   }
 
+  //user (User)
+  AfficheUser(){
+    return this.serviceuser.listeUser().subscribe(data=>{
+      this.listesUser = data;
+    })
+  }
+
+  // reclamation active liste (Reclamation)
+  afficheReclame(){
+    return this.service.getAllReclameActive().subscribe(data=>{
+     
+      this.infoReclame = data;
+    })
+  }
 
   //Reclamation desactive
   desactiveReclamation(id : any){
-
+    
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success m-10',
@@ -253,7 +232,113 @@ export class AccueilComponent implements OnInit {
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
-        this.service.desactiveReclamation(id, this.afficheReclame).subscribe(data=>{
+        this.service.getReclamationById(id).subscribe(data=>{
+          this.reclamationById = data ;
+          console.log('reclamation par id',this.reclamationById);
+    
+           // Notification
+          this.notification.etat = 'active'
+          this.notification.statut = 'nonvalide'
+          this.notification.etatNotification= 'nonvue'
+          this.notification.description='Votre demander a été refuser'
+          this.notification.reclame = this.reclamationById;
+          this.notification.admin = this.adminConnect;
+          console.log('Notification', this.notification);
+          //ajout Notification
+          this.service.addNotification(this.notification).subscribe(data=>{
+          })
+          this.service.putReclamationEtatDesactive(id, this.reclamationById).subscribe(data=>{
+
+          })
+        })
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 4000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+          
+        })
+        
+        Toast.fire({
+          icon: 'success',
+          title: 'Signed in successfully'
+        })
+        window.location.reload();
+        this.route.navigateByUrl('/accueil', {skipLocationChange: true}).then(()=>
+        this.route.navigate(['accueil']));
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 4000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'error',
+          title: 'Suppression Annuler'
+        })
+      }
+    })
+  }
+
+
+  //Validation des reclamation => desactive annonce,statut valide , reclamation et annonce
+  ajoutNotification(data:any){
+   // Annonce
+    this.AnnonceIdDesactive = data.annonce.id;
+    this.annonceDesactive = data.annonce;
+    // reclamation
+    this.reclamationDesactive = data;
+    this.reclamationIdDesactive = data.id
+    // Notification
+    this.notification.etat = 'active'
+    this.notification.statut = 'retrouve'
+    this.notification.etatNotification= 'nonvue'
+    this.notification.description='Objet est a vous contacter nous sur 77 04 92 70'
+    this.notification.reclame = data;
+    this.notification.admin = this.admin;
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success m-10',
+        cancelButton: 'btn btn-danger  m-10'
+      },
+      buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: 'Êtes-vous sûr?',
+      text: "Vous ne pourrez pas revenir en arrière !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Oui, Validez-le !',
+      cancelButtonText: 'Non, annulez !',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        //ajout notification
+        this.service.addNotification(this.notification).subscribe(data=>{
+        
+        })
+        //Desactive Annonce
+        this.service.desactiveAnnonce(this.AnnonceIdDesactive, this.annonceDesactive).subscribe(data=>{
+        })
+        //desactive Reclamation
+
+        this.service.desactiveReclamation(this.reclamationIdDesactive, this.reclamationDesactive).subscribe(data=>{
           window.location.reload();
           this.route.navigateByUrl('/accueil', {skipLocationChange: true}).then(()=>
           this.route.navigate(['accueil']));
@@ -297,8 +382,4 @@ export class AccueilComponent implements OnInit {
       }
     })
   }
-
-
-  //Validation des reclamation => desactive annonce,statut valide , reclamation et annonce
-  
 }
