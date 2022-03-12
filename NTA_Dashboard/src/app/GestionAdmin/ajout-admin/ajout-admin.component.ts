@@ -18,6 +18,7 @@ newadmin = new Administrateur();
     genre:any;
     tel:any;
     password: any;
+    etat:any;
 
   constructor(
     private serviceAdmin:AdminServiceService,
@@ -36,9 +37,10 @@ newadmin = new Administrateur();
     this.newadmin.genre=form.value['genre'];
     this.newadmin.tel=form.value['tel'];
     this.newadmin.password=form.value['login']+123;
+    this.newadmin.etat=form.value['etat'];
     
     console.log(this.newadmin);
-    this.serviceAdmin.ajoutAdmin(this.newadmin).subscribe((data:any)=>{
+    return this.serviceAdmin.ajoutAdmin(this.newadmin).subscribe((data:any)=>{
       console.log(data);
       this.router.navigateByUrl('listeadmin');
     })

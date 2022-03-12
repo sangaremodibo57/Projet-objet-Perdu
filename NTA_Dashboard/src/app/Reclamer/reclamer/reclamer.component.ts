@@ -24,6 +24,7 @@ export class ReclamerComponent implements OnInit {
   reclamationIdDesactive: any;
   listesUser: any;
   detailUser: any;
+  listeReclamationdesactivevalide:any;
 
   constructor( private serviceuser : UserServiceService, private service :ReclamerServiceService, private route : Router) { }
 
@@ -33,6 +34,7 @@ export class ReclamerComponent implements OnInit {
     this.afficheReclame();
     this.admin =  localStorage.getItem('userData');
     this.adminConnect = JSON.parse(this.admin);
+    this.Alldeclamationdesactivevalide();
   }
 
   reclamer(){
@@ -260,4 +262,11 @@ export class ReclamerComponent implements OnInit {
       }
     })
   }
+  Alldeclamationdesactivevalide(){
+    return this.service.getAllreclamationdesactivevalide().subscribe((datas)=>{
+      console.log('les reclamations descatives', datas);
+      this.listeReclamationdesactivevalide = datas;
+    })
+  }
+
 }
