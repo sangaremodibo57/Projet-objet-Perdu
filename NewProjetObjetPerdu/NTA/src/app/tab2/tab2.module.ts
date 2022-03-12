@@ -8,9 +8,10 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @NgModule({
   imports: [
+    Ng2SearchPipeModule,
     NgxPaginationModule,
     IonicModule,
     CommonModule,

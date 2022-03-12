@@ -1,0 +1,43 @@
+<ion-content>
+  <script src="sweetalert2.min.js"></script>
+  <link rel="stylesheet" href="sweetalert2.min.css">
+  <ion-card class="ion-no-margin cardlogo">
+    <ion-img src="assets/Auth/Auth.png" ></ion-img>
+    <div class="logo ion-text-center">
+      <ion-img src="assets/NTAB.png"></ion-img>
+    </div>
+  </ion-card>
+    <form  #loginForm="ngForm"  (ngSubmit)="onLogin(loginForm.value)" autocomplete="off">
+      <div class="inputs">  
+
+        <div class="label-float" >
+          <input type="text" pattern="^([5-9][0-9]{7})|([A-Za-z0-9._%\+\-]+@[a-z]{3,8}.[a-z]{2,3})$" name="email" ngModel #email="ngModel" placeholder=" "  />
+          <label> <ion-icon name="person"></ion-icon> Tel / Email <span style="color: red;">*</span> </label>
+        </div>
+        <div  style="font-size: 11px;font-weight: bold ;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="email.valid || email.pristine" class="alert alert-danger">
+          Respecter le Format du Tel Ou Email
+        </div>
+
+        <div class="label-float" >
+          <input type="password" name="password" pattern=".{6,16}" ngModel #password="ngModel" placeholder=" "  />
+          <label> <ion-icon name="lock-closed"></ion-icon> Mot de passe  <span style="color: red;">*</span> </label>
+        </div>
+        <div   style="font-size: 11px;font-weight: bold ;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="password.valid || password.pristine" class="alert alert-danger">
+          Format: Au moins 6 caractères et au plus 16 caractères
+        </div>
+      </div>
+      <div class="password-f">
+        <ion-button fill="clear" [routerLink]="['/forgot']"> <b>Mot de passe oublié?</b> </ion-button>
+      </div>
+      <div class="btnConnect">
+        <ion-button expand="block" style="border-radius: 10px;width: 92%; margin: 0 auto;"   type="submit" [disabled]="loginForm.form.invalid">Connexion</ion-button>
+      </div>
+    </form>
+    <div style="text-align: center; margin-top: 30px;">
+    <ion-button style="border-radius: 10px;width: 95%; margin: 0 auto;" expand="block" color="dark" [routerLink]="['/home']">Accueil</ion-button>
+    </div>
+    <div class="textConnect">
+      <span>Vous n'avez pas de compte? <a style="color: #17BB89;font-weight: bold;" href="register"> S'inscrire</a> </span>
+    </div>
+
+</ion-content>

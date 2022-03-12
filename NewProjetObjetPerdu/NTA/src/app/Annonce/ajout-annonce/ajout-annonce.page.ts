@@ -5,6 +5,7 @@ import { AnnonceServiceService } from '../Service/annonce-service.service';
 import { AlertController } from '@ionic/angular';
 import { Reclamation } from 'src/app/Model/Reclamation';
 import { formatDate } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ajout-annonce',
@@ -179,13 +180,22 @@ userConnecte: any;
             }
           });
           if (this.dataArray.length !== 0) {
-            this.alertController.create({
-              cssClass:'my-custom-class',
-              message: "Vous avez deja publier l'annonce consulter mes publication",
-            }).then(res => {
-              res.present();
-              setTimeout(()=>res.dismiss(),2000);
-            });
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top',
+              text: 'Vous avez dejà publier l\'annonce consulter mes publication',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+            Toast.fire({
+              icon: 'error',
+              title: 'Erreur De Publication '
+            })
           } else {
             // verification si resVerifieTrouve existe dans Reclamation
             this.service.verifyReclamation(this.annonce.nom,this.annonce.lieu,this.annonce.couleur,this.dateveri,'nonvalide',this.annonce.model,this.annonce.anneeObttion).subscribe((data:any)=>{
@@ -200,13 +210,22 @@ userConnecte: any;
                 });
                  // Comparaison des user
                  if (this.dataArray.length!== 0 ) {
-                  this.alertController.create({
-                    cssClass:'my-custom-class',
-                    message: "Vous avez deja publier l'annonce consulter mes publication",
-                  }).then(res => {
-                    res.present();
-                    setTimeout(()=>res.dismiss(),2000);
-                  });
+                  const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top',
+                    text: 'Vous avez dejà publier l\'annonce consulter mes publication',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  })
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'Erreur De Publication '
+                  })
                 } else {
                   // ajout Reclamation
                   this.reclamer.nom = this.annonce.nom
@@ -225,14 +244,22 @@ userConnecte: any;
                   console.log('dataaaaaaaaaa',this.reclamer);
                   this.service.reclamer(this.reclamer).subscribe(data=>{
                     this.route.navigateByUrl('tabs/tabs/tab1');
-                    this.alertController.create({
-                      cssClass:'my-custom-class',
-                      message: 'Votre Demande est en cour de traitement ',
-                    }).then(res => {
-                
-                      res.present();
-                      setTimeout(()=>res.dismiss(),2000);
-                    });
+                    const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top',
+                      text: 'Votre Demande est en cour de traitement ',
+                      showConfirmButton: false,
+                      timer: 3000,
+                      timerProgressBar: true,
+                      didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                      }
+                    })
+                    Toast.fire({
+                      icon: 'success',
+                      
+                    })
                   })
                 }
               }else {
@@ -254,14 +281,22 @@ userConnecte: any;
                 console.log('dataaaaaaaaaa',this.reclamer);
                 this.service.reclamer(this.reclamer).subscribe(data=>{
                   this.route.navigateByUrl('tabs/tabs/tab1');
-                  this.alertController.create({
-                    cssClass:'my-custom-class',
-                    message: 'Votre Demande est en cour de traitement ',
-                  }).then(res => {
-              
-                    res.present();
-                    setTimeout(()=>res.dismiss(),2000);
-                  });
+                  const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top',
+                    text: 'Votre Demande est en cour de traitement ',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  })
+                  Toast.fire({
+                    icon: 'success',
+                    
+                  })
                 })
               }
             }) 
@@ -279,25 +314,41 @@ userConnecte: any;
                 }
               });
               if (this.dataArray.length !== 0) {
-                this.alertController.create({
-                  cssClass:'my-custom-class',
-                  message: "Vous avez deja publier l'annonce consulter mes publication",
-                }).then(res => {
-                  res.present();
-                  setTimeout(()=>res.dismiss(),2000);
-                });
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top',
+                  text: 'Vous avez deja publier l\'annonce consulter mes publication"',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+                Toast.fire({
+                  icon: 'error',
+                })
               } else {
                  //ajout Annonce
               this.service.ajoutAnnonce(this.annonce).subscribe(data=>{
                 this.ance=data;
                 this.route.navigateByUrl('tabs/tabs/tab1');
-                this.alertController.create({
-                  cssClass:'my-custom-class',
-                  message: 'Annonce Publier avec Succès ',
-                }).then(res => {
-                  res.present();
-                  setTimeout(()=>res.dismiss(),2000);
-                });
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top',
+                  text: 'Annonce Publier avec Succés',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+                Toast.fire({
+                  icon: 'success',
+                })
                 
               })
               } 
@@ -306,13 +357,22 @@ userConnecte: any;
               this.service.ajoutAnnonce(this.annonce).subscribe(data=>{
                 this.ance=data;
                 this.route.navigateByUrl('tabs/tabs/tab1');
-                this.alertController.create({
-                  cssClass:'my-custom-class',
-                  message: 'Annonce Publier avec Succès ',
-                }).then(res => {
-                  res.present();
-                  setTimeout(()=>res.dismiss(),2000);
-                });
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top',
+                  text: 'Annonce Publier avec Succès ',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+                Toast.fire({
+                  icon: 'success',
+                  
+                })
                 
               })
               
@@ -320,7 +380,7 @@ userConnecte: any;
           })
         }
       })
-    }
+  }
 
 
 
@@ -360,7 +420,6 @@ userConnecte: any;
 }
 
   publierTrouve(formTrouve:any){
-    
     this.annonce.nom = formTrouve.value['nom']
     this.annonce.date = formTrouve.value['datef']
     this.annonce.lieu = formTrouve.value['lieu']
@@ -387,10 +446,8 @@ userConnecte: any;
     this.annonce.utilisateur = this.userConnecte;
     this.dateveri = formatDate(this.annonce.date, 'yyyy', 'en');
     console.log(this.annonce);
-    
     //verification dans les objet perdu 
     this.service.verifyAnnonce(this.annonce.nom, this.annonce.lieu,this.annonce.couleur,this.dateveri,'perdu',this.annonce.model,this.annonce.anneeObttion).subscribe((data: any)=>{
-
       if (data.length!== 0) {
         //parcour la liste pour verification user
         data.forEach(element => {
@@ -401,13 +458,22 @@ userConnecte: any;
         console.log("dataArray : ", this.dataArray);
         //corespondante user
         if (this.dataArray.length !== 0) {
-          this.alertController.create({
-            cssClass:'my-custom-class',
-            message: "Vous avez deja publier l'annonce consulter mes publication",
-          }).then(res => {
-            res.present();
-            setTimeout(()=>res.dismiss(),2000);
-          });
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            text: 'Vous avez dejà publier l\'annonce consulter mes publication',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          Toast.fire({
+            icon: 'error',
+            title: 'Erreur De Publication '
+          })
         } else {
           // verification si resulVerifieTrouve existe dans Reclamation
           this.service.verifyReclamation(this.annonce.nom,this.annonce.lieu,this.annonce.couleur,this.dateveri,'coresp',this.annonce.model,this.annonce.anneeObttion).subscribe((data: any)=>{
@@ -422,13 +488,22 @@ userConnecte: any;
               console.log("dataArray : ", this.dataArray);
               //corespondante user
               if (this.dataArray.length!== 0) {
-                this.alertController.create({
-                  cssClass:'my-custom-class',
-                  message: "Vous avez deja publier l'annonce consulter mes publication",
-                }).then(res => {
-                  res.present();
-                  setTimeout(()=>res.dismiss(),2000);
-                });
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top',
+                  text: 'Vous avez dejà publier l\'annonce consulter mes publication',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+                Toast.fire({
+                  icon: 'error',
+                  title: 'Erreur De Publication '
+                })
               } else {
               // ajout Reclamation
               this.reclamer.nom = this.annonce.nom
@@ -447,14 +522,21 @@ userConnecte: any;
               console.log('dataaaaaaaaaa',this.reclamer);
               this.service.reclamer(this.reclamer).subscribe(data=>{
                 this.route.navigateByUrl('tabs/tabs/tab1');
-                this.alertController.create({
-                  cssClass:'my-custom-class',
-                  message: 'Votre Demande est en cour de traitement ',
-                }).then(res => {
-            
-                  res.present();
-                  setTimeout(()=>res.dismiss(),2000);
-                });
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top',
+                  text: 'Votre Demande est en cour de traitement ',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+                Toast.fire({
+                  icon: 'success',
+                })
               })
               }
             } else {
@@ -475,14 +557,22 @@ userConnecte: any;
               console.log('dataaaaaaaaaa',this.reclamer);
               this.service.reclamer(this.reclamer).subscribe(data=>{
                 this.route.navigateByUrl('tabs/tabs/tab1');
-                this.alertController.create({
-                  cssClass:'my-custom-class',
-                  message: 'Votre Demande est en cour de traitement ',
-                }).then(res => {
-            
-                  res.present();
-                  setTimeout(()=>res.dismiss(),2000);
-                });
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top',
+                  text: 'Votre Demande est en cour de traitement ',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+                Toast.fire({
+                  icon: 'success',
+                })
+                
               })
             }
           })
@@ -491,7 +581,6 @@ userConnecte: any;
         //verification dans objet trouve 
         this.service.verifyAnnonce(this.annonce.nom, this.annonce.lieu,this.annonce.couleur,this.dateveri,'trouve',this.annonce.model,this.annonce.anneeObttion).subscribe((data:any)=>{
           console.log('Verfication objt Perdu',data);
-          
           this.resulverifieTrouve = data;
           if (data.length!== 0) {
             //parcour la liste pour verification user
@@ -516,13 +605,22 @@ userConnecte: any;
                this.service.ajoutAnnonce(this.annonce).subscribe(data=>{
                 this.ance=data;
                 this.route.navigateByUrl('tabs/tabs/tab1');
-                this.alertController.create({
-                  cssClass:'my-custom-class',
-                  message: 'Annonce Publier avec Succès ',
-                }).then(res => {
-                  res.present();
-                  setTimeout(()=>res.dismiss(),2000);
-                });
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top',
+                  text: 'Annonce Publier avec Succès ',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+                Toast.fire({
+                  icon: 'success',
+                  
+                })
                 
                 })
             }
@@ -531,13 +629,22 @@ userConnecte: any;
             this.service.ajoutAnnonce(this.annonce).subscribe(data=>{
             this.ance=data;
             this.route.navigateByUrl('tabs/tabs/tab1');
-            this.alertController.create({
-              cssClass:'my-custom-class',
-              message: 'Annonce Publier avec Succès ',
-            }).then(res => {
-              res.present();
-              setTimeout(()=>res.dismiss(),2000);
-            });
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top',
+              text: 'Annonce Publier avec Succès ',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+            Toast.fire({
+              icon: 'success',
+              
+            })
             
             })
           }

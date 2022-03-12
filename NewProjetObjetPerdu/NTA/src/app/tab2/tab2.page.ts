@@ -106,6 +106,7 @@ export class Tab2Page implements OnInit {
     }
   }
 
+  filterTerm: string;
   cp: number = 1;
   searchText ='';
   private listeAnnoncesPerdu : any 

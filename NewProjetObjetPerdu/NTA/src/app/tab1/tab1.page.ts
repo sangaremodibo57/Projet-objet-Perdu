@@ -10,6 +10,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
+  filterTerm: string;
   cp: number = 1;
   public slideOpts = {
     slidesPerView: 1,
@@ -275,7 +276,7 @@ private recemmentPerdu5 : any = [];
   logout(){
     localStorage.removeItem('userData')
     localStorage.clear();
-    
+    this.route.navigateByUrl('/login')
   }
 
   getAnnonceActive(){
