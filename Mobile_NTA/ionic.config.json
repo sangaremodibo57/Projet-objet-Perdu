@@ -1,7 +1,0 @@
-{
-  "name": "Mobile_NTA",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
