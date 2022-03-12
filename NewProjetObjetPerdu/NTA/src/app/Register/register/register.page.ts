@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { RegisterServiceService } from '../Service/register-service.service';
 import { User } from 'src/app/Model/User';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -16,17 +17,25 @@ export class RegisterPage implements OnInit {
 
   }
   registreForm(userForm:any) {
-    if (userForm.value['genre']!=''&& userForm.value['email']!=''&& userForm.value['password'] == userForm.value['passwordC'] && userForm.value['tel']!='') {
+    if (userForm.value['email']!=''&& userForm.value['password'] === userForm.value['passwordC'] , userForm.value['tel']!=''&& userForm.value['password'] === userForm.value['passwordC']) {
       this.service.verifier(userForm.value.tel,userForm.value.email).subscribe(data=>{
         if (data!=null) {
-          this.alertController.create({
-            cssClass:'my-custom-class',
-            message: 'Votre numero ou email existe déjà',
-          }).then(res => {
-            
-            res.present();
-            setTimeout(()=>res.dismiss(),3000);
-          });
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            text: 'Le Tel/Email est déjà utiliser ',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          Toast.fire({
+            icon: 'error',
+            title: 'Erreur De Connexion '
+          })
           
         } else {
           this.utillisateur.email = userForm.value['email'];
@@ -40,26 +49,42 @@ export class RegisterPage implements OnInit {
           console.log(this.utillisateur);
           this.service.ajoutUser(this.utillisateur).subscribe(data=>{
             this.route.navigateByUrl('/login');
-            this.alertController.create({
-              cssClass:'my-custom-class',
-              message: 'Inscription avec Succès',
-            }).then(res => {
-              
-              res.present();
-              setTimeout(()=>res.dismiss(),3000);
-            });
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+            Toast.fire({
+              icon: 'success',
+              title: 'inscription a été effectué avec succès.'
+            })
           })
         }
       })
     }else{
-      this.alertController.create({
-        cssClass:'my-custom-class',
-        message: 'Veillez Remplire les Champs "*" obligatoire svp',
-      }).then(res => {
-  
-        res.present();
-  
-      });
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        text: 'Veillez Remplire les Champs "*" obligatoire svp',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      Toast.fire({
+        icon: 'error',
+        title: 'Erreur D\'Inscription '
+      })
+     
     }
     
   }

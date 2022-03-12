@@ -105,7 +105,7 @@ export class Tab3Page implements OnInit {
       }
     }
   }
-
+filterTerm: string;
 cp: number = 1;
   user: string;
   userConnecte: any;

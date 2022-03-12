@@ -5,6 +5,7 @@ import { Reclamation } from 'src/app/Model/Reclamation';
 import { AnnonceServiceService } from '../Service/annonce-service.service';
 import { AlertController } from '@ionic/angular';
 import { formatDate } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detail-annonce',
@@ -84,14 +85,21 @@ export class DetailAnnoncePage implements OnInit {
     this.dateveri = formatDate(this.objet.date, 'yyyy', 'en');
     if (this.reclamer.couleur === formReclame.value['couleur'] && this.reclamer.lieu === formReclame.value['lieu'] && this.reclamer.annonce.utilisateur.id === this.userConnecte.id && this.reclamer.model === formReclame.value['model'] && this.reclamer.anneeObttion === formReclame.value['anneeObttion'] ) {
       this.router.navigateByUrl('tabs/tabs/tab1');
-      this.alertController.create({
-        cssClass:'my-custom-class',
-        message: 'Vous avez déjà publier cette annonce verifie votre publication ',
-      }).then(res => {
-  
-        res.present();
-        setTimeout(()=>res.dismiss(),3000);
-      });
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        text: 'Vous avez déjà publier cette annonce verifie votre publication ',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      Toast.fire({
+        icon: 'error',
+      })
     } else{
       if (this.reclamer.couleur === formReclame.value['couleur'] && this.reclamer.lieu === formReclame.value['lieu'] && this.reclamer.model === formReclame.value['model'] && this.reclamer.anneeObttion === formReclame.value['anneeObttion'] ) {
         this.service.verifyReclamation(this.reclamer.nom,this.reclamer.lieu,this.reclamer.couleur,this.dateveri,'nonvalide',this.reclamer.model,this.reclamer.anneeObttion).subscribe((data:any)=>{
@@ -103,29 +111,42 @@ export class DetailAnnoncePage implements OnInit {
               }
             });
             if (this.dataArray.length !== 0) {
-              this.alertController.create({
-                cssClass:'my-custom-class',
-                message: "Vous avez deja Réclamer l'annonce consulter mes publication",
-              }).then(res => {
-          
-                res.present();
-          
-              });
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'top',
+                text: 'Vous avez deja Réclamer l\'annonce consulter mes publication',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              Toast.fire({
+                icon: 'error',
+              })
             } else {
               this.service.reclamer(this.reclamer).subscribe(data=>{
                 this.addreclame = data;
                 console.log(this.addreclame);
                 
                 this.router.navigateByUrl('tabs/tabs/tab1');
-                this.alertController.create({
-                  cssClass:'my-custom-class',
-                  message: 'Votre Demande est en cour de traitement ',
-                }).then(res => {
-            
-                  res.present();
-            
-                });
-                
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top',
+                  text: 'Votre Demande est en cour de traitement ',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+                Toast.fire({
+                  icon: 'success',
+                })
               })
             }
           } else {
@@ -134,28 +155,41 @@ export class DetailAnnoncePage implements OnInit {
               console.log(this.addreclame);
               
               this.router.navigateByUrl('tabs/tabs/tab1');
-              this.alertController.create({
-                cssClass:'my-custom-class',
-                message: 'Votre Demande est en cour de traitement ',
-              }).then(res => {
-          
-                res.present();
-                setTimeout(()=>res.dismiss(),3000);
-              });
-              
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'top',
+                text: 'Votre Demande est en cour de traitement ',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              Toast.fire({
+                icon: 'success',
+              })
             })
           }
         })
       } else {
         this.router.navigateByUrl('tabs/tabs/tab1');
-      this.alertController.create({
-        cssClass:'my-custom-class',
-        message: 'Les données ne ccorresponde pas ',
-      }).then(res => {
-  
-        res.present();
-        setTimeout(()=>res.dismiss(),3000);
-      });
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        text: 'Les données ne ccorresponde pas ',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      Toast.fire({
+        icon: 'error',
+      })
       }
       
     }

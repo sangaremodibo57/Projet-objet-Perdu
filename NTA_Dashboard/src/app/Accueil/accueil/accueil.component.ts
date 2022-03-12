@@ -248,7 +248,6 @@ export class AccueilComponent implements OnInit {
           this.service.addNotification(this.notification).subscribe(data=>{
           })
           this.service.putReclamationEtatDesactive(id, this.reclamationById).subscribe(data=>{
-
           })
         })
         const Toast = Swal.mixin({
@@ -337,7 +336,6 @@ export class AccueilComponent implements OnInit {
         this.service.desactiveAnnonce(this.AnnonceIdDesactive, this.annonceDesactive).subscribe(data=>{
         })
         //desactive Reclamation
-
         this.service.desactiveReclamation(this.reclamationIdDesactive, this.reclamationDesactive).subscribe(data=>{
           window.location.reload();
           this.route.navigateByUrl('/accueil', {skipLocationChange: true}).then(()=>

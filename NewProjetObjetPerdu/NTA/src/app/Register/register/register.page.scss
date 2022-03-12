@@ -87,13 +87,8 @@ ion-content{
     }
   }
   input:invalid{
-      border: 1px solid red;
-      background-color: rgba(245, 154, 154, 0.287);
+      border: 1px solid rgba(245, 154, 154, 0.5);
       color: black;
-  }
-  input:valid{
-   
-    background-color: none;
   }
   ion-select {
     background-color: transparent;

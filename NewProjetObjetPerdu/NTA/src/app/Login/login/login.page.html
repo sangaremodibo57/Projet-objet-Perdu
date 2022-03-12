@@ -11,19 +11,19 @@
       <div class="inputs">  
 
         <div class="label-float" >
-          <input type="text" pattern=".{1,20}" name="email" ngModel #email="ngModel" placeholder=" "  />
+          <input type="text" pattern="^([5-9][0-9]{7})|([A-Za-z0-9._%\+\-]+@[a-z]{3,8}.[a-z]{2,3})$" name="email" ngModel #email="ngModel" placeholder=" "  />
           <label> <ion-icon name="person"></ion-icon> Tel / Email <span style="color: red;">*</span> </label>
         </div>
-        <div  style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="email.valid || email.pristine" class="alert alert-danger">
-          Respecter le Format
+        <div  style="font-size: 11px;font-weight: bold ;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="email.valid || email.pristine" class="alert alert-danger">
+          Respecter le Format du Tel Ou Email
         </div>
 
         <div class="label-float" >
           <input type="password" name="password" pattern=".{6,16}" ngModel #password="ngModel" placeholder=" "  />
           <label> <ion-icon name="lock-closed"></ion-icon> Mot de passe  <span style="color: red;">*</span> </label>
         </div>
-        <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="password.valid || password.pristine" class="alert alert-danger">
-          Respecter le Format
+        <div   style="font-size: 11px;font-weight: bold ;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="password.valid || password.pristine" class="alert alert-danger">
+          Format: Au moins 6 caractères et au plus 16 caractères
         </div>
       </div>
       <div class="password-f">
