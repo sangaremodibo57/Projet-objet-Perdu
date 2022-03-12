@@ -1,7 +1,0 @@
-{
-  "name": "NTAMobile",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
