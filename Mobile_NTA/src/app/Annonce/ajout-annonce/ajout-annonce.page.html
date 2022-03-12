@@ -1,0 +1,285 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons mode="md" slot="start">
+      <ion-back-button defaultHref="/tabs/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Publier Annonce
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-slides  [options]="slideOpts" >
+   
+    <ion-slide> 
+      <ion-card>
+        <ion-card-header>
+        <img src="assets/guide/1-1.jpg">
+        </ion-card-header>
+        <ion-card-content>
+          L'Engagement
+        </ion-card-content>
+      </ion-card>    
+    </ion-slide>
+    <ion-slide> 
+      <ion-card>
+        <ion-card-header>
+        <img src="assets/guide/qualite.jpg">
+        </ion-card-header>
+        <ion-card-content>
+          La Qualité
+        </ion-card-content>
+      </ion-card>    
+    </ion-slide>
+    <ion-slide> 
+      <ion-card>
+        <ion-card-header>
+        <img src="assets/guide/arton165-resp960.jpg">
+        </ion-card-header>
+        <ion-card-content>
+          La Rapidité
+        </ion-card-content>
+      </ion-card>    
+    </ion-slide>
+    <ion-slide> 
+      <ion-card>
+        <ion-card-header>
+        <img src="assets/guide/femme-content-telephone.png">
+        </ion-card-header>
+        <ion-card-content>
+           La Satisfaction
+        </ion-card-content>
+      </ion-card>    
+    </ion-slide>
+  </ion-slides>
+
+  <h2 style="font-size: 25px; color:  #14a87c; font-weight: bold; text-align: center;"> <b>Publié une Annonce</b></h2>
+      <div class="titleSelectObjet" >
+        <ion-segment  mode="ios" [(ngModel)]="cat">
+          <ion-segment-button class="btnperdu" mode="ios" value="men">
+            Objet Perdu
+          </ion-segment-button>
+          <ion-segment-button value="women">
+            Objet Trouvé
+          </ion-segment-button>
+          </ion-segment>
+      </div>
+      <div [ngSwitch]="cat" >
+        <ion-list *ngSwitchCase="'men'" >
+          <form  #userForm="ngForm" (ngSubmit)="registreForm(userForm)" novalidate>
+      
+            <h6 class="title"> <ion-icon name="bag"></ion-icon> Qu'avez-vous Perdu ?</h6>
+            <ion-subtitle>Sélectionnez une catégorie pour pouvoir choisir un objet. <span style="color: red; font-size: 15px;">*</span> </ion-subtitle>
+            <ion-item>
+              <ion-label> Catégorie</ion-label>
+              <ion-select (ngModelChange)="onChange($event)" interface="popover" name="nomC"  id="selectObjet" required [ngModel]="nomC">
+                <ion-select-option [ngvalue]="categorie.id" value="{{categorie.id}}" *ngFor="let categorie of listesCategorie">{{categorie.nom}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label> OBJET</ion-label>
+              <ion-select interface="popover" name="nom" id="selectObjet" required ngModel >
+                <ion-select-option  *ngFor="let objet of objetByCategorie">{{objet.nom}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            
+            <div *ngIf="telephone == false">
+              <h6 class="title"><ion-icon name="time-sharp"></ion-icon> Quelle est le Model ?</h6>
+              <ion-subtitle>Donner le Model du Telephone <span style="color: red; font-size: 15px;">*</span></ion-subtitle>  
+              <ion-item lines="full">
+                <ion-input type="text" pattern="[a-z0-9]{1,10}" name="model" placeholder="exemple: s28" ngModel #model="ngModel" required></ion-input>
+              </ion-item>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+              <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="model.valid || model.pristine" class="alert alert-danger">
+                Respecter le Format svp : exemple xmax / s28
+              </div>
+            </div>
+
+
+
+            <h6 class="title"><ion-icon name="time-sharp"></ion-icon> Quant l'avez-vous Perdu ?</h6>
+            <ion-subtitle>Sélectionnez une Date <span style="color: red; font-size: 15px;">*</span></ion-subtitle>  
+            <ion-item lines="full">
+              <!-- <ion-input type="date" name="datef" ngModel required></ion-input> -->
+              <input type="date" name="datef" ngModel id="" style="border: none; width: 100%;"  required>
+            </ion-item>
+    
+
+            <h6 class="title"> <ion-icon name="location"></ion-icon> Où l'avez-vous Perdu ?</h6>
+            <ion-subtitle>Sélectionnez un lieu <span style="color: red; font-size: 15px;">*</span></ion-subtitle>
+            <ion-item >
+              <ion-label>Region</ion-label>
+              <ion-select name="lieu" ngModel interface="popover" class="custom-options" required>
+                <ion-select-option value="Bamako">Bamako</ion-select-option>
+                <ion-select-option value="Kayes">Kayes</ion-select-option>
+                <ion-select-option value="Koulikoro">Koulikoro</ion-select-option>
+                <ion-select-option value="Sikasso">Sikasso</ion-select-option>
+                <ion-select-option value="Ménaka">Ménaka</ion-select-option>
+                <ion-select-option value="Taoudénit">Taoudénit</ion-select-option>
+                <ion-select-option value="Kidal">Kidal</ion-select-option>
+                <ion-select-option value="Gao">Gao</ion-select-option>
+                <ion-select-option value="Tombouctou">Tombouctou</ion-select-option>
+                <ion-select-option value="Ségou">Ségou</ion-select-option>
+                <ion-select-option value="Mopti">Mopti</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+
+            <h6 class="title"> <ion-icon name="color-palette-sharp"></ion-icon> Quelle Couleur est l'objet ?</h6>
+            <ion-subtitle>Sélectionnez une Couleur <span style="color: red; font-size: 15px;">*</span></ion-subtitle>
+            <ion-item>
+              <ion-label>Couleur</ion-label>
+              <ion-select name="couleur" interface="popover" ngModel class="custom-options" required>
+                <ion-select-option value="Argent">Argent</ion-select-option>
+                <ion-select-option value="Blanc">Blanc</ion-select-option>
+                <ion-select-option value="Chocolat">Chocolat</ion-select-option>
+                <ion-select-option value="Fer">Fer</ion-select-option>
+                <ion-select-option value="Gris">Gris</ion-select-option>
+                <ion-select-option value="Jaune">Jaune</ion-select-option>
+                <ion-select-option value="Marron">Marron</ion-select-option>
+                <ion-select-option value="Noir">Noir</ion-select-option>
+                <ion-select-option value="Orange">Orange</ion-select-option>
+                <ion-select-option value="Rouge">Rouge</ion-select-option>
+                <ion-select-option value="Vert">Vert</ion-select-option>
+                <ion-select-option value="Turquoise">Turquoise</ion-select-option>
+                <ion-select-option value="Rose">Rose</ion-select-option>
+                <ion-select-option value="Autre">Autre</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+
+            <div *ngIf="document == false">
+              <h6 class="title"><ion-icon name="time-sharp"></ion-icon> Quelle l'annee de delivrance ?</h6>
+              <ion-subtitle>Donner l'annee de delivrance/obtention <span style="color: red; font-size: 15px;">*</span></ion-subtitle> 
+              <ion-item lines="full">
+                <ion-input type="text" pattern="[1-2][0-9]{3}" placeholder=" exemple 2022" name="anneeObttion" #anneeObttion="ngModel" ngModel required></ion-input>
+              </ion-item>
+              <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="anneeObttion.valid || anneeObttion.pristine" class="alert alert-danger">
+                Respecter le Format svp : exemple 2022
+              </div>
+            </div>
+
+            <h6 class="title"> <ion-icon name="reader-sharp"></ion-icon> Description/Contenu</h6>
+            <ion-subtitle>Celà nous aidera pour authentification </ion-subtitle>
+            <ion-item>
+              <ion-label position="floating">Description</ion-label>
+              <ion-textarea name="contenu" ngModel ></ion-textarea>
+            </ion-item>
+        
+            <ion-row>
+              <ion-col>
+                <ion-button type="submit" size="small" color="success" expand="block" [disabled]="userForm.form.invalid">PUBLIER</ion-button>
+              </ion-col>
+            </ion-row>
+          </form>  
+        </ion-list>
+      
+        <ion-list *ngSwitchCase="'women'"  class="form" >
+          <form  #formTrouve="ngForm" (ngSubmit)="publierTrouve(formTrouve)" novalidate>
+            <h6 class="titleT"> <ion-icon name="bag"></ion-icon> Qu'avez-vous Trouvé ?</h6>
+            <ion-subtitle style="color: #17BB89;">Sélectionnez une catégorie pour pouvoir choisir un objet. <span style="color: red; font-size: 15px;">*</span> </ion-subtitle>
+            <ion-item>
+              <ion-label> Catégorie</ion-label>
+              <ion-select (ngModelChange)="onChange($event)" interface="popover" name="nomC"  id="selectObjet" required [ngModel]="nomC">
+                <ion-select-option [ngvalue]="categorie.id" value="{{categorie.id}}" *ngFor="let categorie of listesCategorie">{{categorie.nom}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label> OBJET</ion-label>
+              <ion-select interface="popover" name="nom" id="selectObjet" required ngModel >
+                <ion-select-option  *ngFor="let objet of objetByCategorie">{{objet.nom}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            
+            <div  *ngIf="telephone == false">
+              <h6 class="titleT"><ion-icon name="time-sharp"></ion-icon> Quelle est le Model ?</h6>
+              <ion-subtitle style="color: #17BB89;">Donner le Model du Telephone <span style="color: red; font-size: 15px;">*</span></ion-subtitle>  
+              <ion-item lines="full">
+                <ion-input type="text" pattern="[a-z0-9]{1,10}" name="model" placeholder="exemple: s28" ngModel #model="ngModel" required></ion-input>
+              </ion-item>
+              <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="model.valid || model.pristine" class="alert alert-danger">
+                Respecter le Format svp : exemple xmax / s28
+              </div>
+            </div>
+
+
+
+            <h6 class="titleT"><ion-icon name="time-sharp"></ion-icon> Quant l'avez-vous Trouvé ?</h6>
+            <ion-subtitle style="color: #17BB89;">Sélectionnez une Date <span style="color: red; font-size: 15px;">*</span></ion-subtitle>  
+            <ion-item lines="full">
+              <!-- <ion-input type="date" name="datef" ngModel required></ion-input> -->
+              <input type="date" name="datef" ngModel id="" style="border: none; width: 100%;"  required>
+            </ion-item>
+    
+
+            <h6 class="titleT"> <ion-icon name="location"></ion-icon> Où l'avez-vous Trouvé ?</h6>
+            <ion-subtitle style="color: #17BB89;">Sélectionnez un lieu <span style="color: red; font-size: 15px;">*</span></ion-subtitle>
+            <ion-item >
+              <ion-label>Region</ion-label>
+              <ion-select name="lieu" ngModel interface="popover" class="custom-options" required>
+                <ion-select-option value="Bamako">Bamako</ion-select-option>
+                <ion-select-option value="Kayes">Kayes</ion-select-option>
+                <ion-select-option value="Koulikoro">Koulikoro</ion-select-option>
+                <ion-select-option value="Sikasso">Sikasso</ion-select-option>
+                <ion-select-option value="Ménaka">Ménaka</ion-select-option>
+                <ion-select-option value="Taoudénit">Taoudénit</ion-select-option>
+                <ion-select-option value="Kidal">Kidal</ion-select-option>
+                <ion-select-option value="Gao">Gao</ion-select-option>
+                <ion-select-option value="Tombouctou">Tombouctou</ion-select-option>
+                <ion-select-option value="Ségou">Ségou</ion-select-option>
+                <ion-select-option value="Mopti">Mopti</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+
+            <h6 class="titleT"> <ion-icon name="color-palette-sharp"></ion-icon> Quelle Couleur est l'objet ?</h6>
+            <ion-subtitle style="color: #17BB89;">Sélectionnez une Couleur <span style="color: red; font-size: 15px;">*</span></ion-subtitle>
+            <ion-item>
+              <ion-label>Couleur</ion-label>
+              <ion-select name="couleur" interface="popover" ngModel class="custom-options" required>
+                <ion-select-option value="Argent">Argent</ion-select-option>
+                <ion-select-option value="Blanc">Blanc</ion-select-option>
+                <ion-select-option value="Chocolat">Chocolat</ion-select-option>
+                <ion-select-option value="Fer">Fer</ion-select-option>
+                <ion-select-option value="Gris">Gris</ion-select-option>
+                <ion-select-option value="Jaune">Jaune</ion-select-option>
+                <ion-select-option value="Marron">Marron</ion-select-option>
+                <ion-select-option value="Noir">Noir</ion-select-option>
+                <ion-select-option value="Orange">Orange</ion-select-option>
+                <ion-select-option value="Rouge">Rouge</ion-select-option>
+                <ion-select-option value="Vert">Vert</ion-select-option>
+                <ion-select-option value="Turquoise">Turquoise</ion-select-option>
+                <ion-select-option value="Rose">Rose</ion-select-option>
+                <ion-select-option value="Autre">Autre</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+
+            <div *ngIf="document == false">
+              <h6 class="titleT"><ion-icon name="time-sharp"></ion-icon> Quelle l'annee de delivrance ?</h6>
+              <ion-subtitle style="color: #17BB89;">Donner l'annee de delivrance/obtention <span style="color: red; font-size: 15px;">*</span></ion-subtitle> 
+              <ion-item lines="full">
+                <ion-input type="text" pattern="[1-2][0-9]{3}" placeholder=" exemple 2022" name="anneeObttion" #anneeObttion="ngModel" ngModel required></ion-input>
+              </ion-item>
+              <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="anneeObttion.valid || anneeObttion.pristine" class="alert alert-danger">
+                Respecter le Format svp : exemple 2022
+              </div>
+            </div>
+
+            <h6 class="titleT"> <ion-icon name="reader-sharp"></ion-icon> Description/Contenu</h6>
+            <ion-subtitle style="color: #17BB89;">Celà nous aidera pour authentification </ion-subtitle>
+            <ion-item>
+              <ion-label position="floating">Description</ion-label>
+              <ion-textarea name="contenu" ngModel ></ion-textarea>
+            </ion-item>
+            <ion-row>
+              <ion-col>
+                <ion-button type="submit" size="small" color="success" expand="block" [disabled]="formTrouve.form.invalid">PUBLIER</ion-button>
+              </ion-col>
+            </ion-row>
+          </form>      
+     
+       </ion-list>
+      </div>
+
+      
+</ion-content>

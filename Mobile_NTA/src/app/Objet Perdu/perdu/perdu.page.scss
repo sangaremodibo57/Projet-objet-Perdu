@@ -7,7 +7,13 @@ ion-toolbar{
         font-weight: 900;
     }
     ion-buttons{
+        ion-menu-button{
+            --color: #fff;
+            font-weight: bold;
+            font-size: 50px;
+          }
         ion-button{
+            
            ion-icon{
                font-size: 25px;
            }
@@ -173,7 +179,7 @@ ion-toolbar{
               padding: 0px;
               margin: 0px;
               font-family: Georgia, 'Times New Roman', Times, serif;
-              font-size: 12px;
+              font-size: 9px;
               ion-item{
                   --background: none;
                   color: #17BB89;
@@ -181,7 +187,7 @@ ion-toolbar{
                   padding: 0px;
                   margin: 0px 0px 5px 0px;
                   font-family: Georgia, 'Times New Roman', Times, serif;
-                  font-size: 14px;
+                  font-size: 9px;
                   ion-icon{
                       margin: 0px;
                   }

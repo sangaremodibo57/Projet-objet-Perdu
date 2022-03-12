@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { HomeServiceService } from './home Service/home-service.service';
 import { NgxPaginationModule } from 'ngx-pagination'; 
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -212,6 +213,7 @@ private recemmentPerdu5 : any = [];
   indice: boolean = false;
   myNotification: any;
   nombre: any;
+  p : number = 1;
 
   constructor(
     private service : HomeServiceService,
@@ -235,8 +237,8 @@ private recemmentPerdu5 : any = [];
         console.log(this.test);
       }
 
-
-      //notification
+      if (this.userConnecte !==null) {
+        //notification
       this.service.listeNoticationByUser(this.userConnecte.id).subscribe(data=>{
         console.log('okkkkkkkkkkkkkkkk',data);
         this.myNotification = data;
@@ -247,29 +249,47 @@ private recemmentPerdu5 : any = [];
         }
       })
       
-      
+      }  
   }
 
   showAlertA() {
 
-    this.alertController.create({
-      message: 'Veillez vous connecter pour pouvoir faire une annonce',
-    }).then(res => {
-
-      res.present();
-      setTimeout(() => res.dismiss(), 3000);
-    });
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 4000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'error',
+      title: 'Veuillez vous connecter pour pouvoir faire une annonce'
+    })
 
   }
   showAlertR() {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 4000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'error',
+      title: 'Veillez vous connecter pour pouvoir Reclamer un Objet'
+    })
 
-    this.alertController.create({
-      message: 'Veillez vous connecter pour pouvoir Reclamer un Objet',
-    }).then(res => {
-
-      res.present();
-      setTimeout(() => res.dismiss(), 3000);
-    });
 
   }
   logout(){

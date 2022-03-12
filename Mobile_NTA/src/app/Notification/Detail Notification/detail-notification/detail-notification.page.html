@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button mode="md" [routerLink]="['/home']"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Notification
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" >
+  <ion-item>
+    <ion-thumbnail slot="start">
+      <img  src="assets/Accueil/logoUserAccueil.png">
+    </ion-thumbnail>
+    <ion-label>
+      <h3>{{myNotification}}</h3>
+    </ion-label>
+  </ion-item>
+  <ion-card>
+    <ion-card-header>
+      <p>Message : </p>
+     
+    </ion-card-header>
+    <ion-card-content>
+      <img src="">
+      <ion-item lines="none">
+        <ion-icon  name="bag" slot="start"></ion-icon>
+        <ion-label >Nom </ion-label>
+        <ion-icon name="stats-chart-sharp" slot="end"></ion-icon>
+        <ion-label slot="start" slot="end"> Statut: </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-icon  name="time-sharp" slot="start"></ion-icon>
+        <ion-label >Date :</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-item style="margin: 0 auto;">
+    <ion-label [routerLink]="['/home']" style="text-align: center; font-size: 25px;" slot="start">
+      <ion-icon name="arrow-back-circle-sharp"></ion-icon>
+      <p>retourne</p>
+    </ion-label>
+    <ion-label (click)="desactiveEtat()" style="text-align: center; font-size: 25px;" slot="end">
+    <ion-icon button  color="danger" name="trash-sharp"></ion-icon>
+      <p>Supprimer</p>
+    </ion-label>
+  </ion-item>
+</ion-content>

@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'splash',
     pathMatch: 'full'
   },
   {
@@ -42,6 +42,30 @@ const routes: Routes = [
   {
     path: 'info',
     loadChildren: () => import('./Info Utile/info/info.module').then( m => m.InfoPageModule)
+  },
+  {
+    path: 'detail-user',
+    loadChildren: () => import('./UserProfil/detail-user/detail-user.module').then( m => m.DetailUserPageModule)
+  },
+  {
+    path: 'modifier-profil',
+    loadChildren: () => import('./UserProfil/modifier-profil/modifier-profil.module').then( m => m.ModifierProfilPageModule)
+  },
+  {
+    path: 'update-publication',
+    loadChildren: () => import('./UserProfil/update-publication/update-publication.module').then( m => m.UpdatePublicationPageModule)
+  },
+  {
+    path: 'ajout-annonce',
+    loadChildren: () => import('./Annonce/ajout-annonce/ajout-annonce.module').then( m => m.AjoutAnnoncePageModule)
+  },
+  {
+    path: 'detail-annonce',
+    loadChildren: () => import('./Annonce/detail-annonce/detail-annonce.module').then( m => m.DetailAnnoncePageModule)
+  },
+  {
+    path: 'detail-notification/:id',
+    loadChildren: () => import('./Notification/Detail Notification/detail-notification/detail-notification.module').then( m => m.DetailNotificationPageModule)
   },
 ];
 

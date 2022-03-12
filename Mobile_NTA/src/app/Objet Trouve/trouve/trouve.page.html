@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Accueil</ion-title>
+    <ion-title>Objet Trouvé</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -52,12 +52,12 @@
                 <img src="assets/Accueil/trouv.jpg" alt="" srcset="" style="width: 50px;height: 70px;">
               </ion-thumbnail>
               <a href="ajout-annonce" *ngIf="test === false">Publier Une Annonce</a>
-              <a href="" *ngIf="test === true" (click)="showAlertA()" >Publier Une Annonce</a>
+              <a *ngIf="test === true" (click)="showAlertA()" >Publier Une Annonce</a>
             </ion-item>
         </div>
       </div>
     </div>
-    <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+    <ion-searchbar placeholder="Rechercher..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
    <!-- content Objet Récemment Trouve -->
    <div class="cadreObjetPerdu">
     <div class="titleGategorie">
@@ -67,7 +67,7 @@
       </ion-item>
     </div>
     
-    <ion-card *ngFor="let listeT of listeAnnoncesTrouve  | filter:filterTerm ">
+    <ion-card *ngFor="let listeT of listeAnnoncesTrouve| paginate: { itemsPerPage: 20, currentPage: cp }  | filter:filterTerm ">
       <ion-card-header>
       <img src="{{listeT.photo}}">
       </ion-card-header>
@@ -86,6 +86,9 @@
         </ion-item>
       </ion-card-content>
     </ion-card>
+    <div class="paginationContent">
+      <pagination-controls nextLabel="Suiv" previousLabel="Pre" (pageChange)="cp = $event"></pagination-controls>
+    </div>
     <!-- Fin -->
     <div class="paginationContent">
     </div>

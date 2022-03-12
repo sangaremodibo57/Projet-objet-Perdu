@@ -13,7 +13,10 @@
         </ion-item>
       </div>
       <div class="action-button">
-        <ion-button>
+        <ion-button  *ngIf="test === false">
+          <ion-icon slot="start" name="add"></ion-icon> <a href="ajout-annonce" style="text-decoration: none;color: white;">Publier Annonce</a> 
+        </ion-button>
+        <ion-button (click)="msgPublication()" *ngIf="test === true">
           <ion-icon slot="start" name="add"></ion-icon> Publier Annonce
         </ion-button>
       </div>
@@ -32,10 +35,6 @@
               <ion-icon slot="start" name="bag-add"></ion-icon>
               <ion-label>Objet Trouvé</ion-label>
             </ion-item>
-            <ion-item  [routerLink]="['/objet-perdu']" lines="none" detail="false" routerLinkActive="selected">
-              <ion-icon slot="start" name="search-sharp"></ion-icon>
-              <ion-label>Récherche Rapide</ion-label>
-            </ion-item>
             <ion-item  [routerLink]="['/info']" lines="none" detail="false" routerLinkActive="selected">
               <ion-icon slot="start" name="information-circle"></ion-icon>
               <ion-label>Info Utile</ion-label>
@@ -43,7 +42,19 @@
           </ion-menu-toggle>
         </ion-list>
       </ion-content>
-      
+      <ion-footer style="padding: 10px;">
+        <ion-button (click)="logout()" *ngIf="test === false" expand="block" color="dark">
+          <ion-icon slot="start" name="exit"></ion-icon>
+          <a href="login"style="text-decoration: none;color: white;">DECONNEXION</a> 
+        </ion-button>
+        <ion-button  *ngIf="test === true" expand="block" color="dark">
+          <ion-icon slot="start" name="log-in"></ion-icon>
+          <a href="login" style="text-decoration: none;color: white;"> CONNEXION</a>
+        </ion-button>
+        <div  *ngIf="test === true" style="text-align: center;margin-top: 5px;">
+          <span style="font-size: 10px; text-align: center;">Vous n'avez pas de compte? <a hrf="register" style=" font-size: 9px;color: #17BB89;font-weight: bold;" href="register"> S'INSCRIPTION</a> </span>
+        </div>
+      </ion-footer>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>

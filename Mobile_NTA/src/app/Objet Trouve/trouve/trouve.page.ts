@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { NotificationServiceService } from 'src/app/Notification/Service/notification-service.service';
 import { TrouveServiceService } from '../Service/trouve-service.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-trouve',
   templateUrl: './trouve.page.html',
@@ -132,7 +132,8 @@ cp: number = 1;
       console.log(this.test);
     }
 
-     //notification
+    if (this.userConnecte!==null) {
+       //notification
      this.srvc.listeNoticationByUser(this.userConnecte.id).subscribe(data=>{
       console.log('okkkkkkkkkkkkkkkk',data);
       this.myNotification = data;
@@ -142,6 +143,8 @@ cp: number = 1;
         this.indice = true
       }
     })
+    }
+    
 
 
   }
@@ -152,27 +155,44 @@ cp: number = 1;
   }
   showAlertA() {
 
-    this.alertController.create({
-      message: 'Veillez vous connecter pour pouvoir faire une annonce',
-    }).then(res => {
-
-      res.present();
-      setTimeout(() => res.dismiss(), 2000);
-    });
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 4000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'error',
+      title: 'Veuillez vous connecter pour pouvoir faire une annonce'
+    })
 
   }
   showAlertR() {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 4000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'error',
+      title: 'Veillez vous connecter pour pouvoir Reclamer un Objet'
+    })
 
-    this.alertController.create({
-      message: 'Veillez vous connecter pour pouvoir Reclamer un Objet',
-    }).then(res => {
-
-      res.present();
-      setTimeout(()=>res.dismiss(),2000);
-    });
 
   }
-
   getAnnonce(){
     return this.service.getAllAnnoncePerdu().subscribe((data:any)=>{
       this.listeAnnoncesTrouve= data;

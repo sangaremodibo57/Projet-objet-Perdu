@@ -1,6 +1,8 @@
 ion-menu ion-content {
     --background: var(--ion-item-background, var(--ion-background-color, #fff));
   }
+
+  
   
   ion-menu.md ion-content {
     --padding-start: 8px;
@@ -62,14 +64,7 @@ ion-menu ion-content {
     --min-height: 50px;
   }
   
-  ion-menu.ios ion-item.selected ion-icon {
-    // color:#d8360e;
-  }
-  
-  ion-menu.ios ion-item ion-icon {
-    font-size: 24px;
-    // color: #d8360e;
-  }
+ 
   
   ion-menu.ios ion-list#labels-list ion-list-header {
     margin-bottom: 8px;
@@ -95,22 +90,22 @@ ion-menu ion-content {
     background: #17BB89;
     width: 350px;
     height: 200px;
-    box-shadow: 1px 1px 1px black;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.308);
     transform: rotate(-18deg);
     border-radius: 10px 10px 10px 50px;
     margin-left: -18px;
     margin-top: -60px;
-    margin-bottom: 70px;
+    margin-bottom: 50px;
     
   }
   .sideMenuLogo{
     position: absolute;
-    top: 30px;
-    right: 15px;
+    top: 20px;
+   
     display: flex;
     
     ion-item{
-      --background: none;
+      --background:none;
       ion-thumbnail{
        
         height: 100px;
@@ -121,8 +116,8 @@ ion-menu ion-content {
       ion-label{
         p{
           color: white;
-          font-size: 13px;
-          font-weight: bold;
+          font-size: 15px;
+          font-weight: 400;
         }
       
       
@@ -132,11 +127,12 @@ ion-menu ion-content {
   .action-button{
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     ion-button{
       text-transform: capitalize;
       font-weight: 300;
       --background: #17BB89;
+      --box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.479);
       --border-radius: 7px;
       --background-hover:none;
     }

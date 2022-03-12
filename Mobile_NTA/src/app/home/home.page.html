@@ -16,7 +16,7 @@
     </ion-fab-button>
     <ion-fab-list>
       <ion-fab-button size="small" color="light">
-        <ion-icon [routerLink]="['/detail-profil']"  name="person-sharp"></ion-icon>
+        <ion-icon [routerLink]="['/detail-user']"  name="person-sharp"></ion-icon>
       </ion-fab-button>
       <ion-fab-button color="light">
         <ion-badge  *ngIf="indice == true"><span>{{nombre}}</span></ion-badge>
@@ -47,15 +47,15 @@
       <button class="btnPublier"> <a href="ajout-annonce" style="text-decoration: none;color: black; ">Publier une Annonce Ici</a></button>
     </div>
     <div class="content" *ngIf="test === true">
-      <button (click)="showAlertA()" class="btnPublier">Publier une Annonce Ici</button>
+      <button (click)="showAlertA()" class="btnPublier">Publier Annonce</button>
     </div>
   </div>
   <!-- Fin Publier une Annonce -->
 
   <!-- Content Button Récemment Perdu Publier -->
   <ion-item class="btnRePublier" lines="none" fill="outline">
-    <ion-label style="font-size: 13px; color: #fff;">Récemment Perdu</ion-label>
-    <ion-button [routerLink]="['/perdu']" style="font-size: 9px;" color="dark" slot="end">
+    <ion-label style="font-size: 14px; font-weight: bold; color: #fff;">Récemment Perdu</ion-label>
+    <ion-button [routerLink]="['/perdu']" style="font-size: 10px;" color="dark" slot="end">
       VOIR Plus
     </ion-button>
   </ion-item>
@@ -98,13 +98,13 @@
     
 
     <ion-item class="Gplus" lines="none">
-      <ion-label>Récemment Trouvé</ion-label>
+      <ion-label style="font-size: 13px; font-weight: bold; color: #fff;">Récemment Trouvé</ion-label>
       <ion-button [routerLink]="['/trouve']" style="font-size: 9px;" color="dark" slot="end">
         VOIR Plus
       </ion-button>
     </ion-item>
    
-    <ion-card *ngFor="let listeT of recemmentTrouve " >
+    <ion-card *ngFor="let listeT of recemmentTrouve  | paginate: { itemsPerPage: 20, currentPage: p }" >
       <ion-card-header>
       <img src="{{listeT.photo}}">
       </ion-card-header>
@@ -127,7 +127,7 @@
     <!-- Fin -->
 
 
-    
+    <pagination-controls nextLabel="Suiv" previousLabel="Pre" (pageChange)="p = $event"></pagination-controls>
   </div>
   <!-- Fin -->
 

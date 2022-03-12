@@ -4,7 +4,7 @@ import { AlertController } from '@ionic/angular';
 import { NotificationServiceService } from 'src/app/Notification/Service/notification-service.service';
 import { PerduServiceService } from '../Service/perdu-service.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-perdu',
   templateUrl: './perdu.page.html',
@@ -136,8 +136,8 @@ export class PerduPage implements OnInit {
         console.log(this.test);
       }
 
-
-      //notification
+      if (this.userConnecte !== null) {
+         //notification
       this.srvc.listeNoticationByUser(this.userConnecte.id).subscribe(data=>{
         console.log('okkkkkkkkkkkkkkkk',data);
         this.myNotification = data;
@@ -147,29 +147,49 @@ export class PerduPage implements OnInit {
           this.indice = true
         }
       })
+      }
+     
       
   }
 
   showAlertA() {
 
-    this.alertController.create({
-      message: 'Veillez vous connecter pour pouvoir faire une annonce',
-    }).then(res => {
-
-      res.present();
-
-    });
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 4000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'error',
+      title: 'Veuillez vous connecter pour pouvoir faire une annonce'
+    })
 
   }
   showAlertR() {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 4000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'error',
+      title: 'Veillez vous connecter pour pouvoir Reclamer un Objet'
+    })
 
-    this.alertController.create({
-      message: 'Veillez vous connecter pour pouvoir Reclamer un Objet',
-    }).then(res => {
-
-      res.present();
-
-    });
 
   }
 

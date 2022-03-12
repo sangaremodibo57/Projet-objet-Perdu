@@ -1,9 +1,24 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons style="font-size: 20px;font-weight: bold;" slot="start">
+      <ion-back-button color="light" mode="md"  defaultHref="home"></ion-back-button>
+    </ion-buttons>
     <ion-title>notification</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+ 
+  <ion-item style="margin: 5px 0px;padding: 0px;" *ngFor="let liste of myNotification">
+    <ion-thumbnail slot="start">
+      <img  src="assets/Accueil/logoUserAccueil.png">
+    </ion-thumbnail>
+    <ion-label  [routerLink]="['/detail-notification', liste.id]">
+      <h3>{{liste.admin.nom_complet}}</h3>
+      <p>{{liste.description}}</p>
+    </ion-label>
+    <ion-icon (click)="presentActionSheet()" name="ellipsis-horizontal-circle-sharp"></ion-icon>
+  </ion-item>
+  
+  
 </ion-content>
