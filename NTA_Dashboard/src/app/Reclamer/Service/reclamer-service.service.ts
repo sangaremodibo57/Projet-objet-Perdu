@@ -33,7 +33,7 @@ url= environment.URL;
       return this.http.get(this.url+'/oneannonce/'+id);
     }
 
-   // liste des Reclamation par etat active (Reclamation)
+   // liste des Reclamation par etat active et statut non valide (Reclamation)
    getAllReclameActive(){
     return this.http.get(this.url+"/listereclamationactivenovalide");
   }
@@ -62,5 +62,9 @@ url= environment.URL;
    //ajout notification
    addNotification(data:any){
     return this.http.post(this.url+'/addnotification', data)
+  }
+  // liste des Reclamation par etat active et statut non valide (Reclamation)
+  getAllreclamationdesactivevalide(){
+    return this.http.get(this.url+"/listereclamationdesactive");
   }
 }

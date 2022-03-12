@@ -46,6 +46,12 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { AjoutCategorieComponent } from './Categorie_Objet/Categorie/ajout-categorie/ajout-categorie.component';
 import { ListCategorieComponent } from './Categorie_Objet/Categorie/list-categorie/list-categorie.component';
 import { CorbeilleComponent } from './CorbPOP/corbeille/corbeille.component';
+import { ListeAdminInactiveComponent } from './CorbAdmin/liste-admin-inactive/liste-admin-inactive.component';
+import { ListeUserInactiveComponent } from './CorbUser/liste-user-inactive/liste-user-inactive.component';
+import {TabViewModule} from 'primeng/tabview';
+import {PanelModule} from 'primeng/panel';
+import { RouterModule } from '@angular/router';
+import { HeadercorbeilleComponent } from './headercorbeille/headercorbeille.component';
 
 
 @NgModule({
@@ -71,8 +77,9 @@ import { CorbeilleComponent } from './CorbPOP/corbeille/corbeille.component';
     AjoutCategorieComponent,
     ListCategorieComponent,
     CorbeilleComponent,
-   
-    
+    ListeAdminInactiveComponent,
+    ListeUserInactiveComponent,
+    HeadercorbeilleComponent
    
   ],
   imports: [
@@ -90,12 +97,15 @@ import { CorbeilleComponent } from './CorbPOP/corbeille/corbeille.component';
     MatCardModule,
     MatButtonModule,
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     Ng2SearchPipeModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    TabViewModule,
+    PanelModule,
     AngularConfirmModalModule.forRoot({
       //optional global config
    

@@ -12,7 +12,7 @@ url=environment.URL
     ) { }
 
   listeAdmin(){
-    return this.http.get(this.url+'/getalladmin');
+    return this.http.get(this.url+'/listeadminactive');
   }
   ajoutAdmin(data:any){
     return this.http.post(this.url+'/saveadmin', data);
@@ -21,7 +21,7 @@ url=environment.URL
     return this.http.put(this.url+`/updateadmin/${id}`, data);
   }
   deleteAdmin(id:any){
-    return this.http.delete(this.url+`/deleteadmin/${id}`);
+    return this.http.delete(this.url+`/changeetatadmindesactive/${id}`);
   }
   detailAdmin(id:any){
     return this.http.get(this.url+'/getadminByid/'+id);

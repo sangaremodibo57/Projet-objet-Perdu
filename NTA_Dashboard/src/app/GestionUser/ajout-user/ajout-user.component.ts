@@ -19,6 +19,7 @@ newuser = new User();
     tel:any;
     password: any;
 
+
   constructor(
     private Userservice:UserServiceService,
     private route:Router
@@ -33,6 +34,9 @@ newuser = new User();
     this.newuser.genre = form.value['genre'];
     this.newuser.password = form.value['login']+123;
     this.newuser.tel = form.value['tel'];
+    this.newuser.etat = form.value['etat'];
+    console.log(this.newuser);
+    
     return this.Userservice.addUser(this.newuser).subscribe((data)=>{
       console.log(data);
       this.route.navigateByUrl('listeuser');

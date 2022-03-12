@@ -13,7 +13,7 @@ url=environment.URL;
   ) { }
 
   listeUser(){
-    return this.httpclient.get(this.url+'/alluser');
+    return this.httpclient.get(this.url+'/listeUserActive');
   }
   addUser(data:any){
     return this.httpclient.post(this.url+'/saveuser', data);
@@ -22,7 +22,7 @@ url=environment.URL;
     return this.httpclient.put(this.url+'/updateuser/'+{id}, data);
   }
   deleteUser(id:any){
-    return this.httpclient.delete(this.url+`/deleteuser/${id}`);
+    return this.httpclient.delete(this.url+`/modifierdesactiveUser/${id}`);
   }
   detailUser(id:any){
     return this.httpclient.get(this.url+`/userByid/${id}`)

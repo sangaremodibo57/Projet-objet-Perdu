@@ -6,4 +6,5 @@ export class Administrateur{
     genre:any;
     tel:any;
     password: any;
+    etat:any;
 }

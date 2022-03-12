@@ -18,6 +18,9 @@ import { ReclamerComponent } from './Reclamer/reclamer/reclamer.component';
 import { AjoutCategorieComponent } from './Categorie_Objet/Categorie/ajout-categorie/ajout-categorie.component';
 import { ListCategorieComponent } from './Categorie_Objet/Categorie/list-categorie/list-categorie.component';
 import { CorbeilleComponent } from './CorbPOP/corbeille/corbeille.component';
+import { ListeAdminInactiveComponent } from './CorbAdmin/liste-admin-inactive/liste-admin-inactive.component';
+import { ListeUserInactiveComponent } from './CorbUser/liste-user-inactive/liste-user-inactive.component';
+
 
 
 const routes: Routes = [
@@ -51,8 +54,12 @@ const routes: Routes = [
   {path:'listCategorie', component:ListCategorieComponent},
 
 
-   // Gestion Corbeille
+   // Gestion Corbeilles
    {path:'corbeille', component:CorbeilleComponent},
+   {path:'corbeilleadmin', component:ListeAdminInactiveComponent},
+   {path:'corbeilleuser', component:ListeUserInactiveComponent},
+   
+
 ];
 
 @NgModule({

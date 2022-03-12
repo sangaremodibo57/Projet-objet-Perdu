@@ -6,4 +6,5 @@ export class User{
     genre:any;
     tel:any;
     password: any;
+    etat:any;
 }
