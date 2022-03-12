@@ -1,0 +1,90 @@
+<ion-content>
+  <ion-card class="ion-no-margin">
+    <div class="logo">
+      <ion-img src="assets/splash/NTAB.png"></ion-img>
+    </div>
+    <ion-card-header>
+      <ion-card-title>
+        <h4><b>INSCRIPTION</b></h4>  
+      </ion-card-title>
+      <ion-card-subtitle>
+        Créez votre compte en remplissant 
+                le formulaire
+      </ion-card-subtitle>
+    </ion-card-header>
+  <ion-card-content class="ion-no-margin">
+  <form  #userForm="ngForm" (ngSubmit)="registreForm(userForm)" novalidate>
+    <div class="label-float" >
+      <input type="text" name="nom_complet" pattern="([a-zA-Z\s]){2,20}([a-zA-ZÀ-ÿ])" ngModel #nom_complet="ngModel" autocomplete="of" placeholder=" "  required/>
+      <label>Prenom Nom <span style="color: red;">*</span></label>
+    </div>
+    <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="nom_complet.valid || nom_complet.pristine" class="alert alert-danger">
+      Respecter le Format(min:3 Carractère) : Modibo Sangare
+    </div>
+    <div class="label-float" >
+      <ion-label>Genre</ion-label>
+      <ion-select name="genre" interface="popover" style="text-align: right;" #genre="ngModel" ngModel >
+        <ion-select-option value="homme">homme</ion-select-option>
+        <ion-select-option value="femme">femme</ion-select-option>
+      </ion-select>
+    </div>
+    <div class="label-float" >
+      <input type="text" name="tel" pattern="[5-9][0-9]{7}" ngModel #tel="ngModel" placeholder=" " autocomplete="of" required/>
+      <label>Téléphone(Mali) <span style="color: red;">*</span> </label>
+    </div>
+    <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="tel.valid || tel.pristine" class="alert alert-danger">
+      Respecter le Format des operateurs du Mali: 77049270
+    </div>
+    <div class="label-float" >
+      <ion-label>Profession</ion-label>
+      <ion-select name="profession" interface="popover" class="custom-options" style="text-align: right;" #profession="ngModel"  ngModel >
+        <ion-select-option value="Architecte">Architecte</ion-select-option>
+        <ion-select-option value="Artiste">Artiste</ion-select-option>
+        <ion-select-option value="Avocat">Avocat</ion-select-option>
+        <ion-select-option value="Boulanger">Boulanger</ion-select-option>
+        <ion-select-option value="Boucher">Boucher</ion-select-option>
+        <ion-select-option value="Caissier">Caissier</ion-select-option>
+        <ion-select-option value="Chauffeur">Chauffeur</ion-select-option>
+        <ion-select-option value="Comptable">Comptable</ion-select-option>
+        <ion-select-option value="Commercant">Commercant</ion-select-option>
+        <ion-select-option value="Enseignant">Enseignant/Formateur</ion-select-option>
+        <ion-select-option value="Informaticien">Informaticien</ion-select-option>
+        <ion-select-option value="Ingenieur">Ingenieur</ion-select-option>
+        <ion-select-option value="Journaliste">Journaliste</ion-select-option>
+        <ion-select-option value="Medecin">Medecin</ion-select-option>
+        <ion-select-option value="Ouvrier">Ouvrier</ion-select-option>
+        <ion-select-option value="Autre">Autre</ion-select-option>
+      </ion-select>
+    </div>
+    <div class="label-float" >
+      <input type="text" name="email"  pattern="([A-Za-z0-9._%\+\-]+@[a-z]{3,8}.[a-z]{2,3})$" ngModel #email="ngModel" placeholder=" " autocomplete="off" required/>
+      <label>Email <span style="color: red;">*</span> </label>
+    </div>
+    <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="email.valid || email.pristine" class="alert alert-danger">
+      Respecter le Format des Email : modibo57@gmail.com
+    </div>
+    <div class="label-float" >
+      <input type="password" name="password"  pattern=".{6,16}" ngModel #password="ngModel" placeholder=" " autocomplete="off" required/>
+      <label>Mot de passe <span style="color: red;">*</span> </label>
+    </div>
+    <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="password.valid || password.pristine" class="alert alert-danger">
+      Format: Au moins 6 caractères et au plus 16 caractères
+    </div>
+    <div class="label-float" >
+      <input type="password" name="passwordC"   pattern=".{6,16}" ngModel #passwordC="ngModel" placeholder=" " autocomplete="off" required/>
+      <label>Confirmer Mot de passe <span style="color: red;">*</span> </label>
+    </div>
+    <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="password.value === passwordC.value || passwordC.pristine" class="alert alert-danger" >
+      Les mot de passe ne corresponde pas
+    </div>
+    <div style="margin-top: 20px;">
+      <ion-button type="submit" size="small" color="success" expand="block" [disabled]="userForm.form.invalid">INSCRIRE</ion-button>
+    </div>
+    <div  style="margin-top: 20px;">
+      <ion-button  [routerLink]="['/login']" size="small" color="danger" expand="block">ANNULER</ion-button>
+    </div>
+  </form>
+  </ion-card-content>
+</ion-card>
+
+</ion-content>
