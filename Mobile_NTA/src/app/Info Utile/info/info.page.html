@@ -1,0 +1,108 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Accueil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-row class="cadreSlide">
+    <ion-slides  [options]="slideOpts" >
+   
+      <ion-slide> 
+        <ion-card>
+          <ion-card-header>
+          <img src="assets/guide/Pa.jpg">
+          </ion-card-header>
+          <ion-card-content>
+            Toute personne ayant perdu ses papiers est admis à en faire la déclarations immédiatement afin d’éviter la fraude et/ou l’usage de ceux-ci par un tiers. 
+          </ion-card-content>
+        </ion-card>    
+      </ion-slide>
+      <ion-slide> 
+        <ion-card>
+          <ion-card-header>
+          <img src="assets/guide/PO.jpg">
+          </ion-card-header>
+          <ion-card-content>
+            Qui reçoit la déclaration ?
+            L’autorité compétente notamment le préfet, le commissariat de police, la gendarmerie à la section "Voie publique" ou le chef de poste de garde le jour de la déclaration dans le registre de la main courante.
+          </ion-card-content>
+        </ion-card>    
+      </ion-slide>
+      <ion-slide> 
+        <ion-card>
+          <ion-card-header>
+          <img src="assets/guide/P.jpg">
+          </ion-card-header>
+          <ion-card-content>
+            NB : La déclaration de certains documents tels que le titre foncier ne débouche pas sur la livraison à l'usager d’un certificat de perte.
+          </ion-card-content>
+        </ion-card>    
+      </ion-slide>
+      <ion-slide> 
+        <ion-card>
+          <ion-card-header>
+          <img src="assets/guide/D.jpg">
+          </ion-card-header>
+          <ion-card-content>
+            DÉLAI D'OBTENTION :
+            Immédiat 
+          </ion-card-content>
+        </ion-card>    
+      </ion-slide>
+      <ion-slide> 
+        <ion-card>
+          <ion-card-header>
+          <img src="assets/guide/G.jpg">
+          </ion-card-header>
+          <ion-card-content>
+            SERVICES À CONTACTER :
+              Préfecture, gendarmerie ou commissariat
+          </ion-card-content>
+        </ion-card>    
+      </ion-slide>
+      
+    </ion-slides>
+  </ion-row>
+  <div class="cardStat">
+    <ion-item lines="none" class="statitle">
+      <ion-icon  name="bar-chart"></ion-icon>
+      <ion-label><h4>Analyse Statistique</h4></ion-label>
+    </ion-item>
+      <ion-list>
+        <div class="stacontentP">
+          <ion-item>
+            <ion-icon slot="start" name="bag-add"></ion-icon>
+            <ion-label>Objet Trouvé</ion-label>
+            <ion-note slot="end" color="success">{{nombreObjetTrouve}}</ion-note>
+          </ion-item>
+          <ion-progress-bar color="success" value={{b}} buffer="0.0"></ion-progress-bar>  
+        </div>
+        <div  class="stacontentT">
+          <ion-item>
+            <ion-icon slot="start" name="bag-remove"></ion-icon>
+            <ion-label>Objet Perdu</ion-label>
+            <ion-note slot="end" color="danger">{{nombreObjetPerdu}}</ion-note>
+          </ion-item>
+          <ion-progress-bar color="danger" value={{v}} buffer="0.0"></ion-progress-bar>  
+        </div>
+      </ion-list>
+    </div>
+ 
+</ion-content>
+<ion-footer>
+  <div class="footer">
+    <ion-item lines=none>
+      <ion-avatar slot="start">
+        <img src="assets/NTAB.png" style="height: 50px;">
+      </ion-avatar>
+      <ion-label class="ion-text-wrap">
+       Tel : 77 04 92 70 <br> Email : sangaremodibo001@gmail.com <br> Site Wew : <a style="color: black;" href="http://www.NTA.com">www.NTA.com</a>
+      </ion-label>
+    </ion-item> 
+  </div>
+</ion-footer>

@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
   <ion-fab *ngIf="test === false" horizontal="end" vertical="top" slot="fixed" style="margin-top: -30px;" edge>
     
     <ion-fab-button title="Profile" size="small" color="light">
@@ -40,71 +40,34 @@
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
-  <!-- Fin -->
-  <!-- Content Publier Une Annonce -->
-  <div class="cadreAnnonce">
-    <div class="content" *ngIf="test === false">
-      <button class="btnPublier"> <a href="ajout-annonce" style="text-decoration: none;color: black; ">Publier une Annonce Ici</a></button>
+    <div class="CadreAnnoce">
+      <div class="cadreAnnoceBtn">
+        <div class="box">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+            <ion-item lines="none">
+              <ion-thumbnail slot="start">
+                <img src="assets/Accueil/trouv.jpg" alt="" srcset="" style="width: 50px;height: 70px;">
+              </ion-thumbnail>
+              <a href="ajout-annonce" *ngIf="test === false">Publier Une Annonce</a>
+              <a href="" *ngIf="test === true" (click)="showAlertA()" >Publier Une Annonce</a>
+            </ion-item>
+        </div>
+      </div>
     </div>
-    <div class="content" *ngIf="test === true">
-      <button (click)="showAlertA()" class="btnPublier">Publier une Annonce Ici</button>
-    </div>
-  </div>
-  <!-- Fin Publier une Annonce -->
-
-  <!-- Content Button Récemment Perdu Publier -->
-  <ion-item class="btnRePublier" lines="none" fill="outline">
-    <ion-label style="font-size: 13px; color: #fff;">Récemment Perdu</ion-label>
-    <ion-button [routerLink]="['/perdu']" style="font-size: 9px;" color="dark" slot="end">
-      VOIR Plus
-    </ion-button>
-  </ion-item>
-  <!-- Fin  Button Récemment Publier -->
-  <ion-slides  [options]="slideOptsA" >
-   
-    <ion-slide  *ngFor="let listeP of recemmentPerdu5"> 
-      <ion-card>
-        <ion-card-header>
-        <img src="{{listeP?.photo}}">
-        </ion-card-header>
-        <ion-card-content>
-          <ion-item lines="none">
-            <ion-icon  name="bag" slot="start"></ion-icon>
-            <ion-label >Nom : {{listeP?.nom}}</ion-label>
-          </ion-item>
-          <ion-item lines="none">
-            <ion-icon name="stats-chart-sharp" slot="start"></ion-icon>
-            <ion-label slot="start"> Statut: {{listeP?.statut}}</ion-label>
-            <ion-icon  name="time-sharp" ></ion-icon>
-            <ion-label >Date : {{listeP?.date |  date:'shortDate'}}</ion-label>
-          </ion-item>
-        </ion-card-content>
-      </ion-card>    
-    </ion-slide>
-  </ion-slides>
-
-  <!-- Content Slide Objet Perdu -->
-  
-  <!-- Fin -->
-
-  <!-- content Objet Récemment Trouve -->
-  <div class="cadreObjetPerdu">
+    <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+   <!-- content Objet Récemment Trouve -->
+   <div class="cadreObjetPerdu">
     <div class="titleGategorie">
-      <ion-item class="statitle">
-        <ion-icon slot="start" color="light" name="bag-remove-sharp"></ion-icon>
-        <ion-label>Objet Trouvé</ion-label>
+      <ion-item lines="none" class="statitle">
+        <ion-icon slot="start" name="bag-remove-sharp"></ion-icon>
+        <ion-label><h4>Liste Objet Trouvé</h4></ion-label>
       </ion-item>
     </div>
     
-
-    <ion-item class="Gplus" lines="none">
-      <ion-label>Récemment Trouvé</ion-label>
-      <ion-button [routerLink]="['/trouve']" style="font-size: 9px;" color="dark" slot="end">
-        VOIR Plus
-      </ion-button>
-    </ion-item>
-   
-    <ion-card *ngFor="let listeT of recemmentTrouve " >
+    <ion-card *ngFor="let listeT of listeAnnoncesTrouve  | filter:filterTerm ">
       <ion-card-header>
       <img src="{{listeT.photo}}">
       </ion-card-header>
@@ -122,16 +85,12 @@
           <button *ngIf="test === true" (click)="showAlertR()">Réclamer</button>
         </ion-item>
       </ion-card-content>
-    </ion-card> 
-   
+    </ion-card>
     <!-- Fin -->
-
-
-    
+    <div class="paginationContent">
+    </div>
   </div>
   <!-- Fin -->
-
-
   <!-- PARTENAIR -->
   <div class="titlePartenair">
     <ion-item lines="none">
@@ -140,20 +99,7 @@
     </ion-item>
   </div>
   <!-- Fin -->
-
- 
-
-
-  
-  
-  
-  
-  
-  
- 
   <!-- Partenair Slide -->
-
-  
   <ion-slides  [options]="slideOpts" >
     <ion-slide> 
       <ion-card>
@@ -205,9 +151,8 @@
         </ion-card-content>
       </ion-card>    
     </ion-slide>
-  </ion-slides>
-  
-  
-  
-  <!-- Fin -->
+  </ion-slides> 
+
+
+
 </ion-content>

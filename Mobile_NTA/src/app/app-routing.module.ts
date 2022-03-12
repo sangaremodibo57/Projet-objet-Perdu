@@ -27,6 +27,22 @@ const routes: Routes = [
     path: 'forgot',
     loadChildren: () => import('./Forgot/forgot/forgot.module').then( m => m.ForgotPageModule)
   },
+  {
+    path: 'perdu',
+    loadChildren: () => import('./Objet Perdu/perdu/perdu.module').then( m => m.PerduPageModule)
+  },
+  {
+    path: 'notification',
+    loadChildren: () => import('./Notification/notification/notification.module').then( m => m.NotificationPageModule)
+  },
+  {
+    path: 'trouve',
+    loadChildren: () => import('./Objet Trouve/trouve/trouve.module').then( m => m.TrouvePageModule)
+  },
+  {
+    path: 'info',
+    loadChildren: () => import('./Info Utile/info/info.module').then( m => m.InfoPageModule)
+  },
 ];
 
 @NgModule({
