@@ -17,7 +17,9 @@ export class NotificationPage implements OnInit {
   constructor(private route : Router, private serve : NotificationServiceService,public actionSheetController: ActionSheetController) { }
   @ViewChild (ContentChild) content : ContentChild ;
 
-  async presentActionSheet() {
+  async presentActionSheet(id: any) {
+    console.log('logggggggggggggg',id);
+    
     const actionSheet = await this.actionSheetController.create({
       header: 'Action',
       cssClass: 'my-custom-class',
@@ -36,6 +38,7 @@ export class NotificationPage implements OnInit {
           type: 'delete'
         },
         handler: () => {
+         
           
         }
       },{
@@ -48,7 +51,6 @@ export class NotificationPage implements OnInit {
       }]
     });
     await actionSheet.present();
-
     const { role, data } = await actionSheet.onDidDismiss();
     console.log('onDidDismiss resolved with role and data', role, data);
   }
@@ -57,21 +59,19 @@ export class NotificationPage implements OnInit {
     
     this.userConnecte = JSON.parse(localStorage.getItem('userData'))
       console.log('ttttttttt',this.userConnecte);
-    this.afficheNotificationUser();  
-    
+     //recuperer la liste des notification par id user
+      this.serve.listeNoticationByUser(this.userConnecte.id).subscribe(data=>{
+        console.log('okkkkkkkkkkkkkkkk',data);
+        this.myNotification = data;
+        this.nombre = this.myNotification.length;
+        console.log(this.nombre);
+      })
     
   }
 
-  updateetat(id){
-
-  }
-  
-  afficheNotificationUser(){
-    return this.serve.listeNoticationByUser(this.userConnecte.id).subscribe(data=>{
-      console.log('okkkkkkkkkkkkkkkk',data);
-      this.myNotification = data;
-      this.nombre = this.myNotification.length;
-      console.log(this.nombre);
+  changerNotification(id :any){
+    this.serve.updateEtatByVue(id , this.myNotification).subscribe(data=>{
+      
     })
   }
 

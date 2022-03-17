@@ -15,4 +15,17 @@ ion-toolbar{
         }
     }
   }
+ion-content{
+    ion-item{
+        padding: 0px;
+        margin: 0px;
+        ion-thumbnail{
+            padding: 0px;
+            margin: 3px;
+            border: 1px solid black;
+            border-radius: 50%;
+        }
+    }
+    
+}
  

@@ -243,7 +243,7 @@ export class AjoutAnnoncePage implements OnInit {
                     this.reclamer.etat = 'active'
                     console.log('dataaaaaaaaaa',this.reclamer);
                     this.service.reclamer(this.reclamer).subscribe(data=>{
-                      this.route.navigateByUrl('tabs/tabs/tab1');
+                      this.route.navigateByUrl('/home');
                       const Toast = Swal.mixin({
                         toast: true,
                         position: 'top',
@@ -280,7 +280,7 @@ export class AjoutAnnoncePage implements OnInit {
                   this.reclamer.etat = 'active'
                   console.log('dataaaaaaaaaa',this.reclamer);
                   this.service.reclamer(this.reclamer).subscribe(data=>{
-                    this.route.navigateByUrl('tabs/tabs/tab1');
+                    this.route.navigateByUrl('home');
                     const Toast = Swal.mixin({
                       toast: true,
                       position: 'top',
@@ -333,7 +333,7 @@ export class AjoutAnnoncePage implements OnInit {
                    //ajout Annonce
                 this.service.ajoutAnnonce(this.annonce).subscribe(data=>{
                   this.ance=data;
-                  this.route.navigateByUrl('tabs/tabs/tab1');
+                  this.route.navigateByUrl('/home');
                   const Toast = Swal.mixin({
                     toast: true,
                     position: 'top',
@@ -356,7 +356,7 @@ export class AjoutAnnoncePage implements OnInit {
                //ajout Annonce
                 this.service.ajoutAnnonce(this.annonce).subscribe(data=>{
                   this.ance=data;
-                  this.route.navigateByUrl('tabs/tabs/tab1');
+                  this.route.navigateByUrl('/home');
                   const Toast = Swal.mixin({
                     toast: true,
                     position: 'top',
@@ -521,7 +521,7 @@ export class AjoutAnnoncePage implements OnInit {
                 this.reclamer.etat = 'active'
                 console.log('dataaaaaaaaaa',this.reclamer);
                 this.service.reclamer(this.reclamer).subscribe(data=>{
-                  this.route.navigateByUrl('tabs/tabs/tab1');
+                  this.route.navigateByUrl('/home');
                   const Toast = Swal.mixin({
                     toast: true,
                     position: 'top',
@@ -556,7 +556,7 @@ export class AjoutAnnoncePage implements OnInit {
                 this.reclamer.etat = 'active'
                 console.log('dataaaaaaaaaa',this.reclamer);
                 this.service.reclamer(this.reclamer).subscribe(data=>{
-                  this.route.navigateByUrl('tabs/tabs/tab1');
+                  this.route.navigateByUrl('/home');
                   const Toast = Swal.mixin({
                     toast: true,
                     position: 'top',
@@ -604,7 +604,7 @@ export class AjoutAnnoncePage implements OnInit {
                  //ajout Annonce
                  this.service.ajoutAnnonce(this.annonce).subscribe(data=>{
                   this.ance=data;
-                  this.route.navigateByUrl('tabs/tabs/tab1');
+                  this.route.navigateByUrl('/home');
                   const Toast = Swal.mixin({
                     toast: true,
                     position: 'top',
@@ -628,7 +628,7 @@ export class AjoutAnnoncePage implements OnInit {
               //ajout Annonce
               this.service.ajoutAnnonce(this.annonce).subscribe(data=>{
               this.ance=data;
-              this.route.navigateByUrl('tabs/tabs/tab1');
+              this.route.navigateByUrl('/home');
               const Toast = Swal.mixin({
                 toast: true,
                 position: 'top',

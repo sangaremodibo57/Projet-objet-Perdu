@@ -11,7 +11,9 @@
   <ion-fab *ngIf="test === false" horizontal="end" vertical="top" slot="fixed" style="margin-top: -30px;" edge>
     
     <ion-fab-button title="Profile" size="small" color="light">
-      <ion-badge *ngIf="indice == true"><ion-icon name="radio-button-on-sharp"></ion-icon></ion-badge>
+      <div class="badge">
+        <ion-badge mode="md" *ngIf="indice == true"><ion-icon name="radio-button-on-sharp"></ion-icon></ion-badge>
+      </div>
       <ion-icon style="pointer-events: none;"  name="person-outline"></ion-icon>
     </ion-fab-button>
     <ion-fab-list>
@@ -19,7 +21,9 @@
         <ion-icon [routerLink]="['/detail-user']"  name="person-sharp"></ion-icon>
       </ion-fab-button>
       <ion-fab-button color="light">
-        <ion-badge  *ngIf="indice == true"><span>{{nombre}}</span></ion-badge>
+        <div class="badge">
+          <ion-badge mode="md" *ngIf="indice == true"><span>{{nombre}}</span></ion-badge>
+        </div>
         <ion-icon  [routerLink]="['/notification']" name="notifications"></ion-icon>
       </ion-fab-button>
       <ion-fab-button color="light">

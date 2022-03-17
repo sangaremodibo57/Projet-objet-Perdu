@@ -83,7 +83,7 @@ export class DetailAnnoncePage implements OnInit {
     this.reclamer.user = this.userConnecte;
     this.dateveri = formatDate(this.objet.date, 'yyyy', 'en');
     if (this.reclamer.couleur === formReclame.value['couleur'] && this.reclamer.lieu === formReclame.value['lieu'] && this.reclamer.annonce.utilisateur.id === this.userConnecte.id && this.reclamer.model === formReclame.value['model'] && this.reclamer.anneeObttion === formReclame.value['anneeObttion'] ) {
-      this.router.navigateByUrl('tabs/tabs/tab1');
+      this.router.navigateByUrl('/home');
       const Toast = Swal.mixin({
         toast: true,
         position: 'top',
@@ -130,7 +130,7 @@ export class DetailAnnoncePage implements OnInit {
                 this.addreclame = data;
                 console.log(this.addreclame);
                 
-                this.router.navigateByUrl('tabs/tabs/tab1');
+                this.router.navigateByUrl('/home');
                 const Toast = Swal.mixin({
                   toast: true,
                   position: 'top',
@@ -153,7 +153,7 @@ export class DetailAnnoncePage implements OnInit {
               this.addreclame = data;
               console.log(this.addreclame);
               
-              this.router.navigateByUrl('tabs/tabs/tab1');
+              this.router.navigateByUrl('/home');
               const Toast = Swal.mixin({
                 toast: true,
                 position: 'top',
@@ -173,8 +173,8 @@ export class DetailAnnoncePage implements OnInit {
           }
         })
       } else {
-        this.router.navigateByUrl('tabs/tabs/tab1');
-      const Toast = Swal.mixin({
+        this.router.navigateByUrl('/home');
+        const Toast = Swal.mixin({
         toast: true,
         position: 'top',
         text: 'Les données ne ccorresponde pas ',

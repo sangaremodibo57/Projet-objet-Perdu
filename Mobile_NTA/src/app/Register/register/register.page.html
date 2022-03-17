@@ -16,7 +16,7 @@
   <form  #userForm="ngForm" (ngSubmit)="registreForm(userForm)" novalidate>
     <div class="label-float" >
       <input type="text" name="nom_complet" pattern="([a-zA-Z\s]){2,20}([a-zA-ZÀ-ÿ])" ngModel #nom_complet="ngModel" autocomplete="of" placeholder=" "  required/>
-      <label>Prenom Nom <span style="color: red;">*</span></label>
+      <label>Prénom Nom <span style="color: red;">*</span></label>
     </div>
     <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="nom_complet.valid || nom_complet.pristine" class="alert alert-danger">
       Respecter le Format(min:3 Carractère) : Modibo Sangare
@@ -78,10 +78,10 @@
       Les mot de passe ne corresponde pas
     </div>
     <div style="margin-top: 20px;">
-      <ion-button type="submit" size="small" color="success" expand="block" [disabled]="userForm.form.invalid">INSCRIRE</ion-button>
+      <ion-button type="submit" size="small" style="--background: #17BB89;" expand="block" [disabled]="userForm.form.invalid">INSCRIRE</ion-button>
     </div>
     <div  style="margin-top: 20px;">
-      <ion-button  [routerLink]="['/login']" size="small" color="danger" expand="block">ANNULER</ion-button>
+      <ion-button  [routerLink]="['/login']" size="small" color="dark" expand="block">ANNULER</ion-button>
     </div>
   </form>
   </ion-card-content>

@@ -15,25 +15,25 @@
       <img  src="assets/Accueil/logoUserAccueil.png">
     </ion-thumbnail>
     <ion-label>
-      <h3>{{myNotification}}</h3>
+      <h3>{{nomAdmin}}</h3>
+      <p>Equipe N'TA</p>
     </ion-label>
   </ion-item>
   <ion-card>
     <ion-card-header>
-      <p>Message : </p>
-     
+      <p>Message : {{description}}</p>
     </ion-card-header>
     <ion-card-content>
-      <img src="">
+      <img src="{{photo}}" width="100%" height="150px">
       <ion-item lines="none">
         <ion-icon  name="bag" slot="start"></ion-icon>
-        <ion-label >Nom </ion-label>
+        <ion-label >Nom :{{nomAnnonce}} </ion-label>
         <ion-icon name="stats-chart-sharp" slot="end"></ion-icon>
         <ion-label slot="start" slot="end"> Statut: </ion-label>
       </ion-item>
       <ion-item lines="none">
         <ion-icon  name="time-sharp" slot="start"></ion-icon>
-        <ion-label >Date :</ion-label>
+        <ion-label >Date : {{dateAnnonce}}</ion-label>
       </ion-item>
     </ion-card-content>
   </ion-card>

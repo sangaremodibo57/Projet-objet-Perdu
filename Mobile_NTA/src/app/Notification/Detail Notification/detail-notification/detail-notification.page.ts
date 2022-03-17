@@ -10,6 +10,12 @@ import { NotificationServiceService } from '../../Service/notification-service.s
 export class DetailNotificationPage implements OnInit {
   id: any;
   myNotification: any;
+  nomAdmin: any;
+  description: any;
+  photo: any;
+  nomAnnonce: any;
+  dateAnnonce: any;
+  statut: any;
 
   constructor(private router : ActivatedRoute, private service : NotificationServiceService, private route : Router) { }
 
@@ -17,7 +23,14 @@ export class DetailNotificationPage implements OnInit {
     this.id = this.router.snapshot.params['id'];
     console.log(this.id);
     this.service.getNotificationById(this.id).subscribe(data=>{
-      this.myNotification = data['admin'].nom_complet;
+     
+      this.myNotification = data;
+      this.nomAdmin = this.myNotification['admin'].nom_complet;
+      this.description = this.myNotification.description;
+      this.photo = this.myNotification.reclame.annonce.photo;
+      this.nomAnnonce = this.myNotification.reclame.annonce.nom;
+      this.dateAnnonce = this.myNotification.reclame.annonce.date;
+      this.statut = this.myNotification.reclame.annonce.statut;
       console.log('hghghghghghghg',this.myNotification);
     })
   }

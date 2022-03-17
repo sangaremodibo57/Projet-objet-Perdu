@@ -60,7 +60,7 @@ const routes: Routes = [
     loadChildren: () => import('./Annonce/ajout-annonce/ajout-annonce.module').then( m => m.AjoutAnnoncePageModule)
   },
   {
-    path: 'detail-annonce',
+    path: 'detail-annonce/:id',
     loadChildren: () => import('./Annonce/detail-annonce/detail-annonce.module').then( m => m.DetailAnnoncePageModule)
   },
   {

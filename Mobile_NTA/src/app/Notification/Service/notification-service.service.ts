@@ -20,4 +20,8 @@ export class NotificationServiceService {
   desactiveEtatById(id : any, data){
     return this.http.put(this.url+`/updateEtatByDesactive/${id}`, data);
   }
+
+  updateEtatByVue(id : any, data){
+    return this.http.put(this.url+`/updateEtatNotificationByVue/${id}`, data);
+  }
 }

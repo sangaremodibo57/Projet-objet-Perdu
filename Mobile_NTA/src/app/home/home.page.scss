@@ -23,28 +23,21 @@ ion-toolbar{
        padding: 0px;
        margin: 0px;
     
-       ion-badge{
-           color: #fff;
-           background-color: RED;
-           text-align: center;
-           border: 2px solid white;
-           text-align: left;
-           height: 20px;
-           width: 18px;
-           font-size: 8px;
+       .badge{
+           
            border-radius: 50px;
            position: absolute;
+           width: 2px;
+           height: 20px;
            top: 2px;
-           right: 1px;
+           left: 5px;
            z-index: 1;
-           span{
-               margin: -7px;
-               font-size: 12px;
-           }
-           ion-icon{
-               text-align: center;
-               margin-left: -3px;
-               margin-bottom: 10px;
+           ion-badge{
+               padding: 2px;
+            color: #fff;
+            --background: RED;
+            border-radius: 50px;
+            font-size: 12px;
            }
        }
     ion-slides{
@@ -62,10 +55,11 @@ ion-toolbar{
                 border: 1px solid #17bb8a60;
                 ion-card-header{
                     width: 98%;
+                    height: 160px;
                     padding: 0px;
                     margin: 0px auto;
                     img{
-                        height: 150px;
+                        height: 100%;
                         width: 100%;
                     }
                 }
@@ -257,10 +251,11 @@ ion-toolbar{
             margin: 10px auto;
             ion-card-header{
                 width: 98%;
+                height: 160px;
                 padding: 0px;
                 margin: 0px auto;
                 img{
-                    height: 100px;
+                    height: 100%;
                     width: 100%;
                 }
             }
@@ -270,13 +265,13 @@ ion-toolbar{
                 padding: 0px;
                 margin: 0px;
                 font-family: Georgia, 'Times New Roman', Times, serif;
-                font-size: 12px;
+                font-size: 10px;
                 ion-item{
                     height: 30px;
                     padding: 0px;
                     margin: 0px 0px 5px 0px;
                     font-family: Georgia, 'Times New Roman', Times, serif;
-                    font-size: 12px;
+                    font-size: 9px;
                     ion-icon{
                         margin: 0px;
                     }
