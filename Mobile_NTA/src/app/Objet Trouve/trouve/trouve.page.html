@@ -72,13 +72,22 @@
       <img src="{{listeT.photo}}">
       </ion-card-header>
       <ion-card-content>
-        <ion-item lines="none">
+        <ion-item lines="none"  style="font-size: 11px;">
           <ion-icon  name="bag" slot="start"></ion-icon>
           <ion-label >Nom :{{listeT.nom}}</ion-label>
           <ion-icon name="stats-chart-sharp" slot="end"></ion-icon>
           <ion-label slot="start" slot="end"> Statut: {{listeT?.statut}}</ion-label>
         </ion-item>
-        <ion-item lines="none">
+        <ion-item lines="none" *ngIf="listeT.nomC === '3'"  style="font-size: 12px;">
+          <ion-icon name="person-sharp" slot="start"></ion-icon>
+          <ion-label >Prénom :{{listeT.prenomProprietaireDoc.substr(0,2)}}*****</ion-label>
+          <ion-label slot="start" slot="end"> Nom: {{listeT?.nomProprietaireDoc.substr(0,2)}}*****</ion-label>
+        </ion-item>
+        <ion-item lines="none" *ngIf="listeT.nomC === '3'" style="font-size: 12px;">
+          <ion-icon  name="bag" slot="start"></ion-icon>
+          <ion-label >Né le:***{{listeT.dateNaissanceDoc.substr(3,5)}}**</ion-label>
+        </ion-item>
+        <ion-item lines="none"  style="font-size: 12px;">
           <ion-icon  name="time-sharp" slot="start"></ion-icon>
           <ion-label >Date : {{listeT.date |  date:'shortDate'}}</ion-label>
           <button *ngIf="test === false" [routerLink]="['/detail-annonce', listeT.id]">Réclamer</button>

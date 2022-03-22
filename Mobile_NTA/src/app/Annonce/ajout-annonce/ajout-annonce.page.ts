@@ -113,6 +113,10 @@ export class AjoutAnnoncePage implements OnInit {
     resulVerifieReclamation: any;
     DonneeUA: any;
     dataArray: any[] = [];
+    dateNaissanceForm:any;
+  objetAnnonce: any;
+  verifieObjetPerdu: any;
+  verifieObjetTrouve: any;
   
     constructor(private router : ActivatedRoute, public alertController: AlertController,private service : AnnonceServiceService, private route: Router) { 
       
@@ -163,23 +167,32 @@ export class AjoutAnnoncePage implements OnInit {
         }
         if (this.annonce.nomC == 3) {
           this.annonce.anneeObttion = userForm.value['anneeObttion']
+          this.annonce.nomProprietaireDoc = userForm.value['nomProprietaireDoc']
+          this.annonce.prenomProprietaireDoc = userForm.value['prenomProprietaireDoc']
+          this.annonce.dateNaissanceDoc = userForm.value['dateNaissanceDoc']
         } else {
           this.annonce.anneeObttion ='vide'
+          this.annonce.nomProprietaireDoc = 'vide'
+          this.annonce.prenomProprietaireDoc = 'vide'
+          this.annonce.dateNaissanceDoc = 'vide'
         }
         this.annonce.utilisateur = this.userConnecte;
         this.dateveri = formatDate(this.annonce.date, 'yyyy', 'en');
-        //verification dans les objet trouve 
-        this.service.verifyAnnonce(this.annonce.nom, this.annonce.lieu,this.annonce.couleur,this.dateveri,'trouve',this.annonce.model,this.annonce.anneeObttion).subscribe((data:any) => {
-          this.resVerifieTrouve = data;
-          if (data.length !== 0) {
-            // Comparaison des user
+
+        //verification dans les objet Perdu pour eviter les doublons 
+        this.service.verifyAnnonce(this.annonce.nom, this.annonce.lieu,this.annonce.couleur,this.dateveri,'perdu',this.annonce.model,this.annonce.anneeObttion,this.annonce.nomProprietaireDoc,this.annonce.prenomProprietaireDoc,this.annonce.dateNaissanceDoc).subscribe((data: any)=>{
+          console.log('donnée',data);
+          this.objetAnnonce = data;
+          if (data.length!== 0) {
+            //parcour la liste pour verification user
             data.forEach(element => {
-              //Comparaison user
               if (element.utilisateur.id === this.userConnecte.id ) {
                 this.dataArray.push(element);
               }
             });
+            console.log("dataArray : ", this.dataArray);
             if (this.dataArray.length !== 0) {
+              // Si user oui (Message error)
               const Toast = Swal.mixin({
                 toast: true,
                 position: 'top',
@@ -196,58 +209,98 @@ export class AjoutAnnoncePage implements OnInit {
                 icon: 'error',
                 title: 'Erreur De Publication '
               })
-            } else {
-              // verification si resVerifieTrouve existe dans Reclamation
-              this.service.verifyReclamation(this.annonce.nom,this.annonce.lieu,this.annonce.couleur,this.dateveri,'nonvalide',this.annonce.model,this.annonce.anneeObttion).subscribe((data:any)=>{
-                console.log("resultat GGGGGGGGGGGGGGGGGGGGGGGG");
-                this.resVerifieReclamation = data;
-                if (data.lenght !==0) {
-                  data.forEach(element => {
-                    //Comparaison user
-                    if (element.user.id === this.userConnecte.id ) {
-                      this.dataArray.push(element);
-                    }
-                  });
-                   // Comparaison des user
-                   if (this.dataArray.length!== 0 ) {
-                    const Toast = Swal.mixin({
-                      toast: true,
-                      position: 'top',
-                      text: 'Vous avez dejà publier l\'annonce consulter mes publication',
-                      showConfirmButton: false,
-                      timer: 3000,
-                      timerProgressBar: true,
-                      didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+              } else {
+                // si user non (cherche des correspondance dans objet trouve)
+                this.service.verifyAnnonce(this.annonce.nom, this.annonce.lieu,this.annonce.couleur,this.dateveri,'trouve',this.annonce.model,this.annonce.anneeObttion,this.annonce.nomProprietaireDoc,this.annonce.prenomProprietaireDoc,this.annonce.dateNaissanceDoc).subscribe((data:any)=>{
+                  this.verifieObjetTrouve = data;
+                  console.log('resultat de la verifiation dans objet trouve',this.verifieObjetTrouve);
+                  if (data.length !==0) {
+                    // pour chercher des correspondance user
+                    data.forEach(element => {
+                      if (element.utilisateur.id === this.userConnecte.id ) {
+                        this.dataArray.push(element);
                       }
-                    })
-                    Toast.fire({
-                      icon: 'error',
-                      title: 'Erreur De Publication '
-                    })
+                    });
+                    console.log("dataArray : ", this.dataArray);
+                    // si user oui (Message)
+                    if (this.dataArray.length !== 0) {
+                      const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top',
+                        text: 'Vous avez dejà publier l\'annonce consulter mes publication',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                      })
+                      Toast.fire({
+                        icon: 'error',
+                        title: 'Erreur De Publication '
+                      })
+                    } else {
+                      //si user non (reclamation)
+                      console.log('reclamation on doit parcourire toute la liste');
+                      for (let i = 0; i < this.verifieObjetPerdu.length; i++) {
+                        // ajout Reclamation
+                      this.reclamer.nom = this.annonce.nom
+                      this.reclamer.lieu = this.annonce.lieu
+                      this.reclamer.date = this.annonce.date
+                      this.reclamer.couleur= this.annonce.couleur
+                      this.reclamer.annonce= this.verifieObjetPerdu[i]
+                      this.reclamer.user=this.userConnecte
+                      this.reclamer.statut='coresp'
+                      this.reclamer.certificate_perte='vide'
+                      this.reclamer.description=this.annonce.contenu
+                      this.reclamer.nomC = this.annonce.nomC
+                      this.reclamer.model = this.annonce.model
+                      this.reclamer.anneeObttion = this.annonce.anneeObttion
+                      this.reclamer.etat = 'active'
+                      if (this.annonce.nomC == 3) {
+                        this.reclamer.anneeObttion = userForm.value['anneeObttion']
+                        this.reclamer.nomProprietaireDoc = userForm.value['nomProprietaireDoc']
+                        this.reclamer.prenomProprietaireDoc = userForm.value['prenomProprietaireDoc']
+                        this.reclamer.dateNaissanceDoc = userForm.value['dateNaissanceDoc']
+                      } else {
+                        this.reclamer.anneeObttion ='vide'
+                        this.reclamer.nomProprietaireDoc = 'vide'
+                        this.reclamer.prenomProprietaireDoc = 'vide'
+                        this.reclamer.dateNaissanceDoc = 'vide'
+                      }
+                      console.log('dataaaaaaaaaa',this.reclamer);
+                      this.service.reclamer(this.reclamer).subscribe(data=>{
+                        this.route.navigateByUrl('/home');
+                        const Toast = Swal.mixin({
+                          toast: true,
+                          position: 'top',
+                          text: 'Votre Demande est en cour de traitement ',
+                          showConfirmButton: false,
+                          timer: 3000,
+                          timerProgressBar: true,
+                          didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                          }
+                        })
+                        Toast.fire({
+                          icon: 'success',
+                        })
+                      })
+                      }
+                    }
                   } else {
-                    // ajout Reclamation
-                    this.reclamer.nom = this.annonce.nom
-                    this.reclamer.lieu = this.annonce.lieu
-                    this.reclamer.date = this.annonce.date
-                    this.reclamer.couleur= this.annonce.couleur
-                    this.reclamer.annonce= this.resVerifieTrouve
-                    this.reclamer.user=this.userConnecte
-                    this.reclamer.statut='nonvalide'
-                    this.reclamer.certificate_perte='vide'
-                    this.reclamer.description=this.annonce.contenu
-                    this.reclamer.nomC = this.annonce.nomC
-                    this.reclamer.model = this.annonce.model
-                    this.reclamer.anneeObttion = this.annonce.anneeObttion
-                    this.reclamer.etat = 'active'
-                    console.log('dataaaaaaaaaa',this.reclamer);
-                    this.service.reclamer(this.reclamer).subscribe(data=>{
+                    // pas de correspondance (publication)
+                    console.log('publication annonce trouve');
+                    //ajout Annonce
+                    this.service.ajoutAnnonce(this.annonce).subscribe(data=>{
+                      this.ance=data;
                       this.route.navigateByUrl('/home');
                       const Toast = Swal.mixin({
                         toast: true,
                         position: 'top',
-                        text: 'Votre Demande est en cour de traitement ',
+                        text: 'Annonce Publier avec Succès ',
                         showConfirmButton: false,
                         timer: 3000,
                         timerProgressBar: true,
@@ -262,25 +315,69 @@ export class AjoutAnnoncePage implements OnInit {
                       })
                     })
                   }
-                }else {
-                  // ajout Reclamation
-                  
+                })
+              }
+          } else {
+            // on cherche dabord les correspondant
+            this.service.verifyAnnonce(this.annonce.nom, this.annonce.lieu,this.annonce.couleur,this.dateveri,'trouve',this.annonce.model,this.annonce.anneeObttion,this.annonce.nomProprietaireDoc,this.annonce.prenomProprietaireDoc,this.annonce.dateNaissanceDoc).subscribe((data:any)=>{
+              this.verifieObjetTrouve = data;
+              console.log('resultat de la verifiation dans objet perdu',this.verifieObjetTrouve);
+              if (data.length !==0) {
+                // pour chercher des correspondance
+                data.forEach(element => {
+                  if (element.utilisateur.id === this.userConnecte.id ) {
+                    this.dataArray.push(element);
+                  }
+                });
+                console.log("dataArray : ", this.dataArray);
+                if (this.dataArray.length !== 0) {
+                  const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top',
+                    text: 'Vous avez dejà publier l\'annonce consulter mes publication',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  })
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'Erreur De Publication '
+                  })
+                } else {
+                  console.log('reclamation on doit parcourire toute la liste');
+                  for (let i = 0; i < this.verifieObjetTrouve.length; i++) {
+                    // ajout Reclamation
                   this.reclamer.nom = this.annonce.nom
                   this.reclamer.lieu = this.annonce.lieu
                   this.reclamer.date = this.annonce.date
                   this.reclamer.couleur= this.annonce.couleur
-                  this.reclamer.annonce= this.resVerifieTrouve
+                  this.reclamer.annonce= this.verifieObjetTrouve[i]
                   this.reclamer.user=this.userConnecte
-                  this.reclamer.statut='nonvalide'
+                  this.reclamer.statut='coresp'
                   this.reclamer.certificate_perte='vide'
                   this.reclamer.description=this.annonce.contenu
                   this.reclamer.nomC = this.annonce.nomC
                   this.reclamer.model = this.annonce.model
                   this.reclamer.anneeObttion = this.annonce.anneeObttion
                   this.reclamer.etat = 'active'
+                  if (this.annonce.nomC == 3) {
+                    this.reclamer.anneeObttion = userForm.value['anneeObttion']
+                    this.reclamer.nomProprietaireDoc = userForm.value['nomProprietaireDoc']
+                    this.reclamer.prenomProprietaireDoc = userForm.value['prenomProprietaireDoc']
+                    this.reclamer.dateNaissanceDoc = userForm.value['dateNaissanceDoc']
+                  } else {
+                    this.reclamer.anneeObttion ='vide'
+                    this.reclamer.nomProprietaireDoc = 'vide'
+                    this.reclamer.prenomProprietaireDoc = 'vide'
+                    this.reclamer.dateNaissanceDoc = 'vide'
+                  }
                   console.log('dataaaaaaaaaa',this.reclamer);
                   this.service.reclamer(this.reclamer).subscribe(data=>{
-                    this.route.navigateByUrl('home');
+                    this.route.navigateByUrl('/home');
                     const Toast = Swal.mixin({
                       toast: true,
                       position: 'top',
@@ -295,65 +392,13 @@ export class AjoutAnnoncePage implements OnInit {
                     })
                     Toast.fire({
                       icon: 'success',
-                      
                     })
                   })
-                }
-              }) 
-            }
-          } else {
-            //verification dans objet Perdu
-            this.service.verifyAnnonce(this.annonce.nom, this.annonce.lieu,this.annonce.couleur,this.dateveri,'perdu',this.annonce.model,this.annonce.anneeObttion).subscribe((data:any)=>{
-              this.resverifiePerdu = data;
-              if (data.length !== 0) {
-                // Comparaison user
-                data.forEach(element => {
-                  //Comparaison user
-                  if (element.utilisateur.id === this.userConnecte.id ) {
-                    this.dataArray.push(element);
                   }
-                });
-                if (this.dataArray.length !== 0) {
-                  const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top',
-                    text: 'Vous avez deja publier l\'annonce consulter mes publication"',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                      toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                  })
-                  Toast.fire({
-                    icon: 'error',
-                  })
-                } else {
-                   //ajout Annonce
-                this.service.ajoutAnnonce(this.annonce).subscribe(data=>{
-                  this.ance=data;
-                  this.route.navigateByUrl('/home');
-                  const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top',
-                    text: 'Annonce Publier avec Succés',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                      toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                  })
-                  Toast.fire({
-                    icon: 'success',
-                  })
-                  
-                })
-                } 
+                }
               } else {
-               //ajout Annonce
+                console.log('publication annonce Perdu');
+                //ajout Annonce
                 this.service.ajoutAnnonce(this.annonce).subscribe(data=>{
                   this.ance=data;
                   this.route.navigateByUrl('/home');
@@ -373,13 +418,224 @@ export class AjoutAnnoncePage implements OnInit {
                     icon: 'success',
                     
                   })
-                  
                 })
-                
-              } 
+              }
             })
           }
-        })
+      })
+
+        //verification dans les objet trouve 
+        // this.service.verifyAnnonce(this.annonce.nom, this.annonce.lieu,this.annonce.couleur,this.dateveri,'trouve',this.annonce.model,this.annonce.anneeObttion).subscribe((data:any) => {
+        //   this.resVerifieTrouve = data;
+        //   if (data.length !== 0) {
+        //     // Comparaison des user
+        //     data.forEach(element => {
+        //       //Comparaison user
+        //       if (element.utilisateur.id === this.userConnecte.id ) {
+        //         this.dataArray.push(element);
+        //       }
+        //     });
+        //     if (this.dataArray.length !== 0) {
+        //       const Toast = Swal.mixin({
+        //         toast: true,
+        //         position: 'top',
+        //         text: 'Vous avez dejà publier l\'annonce consulter mes publication',
+        //         showConfirmButton: false,
+        //         timer: 3000,
+        //         timerProgressBar: true,
+        //         didOpen: (toast) => {
+        //           toast.addEventListener('mouseenter', Swal.stopTimer)
+        //           toast.addEventListener('mouseleave', Swal.resumeTimer)
+        //         }
+        //       })
+        //       Toast.fire({
+        //         icon: 'error',
+        //         title: 'Erreur De Publication '
+        //       })
+        //     } else {
+        //       // verification si resVerifieTrouve existe dans Reclamation
+        //       this.service.verifyReclamation(this.annonce.nom,this.annonce.lieu,this.annonce.couleur,this.dateveri,'nonvalide',this.annonce.model,this.annonce.anneeObttion).subscribe((data:any)=>{
+        //         console.log("resultat GGGGGGGGGGGGGGGGGGGGGGGG");
+        //         this.resVerifieReclamation = data;
+        //         if (data.lenght !==0) {
+        //           data.forEach(element => {
+        //             //Comparaison user
+        //             if (element.user.id === this.userConnecte.id ) {
+        //               this.dataArray.push(element);
+        //             }
+        //           });
+        //            // Comparaison des user
+        //            if (this.dataArray.length!== 0 ) {
+        //             const Toast = Swal.mixin({
+        //               toast: true,
+        //               position: 'top',
+        //               text: 'Vous avez dejà publier l\'annonce consulter mes publication',
+        //               showConfirmButton: false,
+        //               timer: 3000,
+        //               timerProgressBar: true,
+        //               didOpen: (toast) => {
+        //                 toast.addEventListener('mouseenter', Swal.stopTimer)
+        //                 toast.addEventListener('mouseleave', Swal.resumeTimer)
+        //               }
+        //             })
+        //             Toast.fire({
+        //               icon: 'error',
+        //               title: 'Erreur De Publication '
+        //             })
+        //           } else {
+        //             // ajout Reclamation
+        //             this.reclamer.nom = this.annonce.nom
+        //             this.reclamer.lieu = this.annonce.lieu
+        //             this.reclamer.date = this.annonce.date
+        //             this.reclamer.couleur= this.annonce.couleur
+        //             this.reclamer.annonce= this.resVerifieTrouve
+        //             this.reclamer.user=this.userConnecte
+        //             this.reclamer.statut='nonvalide'
+        //             this.reclamer.certificate_perte='vide'
+        //             this.reclamer.description=this.annonce.contenu
+        //             this.reclamer.nomC = this.annonce.nomC
+        //             this.reclamer.model = this.annonce.model
+        //             this.reclamer.anneeObttion = this.annonce.anneeObttion
+        //             this.reclamer.etat = 'active'
+        //             console.log('dataaaaaaaaaa',this.reclamer);
+        //             this.service.reclamer(this.reclamer).subscribe(data=>{
+        //               this.route.navigateByUrl('/home');
+        //               const Toast = Swal.mixin({
+        //                 toast: true,
+        //                 position: 'top',
+        //                 text: 'Votre Demande est en cour de traitement ',
+        //                 showConfirmButton: false,
+        //                 timer: 3000,
+        //                 timerProgressBar: true,
+        //                 didOpen: (toast) => {
+        //                   toast.addEventListener('mouseenter', Swal.stopTimer)
+        //                   toast.addEventListener('mouseleave', Swal.resumeTimer)
+        //                 }
+        //               })
+        //               Toast.fire({
+        //                 icon: 'success',
+                        
+        //               })
+        //             })
+        //           }
+        //         }else {
+        //           // ajout Reclamation
+                  
+        //           this.reclamer.nom = this.annonce.nom
+        //           this.reclamer.lieu = this.annonce.lieu
+        //           this.reclamer.date = this.annonce.date
+        //           this.reclamer.couleur= this.annonce.couleur
+        //           this.reclamer.annonce= this.resVerifieTrouve
+        //           this.reclamer.user=this.userConnecte
+        //           this.reclamer.statut='nonvalide'
+        //           this.reclamer.certificate_perte='vide'
+        //           this.reclamer.description=this.annonce.contenu
+        //           this.reclamer.nomC = this.annonce.nomC
+        //           this.reclamer.model = this.annonce.model
+        //           this.reclamer.anneeObttion = this.annonce.anneeObttion
+        //           this.reclamer.etat = 'active'
+        //           console.log('dataaaaaaaaaa',this.reclamer);
+        //           this.service.reclamer(this.reclamer).subscribe(data=>{
+        //             this.route.navigateByUrl('home');
+        //             const Toast = Swal.mixin({
+        //               toast: true,
+        //               position: 'top',
+        //               text: 'Votre Demande est en cour de traitement ',
+        //               showConfirmButton: false,
+        //               timer: 3000,
+        //               timerProgressBar: true,
+        //               didOpen: (toast) => {
+        //                 toast.addEventListener('mouseenter', Swal.stopTimer)
+        //                 toast.addEventListener('mouseleave', Swal.resumeTimer)
+        //               }
+        //             })
+        //             Toast.fire({
+        //               icon: 'success',
+                      
+        //             })
+        //           })
+        //         }
+        //       }) 
+        //     }
+        //   } else {
+        //     //verification dans objet Perdu
+        //     this.service.verifyAnnonce(this.annonce.nom, this.annonce.lieu,this.annonce.couleur,this.dateveri,'perdu',this.annonce.model,this.annonce.anneeObttion).subscribe((data:any)=>{
+        //       this.resverifiePerdu = data;
+        //       if (data.length !== 0) {
+        //         // Comparaison user
+        //         data.forEach(element => {
+        //           //Comparaison user
+        //           if (element.utilisateur.id === this.userConnecte.id ) {
+        //             this.dataArray.push(element);
+        //           }
+        //         });
+        //         if (this.dataArray.length !== 0) {
+        //           const Toast = Swal.mixin({
+        //             toast: true,
+        //             position: 'top',
+        //             text: 'Vous avez deja publier l\'annonce consulter mes publication"',
+        //             showConfirmButton: false,
+        //             timer: 3000,
+        //             timerProgressBar: true,
+        //             didOpen: (toast) => {
+        //               toast.addEventListener('mouseenter', Swal.stopTimer)
+        //               toast.addEventListener('mouseleave', Swal.resumeTimer)
+        //             }
+        //           })
+        //           Toast.fire({
+        //             icon: 'error',
+        //           })
+        //         } else {
+        //            //ajout Annonce
+        //         this.service.ajoutAnnonce(this.annonce).subscribe(data=>{
+        //           this.ance=data;
+        //           this.route.navigateByUrl('/home');
+        //           const Toast = Swal.mixin({
+        //             toast: true,
+        //             position: 'top',
+        //             text: 'Annonce Publier avec Succés',
+        //             showConfirmButton: false,
+        //             timer: 3000,
+        //             timerProgressBar: true,
+        //             didOpen: (toast) => {
+        //               toast.addEventListener('mouseenter', Swal.stopTimer)
+        //               toast.addEventListener('mouseleave', Swal.resumeTimer)
+        //             }
+        //           })
+        //           Toast.fire({
+        //             icon: 'success',
+        //           })
+                  
+        //         })
+        //         } 
+        //       } else {
+        //        //ajout Annonce
+        //         this.service.ajoutAnnonce(this.annonce).subscribe(data=>{
+        //           this.ance=data;
+        //           this.route.navigateByUrl('/home');
+        //           const Toast = Swal.mixin({
+        //             toast: true,
+        //             position: 'top',
+        //             text: 'Annonce Publier avec Succès ',
+        //             showConfirmButton: false,
+        //             timer: 3000,
+        //             timerProgressBar: true,
+        //             didOpen: (toast) => {
+        //               toast.addEventListener('mouseenter', Swal.stopTimer)
+        //               toast.addEventListener('mouseleave', Swal.resumeTimer)
+        //             }
+        //           })
+        //           Toast.fire({
+        //             icon: 'success',
+                    
+        //           })
+                  
+        //         })
+                
+        //       } 
+        //     })
+        //   }
+        // })
     }
   
   
@@ -419,6 +675,9 @@ export class AjoutAnnoncePage implements OnInit {
       })
   }
   
+
+
+
     publierTrouve(formTrouve:any){
       this.annonce.nom = formTrouve.value['nom']
       this.annonce.date = formTrouve.value['datef']
@@ -440,24 +699,32 @@ export class AjoutAnnoncePage implements OnInit {
       }
       if (this.annonce.nomC == 3) {
         this.annonce.anneeObttion = formTrouve.value['anneeObttion']
+        this.annonce.nomProprietaireDoc = formTrouve.value['nomProprietaireDoc']
+        this.annonce.prenomProprietaireDoc = formTrouve.value['prenomProprietaireDoc']
+        this.annonce.dateNaissanceDoc = formTrouve.value['dateNaissanceDoc']
       } else {
         this.annonce.anneeObttion ='vide'
+        this.annonce.nomProprietaireDoc = 'vide'
+        this.annonce.prenomProprietaireDoc = 'vide'
+        this.annonce.dateNaissanceDoc = 'vide'
       }
       this.annonce.utilisateur = this.userConnecte;
       this.dateveri = formatDate(this.annonce.date, 'yyyy', 'en');
-      console.log(this.annonce);
-      //verification dans les objet perdu 
-      this.service.verifyAnnonce(this.annonce.nom, this.annonce.lieu,this.annonce.couleur,this.dateveri,'perdu',this.annonce.model,this.annonce.anneeObttion).subscribe((data: any)=>{
+      console.log('annonce',this.annonce);
+      //verification dans les objet trouve pour eviter les doublons 
+      this.service.verifyAnnonce(this.annonce.nom, this.annonce.lieu,this.annonce.couleur,this.dateveri,'trouve',this.annonce.model,this.annonce.anneeObttion,this.annonce.nomProprietaireDoc,this.annonce.prenomProprietaireDoc,this.annonce.dateNaissanceDoc).subscribe((data: any)=>{
+        console.log('donnée',data);
+        this.objetAnnonce = data;
         if (data.length!== 0) {
-          //parcour la liste pour verification user
+           //parcour la liste pour verification user
           data.forEach(element => {
             if (element.utilisateur.id === this.userConnecte.id ) {
               this.dataArray.push(element);
             }
           });
           console.log("dataArray : ", this.dataArray);
-          //corespondante user
           if (this.dataArray.length !== 0) {
+            // Si user oui (Message error)
             const Toast = Swal.mixin({
               toast: true,
               position: 'top',
@@ -474,141 +741,178 @@ export class AjoutAnnoncePage implements OnInit {
               icon: 'error',
               title: 'Erreur De Publication '
             })
-          } else {
-            // verification si resulVerifieTrouve existe dans Reclamation
-            this.service.verifyReclamation(this.annonce.nom,this.annonce.lieu,this.annonce.couleur,this.dateveri,'coresp',this.annonce.model,this.annonce.anneeObttion).subscribe((data: any)=>{
-              this.resulVerifieReclamation = data;
-              if (data.length!== 0) {
-                //parcour la liste pour verification user
-                data.forEach(element => {
-                if (element.user.id === this.userConnecte.id ) {
-                  this.dataArray.push(element);
-                }
-                });
-                console.log("dataArray : ", this.dataArray);
-                //corespondante user
-                if (this.dataArray.length!== 0) {
-                  const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top',
-                    text: 'Vous avez dejà publier l\'annonce consulter mes publication',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+            } else {
+              // si user non (cherche des correspondance dans objet perdu)
+              this.service.verifyAnnonce(this.annonce.nom, this.annonce.lieu,this.annonce.couleur,this.dateveri,'perdu',this.annonce.model,this.annonce.anneeObttion,this.annonce.nomProprietaireDoc,this.annonce.prenomProprietaireDoc,this.annonce.dateNaissanceDoc).subscribe((data:any)=>{
+                this.verifieObjetPerdu = data;
+                console.log('resultat de la verifiation dans objet perdu',this.verifieObjetPerdu);
+                if (data.length !==0) {
+                  // pour chercher des correspondance user
+                  data.forEach(element => {
+                    if (element.utilisateur.id === this.userConnecte.id ) {
+                      this.dataArray.push(element);
                     }
-                  })
-                  Toast.fire({
-                    icon: 'error',
-                    title: 'Erreur De Publication '
-                  })
+                  });
+                  console.log("dataArray : ", this.dataArray);
+                  // si user oui (Message)
+                  if (this.dataArray.length !== 0) {
+                    const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top',
+                      text: 'Vous avez dejà publier l\'annonce consulter mes publication',
+                      showConfirmButton: false,
+                      timer: 3000,
+                      timerProgressBar: true,
+                      didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                      }
+                    })
+                    Toast.fire({
+                      icon: 'error',
+                      title: 'Erreur De Publication '
+                    })
+                  } else {
+                    //si user non (reclamation)
+                    console.log('reclamation on doit parcourire toute la liste');
+                    for (let i = 0; i < this.verifieObjetPerdu.length; i++) {
+                       // ajout Reclamation
+                    this.reclamer.nom = this.annonce.nom
+                    this.reclamer.lieu = this.annonce.lieu
+                    this.reclamer.date = this.annonce.date
+                    this.reclamer.couleur= this.annonce.couleur
+                    this.reclamer.annonce= this.verifieObjetPerdu[i]
+                    this.reclamer.user=this.userConnecte
+                    this.reclamer.statut='coresp'
+                    this.reclamer.certificate_perte='vide'
+                    this.reclamer.description=this.annonce.contenu
+                    this.reclamer.nomC = this.annonce.nomC
+                    this.reclamer.model = this.annonce.model
+                    this.reclamer.anneeObttion = this.annonce.anneeObttion
+                    this.reclamer.etat = 'active'
+                    if (this.annonce.nomC == 3) {
+                      this.reclamer.anneeObttion = formTrouve.value['anneeObttion']
+                      this.reclamer.nomProprietaireDoc = formTrouve.value['nomProprietaireDoc']
+                      this.reclamer.prenomProprietaireDoc = formTrouve.value['prenomProprietaireDoc']
+                      this.reclamer.dateNaissanceDoc = formTrouve.value['dateNaissanceDoc']
+                    } else {
+                      this.reclamer.anneeObttion ='vide'
+                      this.reclamer.nomProprietaireDoc = 'vide'
+                      this.reclamer.prenomProprietaireDoc = 'vide'
+                      this.reclamer.dateNaissanceDoc = 'vide'
+                    }
+                    console.log('dataaaaaaaaaa',this.reclamer);
+                    this.service.reclamer(this.reclamer).subscribe(data=>{
+                      this.route.navigateByUrl('/home');
+                      const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top',
+                        text: 'Votre Demande est en cour de traitement ',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                      })
+                      Toast.fire({
+                        icon: 'success',
+                      })
+                    })
+                    }
+                  }
                 } else {
-                // ajout Reclamation
-                this.reclamer.nom = this.annonce.nom
-                this.reclamer.lieu = this.annonce.lieu
-                this.reclamer.date = this.annonce.date
-                this.reclamer.couleur= this.annonce.couleur
-                this.reclamer.annonce= this.resVerifieTrouve
-                this.reclamer.user=this.userConnecte
-                this.reclamer.statut='coresp'
-                this.reclamer.certificate_perte='vide'
-                this.reclamer.description=this.annonce.contenu
-                this.reclamer.nomC = this.annonce.nomC
-                this.reclamer.model = this.annonce.model
-                this.reclamer.anneeObttion = this.annonce.anneeObttion
-                this.reclamer.etat = 'active'
-                console.log('dataaaaaaaaaa',this.reclamer);
-                this.service.reclamer(this.reclamer).subscribe(data=>{
-                  this.route.navigateByUrl('/home');
-                  const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top',
-                    text: 'Votre Demande est en cour de traitement ',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                      toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
+                  // pas de correspondance (publication)
+                  console.log('publication annonce trouve');
+                   //ajout Annonce
+                  this.service.ajoutAnnonce(this.annonce).subscribe(data=>{
+                    this.ance=data;
+                    this.route.navigateByUrl('/home');
+                    const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top',
+                      text: 'Annonce Publier avec Succès ',
+                      showConfirmButton: false,
+                      timer: 3000,
+                      timerProgressBar: true,
+                      didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                      }
+                    })
+                    Toast.fire({
+                      icon: 'success',
+                      
+                    })
                   })
-                  Toast.fire({
-                    icon: 'success',
-                  })
-                })
                 }
-              } else {
-                // ajout Reclamation
-                this.reclamer.nom = this.annonce.nom
-                this.reclamer.lieu = this.annonce.lieu
-                this.reclamer.date = this.annonce.date
-                this.reclamer.couleur= this.annonce.couleur
-                this.reclamer.annonce= this.resVerifieTrouve
-                this.reclamer.user=this.userConnecte
-                this.reclamer.statut='coresp'
-                this.reclamer.certificate_perte='vide'
-                this.reclamer.description=this.annonce.contenu
-                this.reclamer.nomC = this.annonce.nomC
-                this.reclamer.model = this.annonce.model
-                this.reclamer.anneeObttion = this.annonce.anneeObttion
-                this.reclamer.etat = 'active'
-                console.log('dataaaaaaaaaa',this.reclamer);
-                this.service.reclamer(this.reclamer).subscribe(data=>{
-                  this.route.navigateByUrl('/home');
-                  const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top',
-                    text: 'Votre Demande est en cour de traitement ',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                      toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                  })
-                  Toast.fire({
-                    icon: 'success',
-                  })
-                  
-                })
-              }
-            })
-          } 
+              })
+            }
         } else {
-          //verification dans objet trouve 
-          this.service.verifyAnnonce(this.annonce.nom, this.annonce.lieu,this.annonce.couleur,this.dateveri,'trouve',this.annonce.model,this.annonce.anneeObttion).subscribe((data:any)=>{
-            console.log('Verfication objt Perdu',data);
-            this.resulverifieTrouve = data;
-            if (data.length!== 0) {
-              //parcour la liste pour verification user
+          this.service.verifyAnnonce(this.annonce.nom, this.annonce.lieu,this.annonce.couleur,this.dateveri,'perdu',this.annonce.model,this.annonce.anneeObttion,this.annonce.nomProprietaireDoc,this.annonce.prenomProprietaireDoc,this.annonce.dateNaissanceDoc).subscribe((data:any)=>{
+            this.verifieObjetPerdu = data;
+            console.log('resultat de la verifiation dans objet perdu',this.verifieObjetPerdu);
+            if (data.length !==0) {
+              // pour chercher des correspondance
               data.forEach(element => {
-                //Comparaison user
                 if (element.utilisateur.id === this.userConnecte.id ) {
                   this.dataArray.push(element);
                 }
               });
               console.log("dataArray : ", this.dataArray);
-              //corespondante user
               if (this.dataArray.length !== 0) {
-                this.alertController.create({
-                  cssClass:'my-custom-class',
-                  message: "Vous avez deja publier l'annonce consulter mes publication",
-                }).then(res => {
-                  res.present();
-                  setTimeout(()=>res.dismiss(),2000);
-                });
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top',
+                  text: 'Vous avez dejà publier l\'annonce consulter mes publication',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+                Toast.fire({
+                  icon: 'error',
+                  title: 'Erreur De Publication '
+                })
               } else {
-                 //ajout Annonce
-                 this.service.ajoutAnnonce(this.annonce).subscribe(data=>{
-                  this.ance=data;
+                console.log('reclamation on doit parcourire toute la liste');
+                for (let i = 0; i < this.verifieObjetPerdu.length; i++) {
+                   // ajout Reclamation
+                this.reclamer.nom = this.annonce.nom
+                this.reclamer.lieu = this.annonce.lieu
+                this.reclamer.date = this.annonce.date
+                this.reclamer.couleur= this.annonce.couleur
+                this.reclamer.annonce= this.verifieObjetPerdu[i]
+                this.reclamer.user=this.userConnecte
+                this.reclamer.statut='coresp'
+                this.reclamer.certificate_perte='vide'
+                this.reclamer.description=this.annonce.contenu
+                this.reclamer.nomC = this.annonce.nomC
+                this.reclamer.model = this.annonce.model
+                this.reclamer.anneeObttion = this.annonce.anneeObttion
+                this.reclamer.etat = 'active'
+                if (this.annonce.nomC == 3) {
+                  this.reclamer.anneeObttion = formTrouve.value['anneeObttion']
+                  this.reclamer.nomProprietaireDoc = formTrouve.value['nomProprietaireDoc']
+                  this.reclamer.prenomProprietaireDoc = formTrouve.value['prenomProprietaireDoc']
+                  this.reclamer.dateNaissanceDoc = formTrouve.value['dateNaissanceDoc']
+                } else {
+                  this.reclamer.anneeObttion ='vide'
+                  this.reclamer.nomProprietaireDoc = 'vide'
+                  this.reclamer.prenomProprietaireDoc = 'vide'
+                  this.reclamer.dateNaissanceDoc = 'vide'
+                }
+                console.log('dataaaaaaaaaa',this.reclamer);
+                this.service.reclamer(this.reclamer).subscribe(data=>{
                   this.route.navigateByUrl('/home');
                   const Toast = Swal.mixin({
                     toast: true,
                     position: 'top',
-                    text: 'Annonce Publier avec Succès ',
+                    text: 'Votre Demande est en cour de traitement ',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
@@ -619,205 +923,38 @@ export class AjoutAnnoncePage implements OnInit {
                   })
                   Toast.fire({
                     icon: 'success',
-                    
                   })
-                  
-                  })
+                })
+                }
               }
             } else {
-              //ajout Annonce
+              console.log('publication annonce trouve');
+               //ajout Annonce
               this.service.ajoutAnnonce(this.annonce).subscribe(data=>{
-              this.ance=data;
-              this.route.navigateByUrl('/home');
-              const Toast = Swal.mixin({
-                toast: true,
-                position: 'top',
-                text: 'Annonce Publier avec Succès ',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                  toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-              })
-              Toast.fire({
-                icon: 'success',
-                
-              })
-              
+                this.ance=data;
+                this.route.navigateByUrl('/home');
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top',
+                  text: 'Annonce Publier avec Succès ',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+                Toast.fire({
+                  icon: 'success',
+                  
+                })
               })
             }
           })
-        }   
+        }
       })
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-      // this.annonce.nom = formTrouve.value['nom']
-      // this.annonce.nomC = formTrouve.value['nomC']
-      // this.annonce.date = formTrouve.value['datef']
-      // this.annonce.lieu = formTrouve.value['lieu']
-      // this.annonce.contenu = formTrouve.value['contenu']
-      // this.annonce.couleur = formTrouve.value['couleur']
-      // this.annonce.etat = 'active'
-      // if (formTrouve.value['nomC'] !=null) {
-      //   this.annonce.photo='assets/objet/'+formTrouve.value['nomC']+'.jpg'
-      // } else {
-      //   this.annonce.photo='vide'
-      // }
-      // this.annonce.statut='trouve'
-      // this.annonce.model =formTrouve.value['model']
-      // this.annonce.anneeObttion =formTrouve.value['annee_obttion']
-      // this.annonce.utilisateur = this.userConnecte;
-      // this.service.verify( this.annonce.nom, this.annonce.lieu, this.annonce.couleur).subscribe((data) =>{
-      //   console.log('data : ',data);
-      //   this.test = data;
-      //   if (data != null) {
-          
-      //     if (this.test['utilisateur'].id == this.annonce.utilisateur.id) {
-      //       this.alertController.create({
-      //         cssClass:'my-custom-class',
-      //         message: "Vous avez deja publier l'annonce consulter mes publication",
-      //       }).then(res => {
-        
-      //         res.present();
-      //         setTimeout(()=>res.dismiss(),2000);
-      //       });
-      //     } else {
-      //       this.service.verifyReclame(this.annonce.nom,formTrouve.value['nomC'],this.annonce.couleur).subscribe((data:any)=>{
-      //         if (data!=null) {
-      //           if (this.userConnecte.id == data.user.id) {
-      //             this.alertController.create({
-      //               cssClass:'my-custom-class',
-      //               message: "Vous avez deja Reclamer l'annonce consulter mes publication",
-      //             }).then(res => {
-              
-      //               res.present();
-      //               setTimeout(()=>res.dismiss(),2000);
-      //             });
-      //           } else {
-      //             this.reclamer.nom = this.annonce.nom
-      //             this.reclamer.couleur= this.annonce.couleur
-      //             this.reclamer.annonce= this.test
-      //             this.reclamer.user=this.userConnecte
-      //             this.reclamer.statut='retrouve'
-      //             this.reclamer.certificate_perte='vide'
-      //             this.reclamer.description=this.annonce.contenu
-      //             this.reclamer.nomC =this.annonce.nomC
-      //             this.reclamer.anneeObttion = this.annonce.anneeObttion
-      //             this.reclamer.model = 'vide'
-      //             this.reclamer.etat = 'active'
-      //             this.service.reclamer(this.reclamer).subscribe(data=>{
-      //               this.route.navigateByUrl('tabs/tabs/tab1');
-      //               this.alertController.create({
-      //                 cssClass:'my-custom-class',
-      //                 message: 'Votre Demande est en cour de traitement ',
-      //               }).then(res => {
-                
-      //                 res.present();
-      //                 setTimeout(()=>res.dismiss(),2000);
-      //               });
-                    
-      //             }) 
-      //           }
-      //         } else {
-      //           this.reclamer.nom = this.annonce.nom
-      //             this.reclamer.couleur= this.annonce.couleur
-      //             this.reclamer.annonce= this.test
-      //             this.reclamer.user=this.userConnecte
-      //             this.reclamer.statut='retrouve'
-      //             this.reclamer.certificate_perte='vide'
-      //             this.reclamer.description=this.annonce.contenu
-      //             this.reclamer.nomC =this.annonce.nomC
-      //             this.reclamer.anneeObttion = this.annonce.anneeObttion
-      //             this.reclamer.model = 'vide'
-      //             this.reclamer.etat = 'active'
-      //           this.service.reclamer(data).subscribe(data=>{
-      //             this.route.navigateByUrl('tabs/tabs/tab1');
-      //             this.alertController.create({
-      //               cssClass:'my-custom-class',
-      //               message: 'Votre Demande est en cour de traitement ',
-      //             }).then(res => {
-              
-      //               res.present();
-      //               setTimeout(()=>res.dismiss(),2000);
-      //             });
-                  
-      //           }) 
-      //         }
-      //       })
-      //     }
-          
-      //   } else {     
-      //     this.service.ajoutAnnonce(this.annonce).subscribe(data=>{
-      //       this.ance=data;
-      //       this.route.navigateByUrl('tabs/tabs/tab1');
-  
-      //       this.alertController.create({
-      //         cssClass:'my-custom-class',
-      //         message: 'Annonce Publier avec Succès ',
-      //       }).then(res => {
-        
-      //         res.present();
-      //         setTimeout(()=>res.dismiss(),2000);
-      //       });
-            
-      //     })
-      //   }
-  
-      // });
-  
-      
+
     } 
   }
   

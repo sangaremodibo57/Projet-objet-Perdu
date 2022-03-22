@@ -75,33 +75,57 @@ export class DetailAnnoncePage implements OnInit {
     } else {
       this.reclamer.model ='vide'
     }
-    if (this.reclamer.nomC == '3') {
+    if (this.reclamer.nomC == 3) {
       this.reclamer.anneeObttion = formReclame.value['anneeObttion']
+      this.reclamer.nomProprietaireDoc = formReclame.value['nomProprietaireDoc']
+      this.reclamer.prenomProprietaireDoc = formReclame.value['prenomProprietaireDoc']
+      this.reclamer.dateNaissanceDoc = formReclame.value['dateNaissanceDoc']
     } else {
       this.reclamer.anneeObttion ='vide'
+      this.reclamer.nomProprietaireDoc = 'vide'
+      this.reclamer.prenomProprietaireDoc = 'vide'
+      this.reclamer.dateNaissanceDoc = 'vide'
     }
     this.reclamer.user = this.userConnecte;
     this.dateveri = formatDate(this.objet.date, 'yyyy', 'en');
-    if (this.reclamer.couleur === formReclame.value['couleur'] && this.reclamer.lieu === formReclame.value['lieu'] && this.reclamer.annonce.utilisateur.id === this.userConnecte.id && this.reclamer.model === formReclame.value['model'] && this.reclamer.anneeObttion === formReclame.value['anneeObttion'] ) {
-      this.router.navigateByUrl('/home');
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top',
-        text: 'Vous avez déjà publier cette annonce verifie votre publication ',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-      Toast.fire({
-        icon: 'error',
-      })
+    console.log('mon objet',this.objet);
+    if (
+      this.reclamer.couleur === this.objet.couleur && 
+      this.reclamer.lieu === this.objet.lieu && 
+      this.reclamer.annonce.utilisateur.id === this.userConnecte.id && 
+      this.reclamer.model === this.objet.model && 
+      this.reclamer.anneeObttion === this.objet.anneeObttion &&
+      this.reclamer.nomProprietaireDoc === this.objet.nomProprietaireDoc &&
+      this.reclamer.prenomProprietaireDoc === this.objet.prenomProprietaireDoc &&
+      this.reclamer.dateNaissanceDoc === this.objet.dateNaissanceDoc ) {
+        console.log(' 1 mon objet',this.objet);
+        this.router.navigateByUrl('/home');
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top',
+          text: 'Vous avez déjà publier cette annonce verifie votre publication ',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        Toast.fire({
+          icon: 'error',
+        })
     } else{
-      if (this.reclamer.couleur === formReclame.value['couleur'] && this.reclamer.lieu === formReclame.value['lieu'] && this.reclamer.model === formReclame.value['model'] && this.reclamer.anneeObttion === formReclame.value['anneeObttion'] ) {
-        this.service.verifyReclamation(this.reclamer.nom,this.reclamer.lieu,this.reclamer.couleur,this.dateveri,'nonvalide',this.reclamer.model,this.reclamer.anneeObttion).subscribe((data:any)=>{
+      if (
+        this.reclamer.couleur === this.objet.couleur && 
+        this.reclamer.lieu === this.objet.lieu && 
+        this.reclamer.model === this.objet.model && 
+        this.reclamer.anneeObttion === this.objet.anneeObttion &&
+        this.reclamer.nomProprietaireDoc === this.objet.nomProprietaireDoc &&
+        this.reclamer.prenomProprietaireDoc === this.objet.prenomProprietaireDoc &&
+        this.reclamer.dateNaissanceDoc === this.objet.dateNaissanceDoc) {
+
+        this.service.verifyReclamation(this.reclamer.nom,this.reclamer.lieu,this.reclamer.couleur,this.dateveri,'nonvalide',this.reclamer.model,this.reclamer.anneeObttion,this.reclamer.nomProprietaireDoc,this.reclamer.prenomProprietaireDoc,this.reclamer.dateNaissanceDoc).subscribe((data:any)=>{
           if (data.length !== 0) {
             data.forEach(element => {
               //Comparaison user
@@ -172,7 +196,11 @@ export class DetailAnnoncePage implements OnInit {
             })
           }
         })
+        console.log(' 2 mon objet',this.objet);
+        
       } else {
+        console.log('nonnnnnnnnnnnnnn');
+        
         this.router.navigateByUrl('/home');
         const Toast = Swal.mixin({
         toast: true,
@@ -185,10 +213,10 @@ export class DetailAnnoncePage implements OnInit {
           toast.addEventListener('mouseenter', Swal.stopTimer)
           toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
-      })
-      Toast.fire({
-        icon: 'error',
-      })
+        })
+        Toast.fire({
+          icon: 'error',
+        })
       }
       
     }

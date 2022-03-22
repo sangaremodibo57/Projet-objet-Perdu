@@ -14,5 +14,8 @@ export class Reclamation{
     model:any;
     nomC:any;
     lieu:any;
+    dateNaissanceDoc:any;
+    nomProprietaireDoc: any;
+    prenomProprietaireDoc:any;
    
 }

@@ -91,6 +91,36 @@
       <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="anneeObttion.valid || anneeObttion.pristine" class="alert alert-danger">
         Respecter le Format svp : exemple 2022
       </div>
+
+      <h6 class="titleT" style="color: #17BB89;"><ion-icon name="time-sharp"></ion-icon> Quelle est le Prénom du Proprietaire ?</h6>
+              <ion-subtitle >Donner le Prénom du Proprietaire  <span style="color: red; font-size: 15px;">*</span></ion-subtitle> 
+              <ion-item lines="full">
+                <ion-input type="text"  placeholder=" exemple Modibo" name="prenomProprietaireDoc" #prenomProprietaireDoc="ngModel" ngModel required></ion-input>
+              </ion-item>
+              <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="prenomProprietaireDoc.valid || prenomProprietaireDoc.pristine" class="alert alert-danger">
+                Respecter le Format svp : exemple Modibo
+              </div>
+
+
+              <h6 class="titleT"  style="color: #17BB89;"><ion-icon name="time-sharp"></ion-icon> Quelle est le Nom du Proprietaire ?</h6>
+              <ion-subtitle>Donner le Nom du Proprietaire <span style="color: red; font-size: 15px;">*</span></ion-subtitle> 
+              <ion-item lines="full">
+                <ion-input type="text"  placeholder=" exemple SANGARE" name="nomProprietaireDoc" #nomProprietaireDoc="ngModel" ngModel required></ion-input>
+              </ion-item>
+              <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="nomProprietaireDoc.valid || nomProprietaireDoc.pristine" class="alert alert-danger">
+                Respecter le Format svp : exemple SANGARE
+              </div>
+
+              
+              <h6 class="titleT" style="color: #17BB89;"><ion-icon name="time-sharp"></ion-icon> Quelle est la date de naissance sur document ?</h6>
+              <ion-subtitle>Donner la date de naissance du document <span style="color: red; font-size: 15px;">*</span></ion-subtitle> 
+              <ion-item lines="full">
+                <input type="date" id="myDate" name="dateNaissanceDoc" #dateNaissanceDoc="ngModel" ngModel required style="border: none; width: 100%;">
+              </ion-item>
+              <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="dateNaissanceDoc.valid || dateNaissanceDoc.pristine" class="alert alert-danger">
+                Respecter le Format svp : exemple 01/01/2020
+              </div>
+              
     </div>
 
     <h6 class="title"> <ion-icon name="reader-sharp"></ion-icon> Description/Contenu</h6>

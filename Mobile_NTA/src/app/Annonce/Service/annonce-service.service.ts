@@ -10,12 +10,12 @@ export class AnnonceServiceService {
   constructor(private http : HttpClient) { }
 
   //New verification Annonce 
-  verifyAnnonce(nom:String, lieu:String, couleur:String, date:Number, statut:String, model:String, anneeObttion:String){
-    return this.http.get(this.url+"/find/"+nom+"&"+lieu+"&"+couleur+"&"+date+"&"+statut+"&"+model+"&"+anneeObttion);
+  verifyAnnonce(nom:String, lieu:String, couleur:String, date:Number, statut:String, model:String, anneeObttion:String, nomProprietaireDoc:String, prenomProprietaireDoc:String, dateNaissanceDoc:Date){
+    return this.http.get(this.url+"/find/"+nom+"&"+lieu+"&"+couleur+"&"+date+"&"+statut+"&"+model+"&"+anneeObttion+"&"+nomProprietaireDoc+"&"+prenomProprietaireDoc+"&"+dateNaissanceDoc);
   }
   //New verification Reclamation 
-  verifyReclamation(nom:String, lieu:String, couleur:String, date:Number, statut:String, model:String, anneeObttion:String){
-    return this.http.get(this.url+"/findReclamation/"+nom+"&"+lieu+"&"+couleur+"&"+date+"&"+statut+"&"+model+"&"+anneeObttion);
+  verifyReclamation(nom:String, lieu:String, couleur:String, date:Number, statut:String, model:String, anneeObttion:String, nomProprietaireDoc:String, prenomProprietaireDoc:String, dateNaissanceDoc:Date){
+    return this.http.get(this.url+"/findReclamation/"+nom+"&"+lieu+"&"+couleur+"&"+date+"&"+statut+"&"+model+"&"+anneeObttion+"&"+nomProprietaireDoc+"&"+prenomProprietaireDoc+"&"+dateNaissanceDoc);
   }
   getAllCategorie(){
     return this.http.get(this.url+"/allcategorie");

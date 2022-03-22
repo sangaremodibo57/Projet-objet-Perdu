@@ -12,5 +12,9 @@ export class Annonce{
     anneeObttion:any;
     model:any;
     nomC:any;
+    dateNaissanceDoc:any;
+    nomProprietaireDoc: any;
+    prenomProprietaireDoc:any;
+   
    
 }

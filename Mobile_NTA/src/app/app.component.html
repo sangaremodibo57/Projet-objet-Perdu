@@ -23,21 +23,21 @@
       <ion-content>
         <ion-list  lines="none">
           <ion-menu-toggle auto-hide="false">
-            <ion-item  [routerLink]="['/home']" lines="none" detail="false" routerLinkActive="selected">
+            <ion-item   lines="none" detail="false" routerLinkActive="selected">
               <ion-icon slot="start" name="home"></ion-icon>
-              <ion-label>Accueil</ion-label>
+              <ion-label> <a href="home" style="text-decoration: none;color: #17BB89;">Accueil</a></ion-label>
             </ion-item>
-            <ion-item  [routerLink]="['/perdu']" lines="none" detail="false" routerLinkActive="selected">
+            <ion-item   lines="none" detail="false" routerLinkActive="selected">
               <ion-icon slot="start" name="bag-remove"></ion-icon>
-              <ion-label>Objet Perdu</ion-label>
+              <ion-label> <a href="perdu" style="text-decoration: none;color: #17BB89;">Objet Perdu</a></ion-label>
             </ion-item>
-            <ion-item  [routerLink]="['/trouve']" lines="none" detail="false" routerLinkActive="selected">
+            <ion-item  lines="none" detail="false" routerLinkActive="selected">
               <ion-icon slot="start" name="bag-add"></ion-icon>
-              <ion-label>Objet Trouvé</ion-label>
+              <ion-label> <a href="trouve" style="text-decoration: none;color: #17BB89;">Objet Trouvé</a></ion-label>
             </ion-item>
-            <ion-item  [routerLink]="['/info']" lines="none" detail="false" routerLinkActive="selected">
+            <ion-item  lines="none" detail="false" routerLinkActive="selected">
               <ion-icon slot="start" name="information-circle"></ion-icon>
-              <ion-label>Info Utile</ion-label>
+              <ion-label> <a href="info" style="text-decoration: none;color: #17BB89;">Info Utile</a></ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
