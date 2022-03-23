@@ -89,7 +89,7 @@ public class AdminController {
         return adminservImp.listedesactive();
     }
 
-    @DeleteMapping("/changeetatadminactive/{id}")
+    @PutMapping("/changeetatadminactive/{id}")
     public void modifieractive(@PathVariable Long id) {
         adminservImp.modifieractive(id);
 
