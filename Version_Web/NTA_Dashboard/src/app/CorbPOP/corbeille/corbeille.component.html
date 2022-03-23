@@ -1,0 +1,89 @@
+<app-header></app-header>
+<app-side-menu></app-side-menu>
+
+
+<div class="page-wrapper">
+  <div class="page-breadcrumb bg-white">
+    <div class="row align-items-center">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title" style="font-size: 18px;">Corbeille</h4>
+        </div>
+  
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <div class="d-md-flex">
+                <ol class="breadcrumb ms-auto">
+                    <li><a href="#" class="fw-normal text-success" style="font-weight: bold;">PUBLIER UNE ANNONCE</a></li>
+                </ol>
+                
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+
+  <h1>Gestion des Corbeilles</h1> 
+  <hr>
+  <app-headercorbeille></app-headercorbeille>
+
+  <div class="page-wrapper">
+    <div class="container-fluid">
+     <div class="row justify-content-center" style="margin: 0 auto;">
+        <!-- Mettre ici le contenu de la page -->
+
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12">
+                <div class="white-box">
+                    <div class="d-md-flex mb-3">
+                        <div class="row col-md-12 col-lg-12 col-sm-12">
+                            <div class="col-md-6 col-lg-6 col-sm-6">
+                                <h3 class="box-title mb-0">Liste des Administrateurs Inactive</h3>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table no-wrap" >
+                            <thead>
+                                <tr>
+                                    <th class="border-top-0"><b>Nom_Complet</b></th>
+                                    <th class="border-top-0"><b>Email</b></th>
+                                    <th class="border-top-0"><b>Login</b></th>
+                                    <th class="border-top-0"><b>Genre</b></th>
+                                    <th class="border-top-0"><b>Téléphone</b></th>
+                                    <th class="border-top-0"><b>Restaurer</b></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let liste of listeAdmininactive ">
+                                    <td class="txt-oflo">{{liste.nom_complet}}</td>
+                                    <td class="txt-oflo">{{liste.email}}</td>
+                                    <td class="txt-oflo">{{liste.login}}</td>
+                                    <td class="txt-oflo">{{liste.genre}}</td>
+                                    <td class="txt-oflo">{{liste.tel}}</td>
+                                    <td>
+                                        <span class="text-success alignement" >
+                                            <a (click)="Modifieetatinactiveadmin(liste.id)"> <mat-icon>restore_from_trash</mat-icon></a>
+                                         </span>
+                                    </td> 
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+  <div class="container-fluid">
+    <!-- ============================================================== -->
+    <footer class="footer text-center">
+      2021 © Ample Admin brought to you by <a
+            href="https://www.wrappixel.com/">wrappixel.com</a>
+    </footer>
+    
+  </div>
+</div>
