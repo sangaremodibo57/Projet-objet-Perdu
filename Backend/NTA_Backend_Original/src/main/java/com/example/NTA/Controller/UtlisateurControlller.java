@@ -106,7 +106,7 @@ public class UtlisateurControlller {
         userserviceImp.modifieractiveUser(id);
     }
 
-    @DeleteMapping("/modifierdesactiveUser/{id}")
+    @PutMapping("/modifierdesactiveUser/{id}")
     public void modifierdesactiveUser(@PathVariable Long id) {
         userserviceImp.modifierdesactiveUser(id);
     }
