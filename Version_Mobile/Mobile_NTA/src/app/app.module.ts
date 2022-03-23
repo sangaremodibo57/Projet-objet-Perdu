@@ -14,13 +14,11 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 	
 import {NgxPaginationModule} from 'ngx-pagination';
 
-import { SwiperModule } from 'swiper/angular';
-
 import { PipesModule } from 'pipes-module';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [PipesModule,SwiperModule,NgxPaginationModule,Ng2SearchPipeModule,HttpClientModule,BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [PipesModule,NgxPaginationModule,Ng2SearchPipeModule,HttpClientModule,BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
