@@ -115,26 +115,31 @@
                                 <span class="hide-menu">RECLAMATION</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                        <!-- <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="404.html"
                                 aria-expanded="false">
                                 
                                 <i class="fas fa-chart-bar text-white" aria-hidden="true"></i>
                                 <span class="hide-menu">REPPORTING</span>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" [routerLink]="['/corbeille']"
                                 aria-expanded="false">
                                 <i class="fa fa-trash text-white" aria-hidden="true"></i>
-                                <span class="hide-menu">Corbeille</span>
+                                <span class="hide-menu"> CORBEILLE</span>
                             </a>
                         </li>
-                        <li class="text-center p-20 " style="height: 15px;" (click)="logout()">
-                            <a href=""
-                                class="btn d-grid btn-danger text-white" style="font-size: 13px;">
-                                <span><i class="fas fa-sign-out-alt text-white" aria-hidden="true"></i> DECONNEXION</span>  </a>
+                        <li class="sidebar-item"  (click)="logout()" >
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                aria-expanded="false">
+                                <span class="hide-menu" style="color: rgb(255, 255, 255); border: 1px solid black; background-color: black; padding: 5px; font-weight: bold;">
+                                <i class="fa fa-sign-out-alt text-white" aria-hidden="true"></i>
+                                    DECONNEXION
+                                </span>
+                            </a>
                         </li>
+                        
                     </ul>
 
                 </nav>

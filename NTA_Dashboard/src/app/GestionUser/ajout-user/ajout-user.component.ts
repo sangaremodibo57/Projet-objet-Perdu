@@ -34,7 +34,7 @@ newuser = new User();
     this.newuser.genre = form.value['genre'];
     this.newuser.password = form.value['login']+123;
     this.newuser.tel = form.value['tel'];
-    this.newuser.etat = form.value['etat'];
+    this.newuser.etat = 'active';
     console.log(this.newuser);
     
     return this.Userservice.addUser(this.newuser).subscribe((data)=>{

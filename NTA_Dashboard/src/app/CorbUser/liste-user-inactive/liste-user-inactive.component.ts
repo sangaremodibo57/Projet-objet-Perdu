@@ -27,7 +27,7 @@ export class ListeUserInactiveComponent implements OnInit {
   ModifieetatinactiveUser(id: any){
    return  this.corbuserservice.ChangeetatUserinactive(id).subscribe((data:any)=>{
     console.log(data);
-      
+    this.ngOnInit();
     //this.route.navigateByUrl("/listeuser");
      });
       

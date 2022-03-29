@@ -32,55 +32,68 @@
             <div class="col-md-4" *ngFor="let liste of listeReclame | paginate: { itemsPerPage: 6, currentPage: p } " >
               <div class="card">
                 <div class="table">
-                    <h4 class="card-caption">
-                      <a style="font-size: 12px;">{{liste.description}}</a>
-                    </h4>
-                    <div class="ftr">
-                        <div class="author"  (click)="detalUserAnnonce(liste.user.id)">
-                            <a style="font-size: 12px;"> <img src="../../../assets/Accueil/logoUserAccueil.png" alt="" class="avatar img-raised"> 
-                              <span>{{liste.user.nom_complet}}</span>
-                            </a>
-                        </div>
-                        <div class="stats" >
-                          <button (click)="desactiveReclamation(liste.id)" style="font-size: 9px;border: none;margin: 0px;color: red;"> Non Valider</button>
-                          &nbsp;
-                          <button (click)="ajoutNotification(liste)" style="font-size: 9px;border: none;margin: 0px;color: #17BB89;">Valider</button> </div>
+                  <h4 class="card-caption">
+                    <a style="font-size: 12px;">{{liste.description}}</a>
+                  </h4>
+                  <div class="ftr">
+                    <div class="author"  (click)="detalUserAnnonce(liste.user.id)">
+                      <a style="font-size: 12px;"> <img src="../../../assets/Accueil/logoUserAccueil.png"
+                          alt="" class="avatar img-raised"> <span>{{liste.user.nom_complet}}</span>
+
+                      </a>
                     </div>
-                </div>
-            </div>
-            <div class="card card-blog ">
-              <div class="card-image" style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
-                <img src="../../../assets/Accueil/NTAB.png" style="width: 30%;height: 90px;" alt="" srcset="">
-                <h6 style="font-size: 18px;" class="category text-white"> {{liste.annonce.nom}}</h6>
-                <div class="ripple-cont"></div>
-              </div>
-              <div class="table">
-              <div class="ftr">
-                <div class="author">
-                  <i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>{{liste.annonce.lieu}}</span>
-                </div>
-                <div class="stats"> {{liste.annonce.couleur}} <i class=" fas fa-eraser"></i></div>
-              </div>
-              <div class="ftr">
-                <div class="author">
-                  <i class="fas fa-credit-card"></i><span>{{liste.annonce.date  | date:'shortDate'}}</span>
-                </div>
-                <div id="pop" class="stats">
-                  <button style="font-size: 9px;padding: 5px; color: black;" type="button" class="btn btn-default " 
-                      popover="{{liste.annonce.contenu}} "
-                      popoverTitle="Description" placement="top">
-                     Description
-                  </button>
-                  <i class="fas fa-list-alt"></i>
-                </div>
-              </div>
-              <div class="ftr">
-                  <div class="author"  (click)="detalUserAnnonce(liste.annonce.utilisateur.id)">
-                      <a > <img src="../../../assets/Accueil/logoUserAccueil.png" alt="..." class="avatar img-raised"> <span style="font-size: 10px;">{{liste.annonce.utilisateur.email}}</span> </a>
+                    <div class="stats"> <button (click)="desactiveReclamation(liste.id)" style="font-size: 9px;border: none;margin: 0px;color: red;"> Non
+                        Valider</button> &nbsp; <button (click)="ajoutNotification(liste)"
+                        style="font-size: 9px;border: none;margin: 0px;color: #17BB89;">Valider</button> </div>
                   </div>
+                </div>
               </div>
-            </div>
-          </div>
+              <div class="card card-blog ">
+                <div class="card-image"
+                  style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+                  <img src="{{liste.annonce.photo}}" alt="" srcset="">
+                  <h6 style="font-size: 18px;" class="category text-white"> {{liste.annonce.nom}}</h6>
+                  <div class="ripple-cont"></div>
+                </div>
+                <div class="table">
+                  <div class="ftr">
+                    <div class="author">
+                      <i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>Lieu :{{liste.annonce.lieu}}</span>
+                    </div>
+                    <div class="stats">Couleur : {{liste.annonce.couleur}}<i class=" fas fa-eraser"></i></div>
+                  </div>
+                  <div class="ftr" >
+                    <div class="author">
+                      <i class="fas fa-user" aria-hidden="true"></i> <span>Prénom : {{liste.annonce.prenomProprietaireDoc}}</span>
+                    </div>
+                    <div class="stats">Nom : {{liste.annonce.nomProprietaireDoc}}</div>
+                  </div>
+                  <div class="ftr">
+                    <div class="author" *ngIf="liste.annonce.nomC === '3'"> <i class="fas fa-calendar"></i> Obtenu en : {{liste.annonce.anneeObttion}}</div>
+                    <div class="author" *ngIf="liste.annonce.nomC === '7'"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>Model :{{liste.annonce.model}}</span></div>
+                    <div class="stats" *ngIf="liste.annonce.nomC === '3'">Né le : {{liste.annonce.dateNaissanceDoc}} <i class=" fas fa-calendar"></i></div>
+                  </div>
+                  <div class="ftr">
+                    <div class="author">
+                      <i class="fas fa-credit-card"></i><span>Date : {{liste.annonce.date}}</span>
+                    </div>
+                    <div id="pop" class="stats">
+                      <button style="font-size: 9px;padding: 5px;" type="button" class="btn btn-default "
+                        popover="{{liste.annonce.contenu}} " popoverTitle="Description" placement="top">
+                        Description
+                      </button>
+                      <i class="fas fa-list-alt"></i>
+                    </div>
+                  </div>
+                  <div class="ftr">
+                    <div class="author" (click)="detalUserAnnonce(liste.annonce.utilisateur.id)">
+                      <a > <img src="../../../assets/Accueil/logoUserAccueil.png" alt="..."
+                          class="avatar img-raised"> <span
+                          style="font-size: 10px;">{{liste.annonce.utilisateur.email}}</span> </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <pagination-controls  nextLabel="Suiv" previousLabel="Pre" (pageChange)="p = $event"></pagination-controls>
         </div>
@@ -101,55 +114,66 @@
             <div class="col-md-4" *ngFor="let liste of listeReclamationdesactivevalide | paginate: { itemsPerPage: 6, currentPage: p } " >
               <div class="card">
                 <div class="table">
-                    <h4 class="card-caption">
-                      <a style="font-size: 12px;">{{liste.description}}</a>
-                    </h4>
-                    <div class="ftr">
-                        <div class="author"  (click)="detalUserAnnonce(liste.user.id)">
-                            <a style="font-size: 12px;"> <img src="../../../assets/Accueil/logoUserAccueil.png" alt="" class="avatar img-raised"> 
-                              <span>{{liste.user.nom_complet}}</span>
-                            </a>
-                        </div>
-                        <div class="stats" >
-                          <button (click)="desactiveReclamation(liste.id)" style="font-size: 9px;border: none;margin: 0px;color: red;"> Non Valider</button>
-                          &nbsp;
-                          <button (cick)="ajoutNotification(liste)" style="font-size: 9px;border: none;margin: 0px;color: #17BB89;">Valider</button> </div>
+                  <h4 class="card-caption">
+                    <a style="font-size: 12px;">{{liste.description}}</a>
+                  </h4>
+                  <div class="ftr">
+                    <div class="author"  (click)="detalUserAnnonce(liste.user.id)">
+                      <a style="font-size: 12px;"> <img src="../../../assets/Accueil/logoUserAccueil.png"
+                          alt="" class="avatar img-raised"> <span>{{liste.user.nom_complet}}</span>
+
+                      </a>
                     </div>
-                </div>
-            </div>
-            <div class="card card-blog ">
-              <div class="card-image" style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
-                <img src="../../../assets/Accueil/NTAB.png" style="width: 30%;height: 90px;" alt="" srcset="">
-                <h6 style="font-size: 18px;" class="category text-white"> {{liste.annonce.nom}}</h6>
-                <div class="ripple-cont"></div>
-              </div>
-              <div class="table">
-              <div class="ftr">
-                <div class="author">
-                  <i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>{{liste.annonce.lieu}}</span>
-                </div>
-                <div class="stats"> {{liste.annonce.couleur}} <i class=" fas fa-eraser"></i></div>
-              </div>
-              <div class="ftr">
-                <div class="author">
-                  <i class="fas fa-credit-card"></i><span>{{liste.annonce.date  | date:'shortDate'}}</span>
-                </div>
-                <div id="pop" class="stats">
-                  <button style="font-size: 9px;padding: 5px; color: black;" type="button" class="btn btn-default " 
-                      popover="{{liste.annonce.contenu}} "
-                      popoverTitle="Description" placement="top">
-                     Description
-                  </button>
-                  <i class="fas fa-list-alt"></i>
-                </div>
-              </div>
-              <div class="ftr">
-                  <div class="author"  (click)="detalUserAnnonce(liste.annonce.utilisateur.id)">
-                      <a > <img src="../../../assets/Accueil/logoUserAccueil.png" alt="..." class="avatar img-raised"> <span style="font-size: 10px;">{{liste.annonce.utilisateur.email}}</span> </a>
+                    <div class="stats"> <button (click)="desactiveReclamation(liste.id)" style="font-size: 9px;border: none;margin: 0px;color: red;"> Rétirer</button> </div>
                   </div>
+                </div>
               </div>
-            </div>
-          </div>
+              <div class="card card-blog ">
+                <div class="card-image"
+                  style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+                  <img src="{{liste.annonce.photo}}" alt="" srcset="">
+                  <h6 style="font-size: 18px;" class="category text-white"> {{liste.annonce.nom}}</h6>
+                  <div class="ripple-cont"></div>
+                </div>
+                <div class="table">
+                  <div class="ftr">
+                    <div class="author">
+                      <i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>Lieu :{{liste.annonce.lieu}}</span>
+                    </div>
+                    <div class="stats">Couleur : {{liste.annonce.couleur}}<i class=" fas fa-eraser"></i></div>
+                  </div>
+                  <div class="ftr" >
+                    <div class="author">
+                      <i class="fas fa-user" aria-hidden="true"></i> <span>Prénom : {{liste.annonce.prenomProprietaireDoc}}</span>
+                    </div>
+                    <div class="stats">Nom : {{liste.annonce.nomProprietaireDoc}}</div>
+                  </div>
+                  <div class="ftr">
+                    <div class="author" *ngIf="liste.annonce.nomC === '3'"> <i class="fas fa-calendar"></i> Obtenu en : {{liste.annonce.anneeObttion}}</div>
+                    <div class="author" *ngIf="liste.annonce.nomC === '7'"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>Model :{{liste.annonce.model}}</span></div>
+                    <div class="stats" *ngIf="liste.annonce.nomC === '3'">Né le : {{liste.annonce.dateNaissanceDoc}} <i class=" fas fa-calendar"></i></div>
+                  </div>
+                  <div class="ftr">
+                    <div class="author">
+                      <i class="fas fa-credit-card"></i><span>Date : {{liste.annonce.date}}</span>
+                    </div>
+                    <div id="pop" class="stats">
+                      <button style="font-size: 9px;padding: 5px;" type="button" class="btn btn-default "
+                        popover="{{liste.annonce.contenu}} " popoverTitle="Description" placement="top">
+                        Description
+                      </button>
+                      <i class="fas fa-list-alt"></i>
+                    </div>
+                  </div>
+                  <div class="ftr">
+                    <div class="author" (click)="detalUserAnnonce(liste.annonce.utilisateur.id)">
+                      <a > <img src="../../../assets/Accueil/logoUserAccueil.png" alt="..."
+                          class="avatar img-raised"> <span
+                          style="font-size: 10px;">{{liste.annonce.utilisateur.email}}</span> </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <pagination-controls  nextLabel="Suiv" previousLabel="Pre" (pageChange)="p = $event"></pagination-controls>
         </div>

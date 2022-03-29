@@ -17,14 +17,20 @@
 					<div class="row">
 						<form control="" class="form-group" #loginForm="ngForm"  (ngSubmit)="onLogin(loginForm)">
 							<div class="row">
-								<input type="email" name="email" ngModel id="username" class="form__input" placeholder="exemple001@gmail.com" required>
+								<input type="email" name="email" pattern="([A-Za-z0-9._%\+\-]+@[a-z]{3,8}.[a-z]{2,3})$" #email="ngModel" ngModel id="username" class="form__input" placeholder="exemple001@gmail.com" required>
 							</div>
+                            <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                                Respecter le Format des Email : modibo57@gmail.com
+                              </div>
 							<div class="row">
 								<!-- <span class="fa fa-lock"></span> -->
-								<input type="password" name="password" ngModel id="password" class="form__input" placeholder="********" required>
+								<input type="password"  pattern=".{6,16}" #password="ngModel" name="password" ngModel id="password" class="form__input" placeholder="********" required>
 							</div>
+                            <div   style="font-size: 10px;margin-top: 10px; color: rgb(247, 12, 12);" [hidden]="password.valid || password.pristine" class="alert alert-danger">
+                                Format: Au moins 6 caractères et au plus 16 caractères
+                              </div>
 							<div class="row">
-								<input type="submit" value="CONNEXION" class="btn">
+								<input type="submit" value="CONNEXION" class="btn" [disabled]="loginForm.form.invalid">
 							</div>
 						</form>
 					</div>

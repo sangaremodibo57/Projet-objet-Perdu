@@ -16,24 +16,25 @@ export class ListeAdminInactiveComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.Alladmininactive();
+   this.Alladmininactive();
     
   }
   Alladmininactive(){
     return this.corbadminservice.getalladmininactive().subscribe((data:any)=>{
       console.log(data);
       this.listeAdmininactive = data;
+      
     })
   }
 
   Modifieetatinactiveadmin(id:any){
         
-    return this.corbadminservice.changeetatadminactive(id).subscribe((data:any)=>{
-      console.log(data);
-      
-     // this.route.navigateByUrl("/listeadmin");
+    return this.corbadminservice.changeetatadminactive(id).subscribe((data: any) => {
+        this.ngOnInit();
+    } );
+     
 
-    })
+    
   }
 
 }

@@ -10,7 +10,7 @@
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
                 <ol class="breadcrumb ms-auto">
-                    <li><a href="#" class="fw-normal text-success" style="font-weight: bold;">PUBLIER UNE ANNONCE</a></li>
+                    <li><a  class="fw-normal text-success" style="font-weight: bold;"></a></li>
                 </ol>
                 
             </div>
@@ -30,13 +30,14 @@
       <div class="cards-1 section-gray" >
         <div class="container">
           <div class="row" >
-            <div class="col-md-4" *ngFor="let listeP of listeAnnoncesPerdu | paginate: { itemsPerPage: 6, currentPage: p }" >
+            <div class="col-md-4" *ngFor="let listeP of listeAnnoncesPerdu | filter:searchText| paginate: { itemsPerPage: 6, currentPage: p }" >
               <div class="card card-blog ">
-                <div class="card-image" style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
-                  <img src="../../../assets/Accueil/NTAB.png" style="width: 30%;height: 90px;" alt="" srcset="">
-                  <h6 style="font-size: 18px;" class="category text-white"> {{listeP.nom}}</h6>
-                  <div class="ripple-cont"></div>
-                </div>
+                <div class="card-image"
+                    style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+                    <img src="{{listeP.photo}}" alt="" srcset="">
+                    <h6 style="font-size: 18px;" class="category text-white"> {{listeP.nom}}</h6>
+                    <div class="ripple-cont"></div>
+                  </div>
                 <div class="table">
                   <div class="ftr">
                     <div class="author">
@@ -44,11 +45,16 @@
                     </div>
                     <div class="stats">Couleut : {{listeP.couleur}} <i class=" fas fa-eraser"></i></div>
                   </div>
-                  <div class="ftr">
-                    <div class="author" *ngIf="listeP.nomC === '7'">
-                      <i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>Model :{{listeP.model}}</span>
+                  <div class="ftr"  *ngIf="listeP.nomC === '3'">
+                    <div class="author">
+                      <i class="fas fa-user" aria-hidden="true"></i> <span>Prénom : {{listeP.prenomProprietaireDoc}}</span>
                     </div>
-                    <div class="stats" *ngIf="listeP.nomC === '3'">Année Obtention : {{listeP.anneeObttion}} <i class=" fas fa-eraser"></i></div>
+                    <div class="stats">Nom : {{listeP.nomProprietaireDoc}}</div>
+                  </div>
+                  <div class="ftr">
+                    <div class="author" *ngIf="listeP.nomC === '3'"> <i class="fas fa-calendar"></i> Obtenu en : {{listeP.anneeObttion}}</div>
+                    <div class="author" *ngIf="listeP.nomC === '7'"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>Model :{{listeP.model}}</span></div>
+                    <div class="stats" *ngIf="listeP.nomC === '3'">Né le : {{listeP.dateNaissanceDoc}} <i class=" fas fa-calendar"></i></div>
                   </div>
                 <div class="ftr">
                   <div class="author">

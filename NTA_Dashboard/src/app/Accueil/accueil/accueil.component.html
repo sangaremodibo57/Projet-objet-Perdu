@@ -54,7 +54,7 @@
                       </div>
                     </div>
                     <div class="progress mt-1 mb-0" style="height: 7px;">
-                      <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="80"
+                      <div class="progress-bar bg-dark" role="progressbar" style="width: 100%" aria-valuenow="80"
                         aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </div>
@@ -112,7 +112,7 @@
                       </div>
                     </div>
                     <div class="progress mt-1 mb-0" style="height: 7px;">
-                      <div class="progress-bar bg-dark" role="progressbar" style="width: 100%" aria-valuenow="80"
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="80"
                         aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </div>
@@ -133,7 +133,7 @@
                 <div class="card card-blog ">
                   <div class="card-image"
                     style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
-                    <img src="../../../assets/Accueil/NTAB.png" style="width: 30%;height: 90px;" alt="" srcset="">
+                    <img src="{{listeP.photo}}" alt="" srcset="">
                     <h6 style="font-size: 18px;" class="category text-white"> {{listeP.nom}}</h6>
                     <div class="ripple-cont"></div>
                   </div>
@@ -142,13 +142,18 @@
                       <div class="author">
                         <i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>Lieu : {{listeP.lieu}}</span>
                       </div>
-                      <div class="stats">Couleut : {{listeP.couleur}} <i class=" fas fa-eraser"></i></div>
+                      <div class="stats">Couleur : {{listeP.couleur}} <i class=" fas fa-eraser"></i></div>
+                    </div>
+                    <div class="ftr" >
+                      <div class="author">
+                        <i class="fas fa-user" aria-hidden="true"></i> <span>Prénom : {{listeP.prenomProprietaireDoc}}</span>
+                      </div>
+                      <div class="stats">Nom : {{listeP.nomProprietaireDoc}}</div>
                     </div>
                     <div class="ftr">
-                      <div class="author" *ngIf="listeP.nomC === '7'">
-                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>Model :{{listeP.model}}</span>
-                      </div>
-                      <div class="stats" *ngIf="listeP.nomC === '3'">Année Obtention : {{listeP.anneeObttion}} <i class=" fas fa-eraser"></i></div>
+                      <div class="author" *ngIf="listeP.nomC === '3'"> <i class="fas fa-calendar"></i> Obtenu en : {{listeP.anneeObttion}}</div>
+                      <div class="author" *ngIf="listeP.nomC === '7'"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>Model :{{listeP.model}}</span></div>
+                      <div class="stats" *ngIf="listeP.nomC === '3'">Né le : {{listeP.dateNaissanceDoc}} <i class=" fas fa-calendar"></i></div>
                     </div>
                     <div class="ftr">
                       <div class="author">
@@ -184,14 +189,13 @@
           <div class="objetTrouve">
             <div class="row">
               <div class="containerT "
-                *ngFor="let liste of listeAnnoncesTrouve ">
+                *ngFor="let liste of listeAnnoncesTrouve  | paginate: { itemsPerPage: 3, currentPage: trouve }">
                 <div class="card"  style="background: none; border: none; box-shadow: none;">
                   <div class="slide slide1">
                     <div class="content">
                       <div class="icon">
-                        <img src="../../../assets/Accueil/NTAB.png" style="width: 100px;margin: 0px;" alt="" srcset="">
-                        <h3 style="margin: 0px;">{{liste.nom}}</h3>
-                        <P>Date : {{liste.date | date:'shortDate'}}</P>
+                        <img src="{{liste.photo}}" style="height: 165px;"  alt="" srcset="">
+                        <P>Lieu : <span>{{liste.lieu}}</span> &nbsp;  &nbsp; Date : {{liste.date | date:'shortDate'}}</P>
                       </div>
                     </div>
                   </div>
@@ -236,7 +240,7 @@
                 </div>
               </div>
             </div>
-            
+          <pagination-controls nextLabel="Suiv" previousLabel="Pre" (pageChange)="trouve = $event"></pagination-controls>
           </div>
           
         </div>
@@ -265,6 +269,52 @@
                   </div>
                 </div>
                 <div class="card card-blog ">
+                  <div class="card-image"
+                    style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+                    <img src="{{liste.annonce.photo}}" alt="" srcset="">
+                    <h6 style="font-size: 18px;" class="category text-white"> {{liste.annonce.nom}}</h6>
+                    <div class="ripple-cont"></div>
+                  </div>
+                  <div class="table">
+                    <div class="ftr">
+                      <div class="author">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>Lieu :{{liste.annonce.lieu}}</span>
+                      </div>
+                      <div class="stats">Couleur : {{liste.annonce.couleur}}<i class=" fas fa-eraser"></i></div>
+                    </div>
+                    <div class="ftr" >
+                      <div class="author">
+                        <i class="fas fa-user" aria-hidden="true"></i> <span>Prénom : {{liste.annonce.prenomProprietaireDoc}}</span>
+                      </div>
+                      <div class="stats">Nom : {{liste.annonce.nomProprietaireDoc}}</div>
+                    </div>
+                    <div class="ftr">
+                      <div class="author" *ngIf="liste.annonce.nomC === '3'"> <i class="fas fa-calendar"></i> Obtenu en : {{liste.annonce.anneeObttion}}</div>
+                      <div class="author" *ngIf="liste.annonce.nomC === '7'"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>Model :{{liste.annonce.model}}</span></div>
+                      <div class="stats" *ngIf="liste.annonce.nomC === '3'">Né le : {{liste.annonce.dateNaissanceDoc}} <i class=" fas fa-calendar"></i></div>
+                    </div>
+                    <div class="ftr">
+                      <div class="author">
+                        <i class="fas fa-credit-card"></i><span>Date : {{liste.annonce.date}}</span>
+                      </div>
+                      <div id="pop" class="stats">
+                        <button style="font-size: 9px;padding: 5px;" type="button" class="btn btn-default "
+                          popover="{{liste.annonce.contenu}} " popoverTitle="Description" placement="top">
+                          Description
+                        </button>
+                        <i class="fas fa-list-alt"></i>
+                      </div>
+                    </div>
+                    <div class="ftr">
+                      <div class="author" (click)="detalUserAnnonce(liste.annonce.utilisateur.id)">
+                        <a > <img src="../../../assets/Accueil/logoUserAccueil.png" alt="..."
+                            class="avatar img-raised"> <span
+                            style="font-size: 10px;">{{liste.annonce.utilisateur.email}}</span> </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="card card-blog ">
                   <div class="card-image"
                     style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
                     <img src="../../../assets/Accueil/NTAB.png" style="width: 30%;height: 90px;" alt="" srcset="">
@@ -298,7 +348,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>

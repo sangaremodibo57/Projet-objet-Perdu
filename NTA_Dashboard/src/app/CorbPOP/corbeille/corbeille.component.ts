@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CorbeilleAdminServiceService } from 'src/app/CorbAdmin/Service/corbeille-admin-service.service';
 
 @Component({
   selector: 'app-corbeille',
@@ -7,9 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CorbeilleComponent implements OnInit {
 
-  constructor() { }
+  listeAdmininactive: any;
+
+  constructor(
+    private   corbadminservice:CorbeilleAdminServiceService,
+    private route: Router
+  ) { }
 
   ngOnInit(): void {
+    this.Alladmininactive();
+    
+  }
+  Alladmininactive(){
+    return this.corbadminservice.getalladmininactive().subscribe((data:any)=>{
+      console.log(data);
+      this.listeAdmininactive = data;
+    })
+  }
+
+  Modifieetatinactiveadmin(id:any){
+        
+    return this.corbadminservice.changeetatadminactive(id).subscribe((data :any) => {
+
+      this.ngOnInit();
+    });
+     // this.route.navigateByUrl("/listeadmin");
+    
   }
 
 }

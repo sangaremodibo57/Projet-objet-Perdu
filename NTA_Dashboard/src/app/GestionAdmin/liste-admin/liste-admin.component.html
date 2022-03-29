@@ -37,7 +37,7 @@
                                     <a href="" class="active">
                                         <i class="fa fa-search"></i>
                                     </a>
-                                    <input type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search..." class="form-control mt-0">
+                                    <input type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Recherche..." class="form-control mt-0">
                                 </form>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                                     <td>
                                         <span class="text-success alignement">
                                             <a [routerLink]="['/modifieadmin', liste.id]"> <i class="fa fa-edit" aria-hidden="true"></i></a>
-                                            <a (click)="deleteAdmin(liste.id)"><i style="color: red;" class="fa fa-trash" aria-hidden="true" onclick ="return(confirm('Êtes-vous certain de vouloir supprimer cet administrateur ?'));"></i></a>
+                                            <a (click)="deleteAdmin(liste.id)"><i style="color: red;" class="fa fa-trash" aria-hidden="true"></i></a>
                                             <a [routerLink]="['/detailadmin', liste.id]"><i style="color: #03224c;" class="fas fa-info-circle" aria-hidden="true"></i></a>
                                          </span>
                                     </td>

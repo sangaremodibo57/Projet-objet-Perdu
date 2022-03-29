@@ -24,26 +24,36 @@
     <!-- ============================================================== -->
     <div class="row" >
         <div class="container bg-white" style="display: flex;justify-content: space-around; flex-wrap: wrap;" >
-            <div class="card" *ngFor="let liste of listeAnnoncesTrouve | paginate: { itemsPerPage: 6, currentPage: p }">
+            <div class="card" *ngFor="let liste of listeAnnoncesTrouve | paginate: { itemsPerPage: 4, currentPage: p }">
                 <div class="slide slide1">
-                    <div class="content">
-                        <div class="icon">
-                            <img src="../../../assets/Accueil/NTAB.png" width="130px" alt="" srcset="">
-                            <h3>{{liste.nom}}</h3>
-                            <P>Date : {{liste.date  | date:'shortDate'}}</P>
-                        </div>
+                  <div class="content">
+                    <div class="icon">
+                      <img src="{{liste.photo}}" style="height: 165px;width: 100%;"  alt="" srcset="">
+                      <P>Lieu : <span>{{liste.lieu}}</span> &nbsp;  &nbsp; Date : {{liste.date | date:'shortDate'}}</P>
                     </div>
+                  </div>
                 </div>
                 <div class="slide slide2">
                     <div class="content">
                         <div class="table">
-                            <div class="ftr">
+                            <div class="ftr"  *ngIf="liste.nomC === '3'">
                               <div class="author">
-                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>{{liste.lieu}}</span>
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>{{liste.prenomProprietaireDoc}}</span>
                               </div>
-                              <div class="stats"> {{liste.couleur}} <i class=" fas fa-eraser"></i></div>
+                              <div class="stats"> {{liste.nomProprietaireDoc}} <i class=" fas fa-eraser"></i></div>
                             </div>
-                            <div class="ftr">
+                            <div class="ftr"  *ngIf="liste.nomC === '3'">
+                              <div class="author">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>{{liste.dateNaissanceDoc}}</span>
+                              </div>
+                              <div class="stats"> {{liste.anneeObttion}} <i class=" fas fa-eraser"></i></div>
+                            </div>
+                            <!-- <div class="ftr">
+                              <div class="author" *ngIf="liste.nomC === '3'"> <i class="fas fa-calendar"></i> Obtenu en : {{liste.anneeObttion}}</div>
+                              <div class="author" *ngIf="liste.nomC === '7'"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>Model :{{liste.model}}</span></div>
+                              <div class="stats" *ngIf="liste.nomC === '3'">Né le : {{liste.dateNaissanceDoc}} <i class=" fas fa-calendar"></i></div>
+                            </div> -->
+                            <div class="ftr" >
                               <div class="author">
                                 <i class="fas fa-credit-card"></i><span>{{liste.date  | date:'shortDate'}}</span>
                               </div>
@@ -56,11 +66,11 @@
                                 <i class="fas fa-list-alt"></i>
                               </div>
                             </div>
-                            <div class="ftr">
+                            <div class="ftr" style="margin: 0px auto;">
                                 <div class="author" (click)="detalUserAnnonce(liste.utilisateur.id)">
-                                    <a> <img src="../../../assets/Accueil/logoUserAccueil.png" width="40px" alt="..." class="avatar img-raised"> <span style="font-size: 10px;">{{liste.utilisateur.email}}</span> </a>
-                                </div>
-                                <div class="stats" (click)="desactiveAnnonce(liste.id)"> <i class="fa fa-clock-o"></i> <a>Retirer</a> </div>
+                                    <a> <img src="../../../assets/Accueil/logoUserAccueil.png" width="30px" alt="..." class="avatar img-raised"> <span style="font-size: 10px;">{{liste.utilisateur.email}}</span> </a>
+                                <span (click)="desactiveAnnonce(liste.id)"> <i class="fa fa-clock-o"></i> Retirer</span>
+                                  </div>
                             </div>
                           </div>
                     </div>

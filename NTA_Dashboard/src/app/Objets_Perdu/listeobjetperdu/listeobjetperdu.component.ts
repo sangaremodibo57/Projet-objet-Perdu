@@ -11,14 +11,13 @@ import Swal from 'sweetalert2';
 export class ListeobjetperduComponent implements OnInit {
   public listeAnnoncesPerdu : any = [];
   p: number = 1;
+  searchText ='';
   pageOfItems: Array<any> | undefined;
   detailUser: any;
   constructor( private service :ObjetperduserviceService,private route : Router) {}
 
   ngOnInit(): void {
     this.getAnnonce();
-    
-    
     this.getAnnoncePerdu();
    
       
